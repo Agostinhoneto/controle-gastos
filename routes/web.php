@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\ReceitasController;
+use App\Models\Despesas;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,11 @@ Route::get('/', function () {
 Route::get('/receitas', [ReceitasController::class, 'index'])->name('listar_receitas');
 Route::get('/receitas/create', [ReceitasController::class, 'create']);
 Route::post('/receitas/store', [ReceitasController::class, 'store'])->name('criar_receitas');
+
+
+Route::get('/despesas', [DespesasController::class, 'index'])->name('listar_despesas');
+Route::get('/despesas/create', [DespesasController::class, 'create']);
+Route::post('/despesas/store', [DespesasController::class, 'store'])->name('criar_despesas');
 
 /*
 Route::delete('/series/{id}', 'SeriesController@destroy');

@@ -23,7 +23,7 @@ class ReceitasController extends Controller
 
     public function index(Request $request)
     {
-        $receitas = Despesas::query()
+        $receitas = Receitas::query()
             ->orderBy('descricao')
             ->get();
         $mensagem = $request->session()->get('mensagem');
@@ -47,6 +47,7 @@ class ReceitasController extends Controller
         $request->session()->flash('mensagem',"Despesa criada com sucesso");
         return redirect()->route('listar_receitas');
     }
+    
     /*
     public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie)
     {

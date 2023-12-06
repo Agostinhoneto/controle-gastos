@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('cabecalho')
-    Adicionar Série
+    Adicionar Despesas
 @endsection
 
 @section('conteudo')
@@ -19,18 +19,18 @@
     @csrf
     <div class="row">
         <div class="col col-8">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="nome" id="nome">
+            <label for="descricao">Descrição</label>
+            <input type="text" class="form-control" name="descricao" id="descricao">
         </div>
 
         <div class="col col-2">
-            <label for="qtd_temporadas">Nº temporadas</label>
-            <input type="number" class="form-control" name="qtd_temporadas" id="qtd_temporadas">
+            <label for="valor">Valor</label>
+            <input type="number" class="form-control" name="valor" id="valor">
         </div>
 
         <div class="col col-2">
-            <label for="ep_por_temporada">Ep. por temporada</label>
-            <input type="number" class="form-control" name="ep_por_temporada" id="ep_por_temporada">
+            <label for="data_pagamento">Data do Pagamento</label>
+            <input type="date" class="form-control" name="data_pagamento" id="data_pagamento">
         </div>
     </div>
 

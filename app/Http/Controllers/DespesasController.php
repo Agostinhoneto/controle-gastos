@@ -3,35 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Episodio;
+use App\Models\Despesas;
 use App\Temporada;
 use Illuminate\Http\Request;
 
 class DespesasController extends Controller
 {
-    public function index(Temporada $temporada, Request $request)
+    public function index(Request $request)
     {
-        $episodios = $temporada->episodios;
-        $temporadaId = $temporada->id;
+        $despesas = Despesas::query()
+            ->orderBy('descricao')
+            ->get();
         $mensagem = $request->session()->get('mensagem');
-
-        return view(
-            'episodios.index',
-            compact('episodios', 'temporadaId', 'mensagem')
-        );
+        return view('despesas.index', compact('despesas', 'mensagem'));
     }
 
-    public function assistir(Temporada $temporada, Request $request)
+    public function create() 
     {
-        $idsEpisodiosAssistidos = array_keys($request->episodio);
-        $temporada->episodios->each(function (Episodio $episodio) use($idsEpisodiosAssistidos) {
-            $episodio->assistido = in_array(
-                $episodio->id,
-                $idsEpisodiosAssistidos
-            );
-        });
-        $temporada->push();
-        $request->session()->flash('mensagem', 'Episódios marcados como assistidos');
-
-        return redirect('/temporadas/' . $temporada->id . '/episodios');
+        return view('receitas.create');
     }
+
+    public function store(Request $request, ReceitaService $receitaService)
+    {
+        Receitas::create([
+            'descricao' => $request->descricao,
+            'valor' => $request->valor,
+            'data_recebimento' => $request->data_recebimento,
+        ]);
+            
+        $request->session()->flash('mensagem',"Despesa criada com sucesso");
+        return redirect()->route('listar_receitas');
+    }
+    
 }
