@@ -8,10 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class ReceitaService
 {
-public function criarReceita(array $dados)
+    public function criarReceita($numero, $nome, $pais)
     {
-        // Lógica para criar uma nova receita
-        return Receitas::create($dados);
+            DB::beginTransaction();
+            try {
+                $data = $this->surfistaRepository->salvar($numero, $nome, $pais);
+                DB::commit();
+                return $data;
+            } catch (\Exception $e) {
+                DB::rollback();
+                throw new \Exception($e);
+            }
+     
     }
 
     public function atualizarReceita(Receitas $receita, array $dados)
@@ -27,5 +35,4 @@ public function criarReceita(array $dados)
         // Lógica para excluir uma receita
         $receita->delete();
     }
-
 }

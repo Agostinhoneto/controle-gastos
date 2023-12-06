@@ -18,22 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/receitas', [ReceitasController::class, 'index']);
-Route::post('/receitas/store', [ReceitasController::class, 'store']);
+Route::get('/receitas', [ReceitasController::class, 'index'])->name('listar_receitas');
+Route::get('/receitas/create', [ReceitasController::class, 'create']);
+Route::post('/receitas/store', [ReceitasController::class, 'store'])->name('criar_receitas');
 
 /*
-
-Route::get('/series', 'SeriesController@index')
-    ->name('listar_series');
-Route::get('/series/criar', 'SeriesController@create')
-    ->name('form_criar_serie');
-Route::post('/series/criar', 'SeriesController@store');
 Route::delete('/series/{id}', 'SeriesController@destroy');
 Route::post('/series/{id}/editaNome', 'SeriesController@editaNome');
-
 Route::get('/series/{serieId}/temporadas', 'TemporadasController@index');
-
 Route::get('/temporadas/{temporada}/episodios', 'EpisodiosController@index');
-
 Route::post('/temporadas/{temporada}/episodios/assistir', 'EpisodiosController@assistir');
 */

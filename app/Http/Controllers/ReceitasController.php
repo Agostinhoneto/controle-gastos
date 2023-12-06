@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DespesaRequest;
 use App\Http\Requests\SeriesFormRequest;
 use App\Models\Despesas;
+use App\Models\Receitas;
 use App\Services\CriadorDeSerie;
 use App\Services\ReceitaService;
 use App\Services\RemovedorDeSerie;
@@ -35,15 +36,16 @@ class ReceitasController extends Controller
         return view('receitas.create');
     }
 
-    public function store(DespesaRequest $request, ReceitaService $receitaService)
+    public function store(Request $request, ReceitaService $receitaService)
     {
-        $serie = $receitaService->criarReceita(
-            $request->descricao,
-            $request->valor,
-            $request->data_recebimento
-        );
+        Receitas::create([
+            'descricao' => $request->descricao,
+            'valor' => $request->valor,
+            'data_recebimento' => $request->data_recebimento,
+        ]);
+            
         $request->session()->flash('mensagem',"Despesa criada com sucesso");
-        return redirect()->route('listar_series');
+        return redirect()->route('listar_receitas');
     }
     /*
     public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie)
