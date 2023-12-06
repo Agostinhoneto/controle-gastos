@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/receitas', [ReceitasController::class, 'index']);
+Route::post('/receitas/store', [ReceitasController::class, 'store']);
 
 /*
 
