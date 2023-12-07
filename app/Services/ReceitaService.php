@@ -12,7 +12,7 @@ class ReceitaService
     {
             DB::beginTransaction();
             try {
-                $data = $this->surfistaRepository->salvar($numero, $nome, $pais);
+                $data = $this->receitaRepository->salvar($numero, $nome, $pais);
                 DB::commit();
                 return $data;
             } catch (\Exception $e) {

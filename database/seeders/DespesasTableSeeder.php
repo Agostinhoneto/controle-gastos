@@ -15,14 +15,58 @@ class DespesasTableSeeder extends Seeder
     {
         Despesas::create([
             'descricao' => 'Aluguel',
-            'valor' => 1200.00,
-            'data_pagamento' => '2023-01-05',
+            'valor' => 1000.00,
+            'data_pagamento' => '2024-01-01',
         ]);
 
         Despesas::create([
             'descricao' => 'Conta de luz',
-            'valor' => 150.00,
-            'data_pagamento' => '2023-01-10',
+            'valor' => 300.00,
+            'data_pagamento' => '2024-01-01',
+        ]);
+
+        Despesas::create([
+            'descricao' => 'Conta de água',
+            'valor' => 100.00,
+            'data_pagamento' => '2024-01-01',
+        ]);
+
+        Despesas::create([
+            'descricao' => 'Cartão',
+            'valor' => 2000.00,
+            'data_pagamento' => '2024-01-01',
+        ]);
+
+        Despesas::create([
+            'descricao' => 'Internet',
+            'valor' => 100.00,
+            'data_pagamento' => '2024-01-01',
+        ]);
+
+
+        Despesas::create([
+            'descricao' => 'Funcionárias',
+            'valor' => 1000.00,
+            'data_pagamento' => '2024-01-01',
+        ]);
+
+        Despesas::create([
+            'descricao' => 'Frutas e Verduras',
+            'valor' => 400.00,
+            'data_pagamento' => '2024-01-01',
+        ]);
+
+        Despesas::create([
+            'descricao' => 'Carnes',
+            'valor' => 400.00,
+            'data_pagamento' => '2024-01-01',
+        ]);
+
+        
+        Despesas::create([
+            'descricao' => 'Gás e água',
+            'valor' => 250.00,
+            'data_pagamento' => '2024-01-01',
         ]);
     }
 }

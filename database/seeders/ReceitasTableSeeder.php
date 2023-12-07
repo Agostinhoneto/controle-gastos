@@ -15,15 +15,14 @@ class ReceitasTableSeeder extends Seeder
     {
         Receitas::create([
             'descricao' => 'Salário',
-            'valor' => 5000.00,
-            'data_recebimento' => '2023-01-01',
+            'valor' => 3500.00,
+            'data_recebimento' => '2024-01-01',
         ]);
 
         Receitas::create([
-            'descricao' => 'Freelance',
-            'valor' => 1000.00,
-            'data_recebimento' => '2023-01-15',
+            'descricao' => 'Alugueis',
+            'valor' => 1700.00,
+            'data_recebimento' => '2024-01-01',
         ]);
-
     }
 }
