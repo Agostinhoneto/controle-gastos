@@ -20,17 +20,17 @@
     <div class="row">
         <div class="col col-6">
             <label for="descricao">Descrição da Receita</label>
-            <input type="text" class="form-control" name="descricao" id="descricao">
+            <input type="text" id="descricao" class="form-control" name="descricao" required>
         </div>
 
         <div class="col col-2">
             <label for="valor">Valor</label>
-            <input type="number" class="form-control" name="valor" id="valor">
+            <input type="number" id="valor" class="form-control" name="valor" required>
         </div>
 
         <div class="col col-2">
             <label for="data">Data</label>
-            <input type="date" class="form-control" name="data_recebimento" id="data_recebimento">
+            <input type="date" id="data_recebimento" class="form-control" name="data_recebimento" required>
         </div>
 
     </div>
