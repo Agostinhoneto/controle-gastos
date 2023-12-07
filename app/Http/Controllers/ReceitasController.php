@@ -50,8 +50,8 @@ class ReceitasController extends Controller
             'data_recebimento' => $request->data_recebimento,
         ]);
             
-        $request->session()->$request->flash('mensagem',"Despesa criada com sucesso");
-        return redirect()->route('listar_receitas');
+        $request->session()->flash('mensagem',"Despesa criada com sucesso");
+        return redirect()->route('receitas.index');
     }
     
     /*

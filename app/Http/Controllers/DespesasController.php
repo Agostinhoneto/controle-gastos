@@ -26,7 +26,7 @@ class DespesasController extends Controller
 
     public function create() 
     {
-        return view('receitas.create');
+        return view('despesas.create');
     }
 
     public function store(Request $request, DespesaService $receitaService)
@@ -37,7 +37,7 @@ class DespesasController extends Controller
             'data_recebimento' => $request->data_recebimento,
         ]);
             
-        $request->session()->$request->flash('mensagem',"Despesa criada com sucesso");
-        return redirect()->route('listar_receitas');
+        $request->session()->flash('mensagem',"Despesa criada com sucesso");
+        return redirect()->route('despesas.index');
     }
 }

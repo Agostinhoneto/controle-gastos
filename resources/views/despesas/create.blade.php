@@ -15,11 +15,11 @@
     </div>
 @endif
 
-<form method="post">
+<form class="form" method="POST" action="{{ route('despesas.store') }}">
     @csrf
     <div class="row">
         <div class="col col-8">
-            <label for="descricao">Descrição</label>
+            <label for="descricao">Descrição Despesas</label>
             <input type="text" class="form-control" name="descricao" id="descricao">
         </div>
 
