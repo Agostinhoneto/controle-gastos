@@ -34,7 +34,7 @@ class DespesasController extends Controller
         Despesas::create([
             'descricao' => $request->descricao,
             'valor' => $request->valor,
-            'data_recebimento' => $request->data_recebimento,
+            'data_pagamento' => $request->data_pagamento,
         ]);
             
         $request->session()->flash('mensagem',"Despesa criada com sucesso");
