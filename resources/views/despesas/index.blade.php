@@ -8,7 +8,7 @@
 
 @include('mensagem', ['mensagem' => $mensagem])
 
-<a href="{{ route('criar_despesas') }}" class="btn btn-dark mb-2">Adicionar</a>
+<a href="{{ route('despesas.create') }}" class="btn btn-dark mb-2">Adicionar</a>
 
 <ul class="list-group">
     @foreach($despesas as $despesa)

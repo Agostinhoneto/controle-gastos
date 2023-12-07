@@ -15,11 +15,11 @@
     </div>
 @endif
 
-<form action ="{{ route('criar_receitas')}}" method="post">
+<form action ="{{ route('receitas.create')}}" method="post">
     @csrf
     <div class="row">
         <div class="col col-6">
-            <label for="descricao">Descrição</label>
+            <label for="descricao">Descrição da Receita</label>
             <input type="text" class="form-control" name="descricao" id="descricao">
         </div>
 

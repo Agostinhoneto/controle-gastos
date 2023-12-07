@@ -10,6 +10,7 @@ use App\Services\CriadorDeSerie;
 use App\Services\ReceitaService;
 use App\Services\RemovedorDeSerie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReceitasController extends Controller
 {
@@ -23,6 +24,11 @@ class ReceitasController extends Controller
 
     public function index(Request $request)
     {
+        if(!Auth::check()){
+            echo "Não autenticado";
+            exit();
+        }
+
         $receitas = Receitas::query()
             ->orderBy('descricao')
             ->get();
@@ -44,7 +50,7 @@ class ReceitasController extends Controller
             'data_recebimento' => $request->data_recebimento,
         ]);
             
-        $request->session()->flash('mensagem',"Despesa criada com sucesso");
+        $request->session()->$request->flash('mensagem',"Despesa criada com sucesso");
         return redirect()->route('listar_receitas');
     }
     
