@@ -28,12 +28,13 @@ Despesas
                 <td>{{ $despesa->descricao }}</td>
                 <td>{{ $despesa->data_pagamento }}</td>
                 <td>{{ $despesa->valor}}</td>
-             
+
                 <td>
                     <span class="d-flex">
-                        <button class="btn btn-info btn-sm mr-1">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <a href="/despesa/{{ $despesa->id }}/temporadas" class="btn btn-info btn-sm mr-1">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+
                         <a href="/despesa/{{ $despesa->id }}/temporadas" class="btn btn-info btn-sm mr-1">
                             <i class="fas fa-external-link-alt"></i>
                         </a>
@@ -49,7 +50,9 @@ Despesas
             </tr>
             @endforeach
             <tr>
-                <td>Total das despesas : {{$totalValor}}</td>
+                <td>
+                    <p>Total das Despesas :</p>{{$totalValor}}
+                </td>
             </tr>
 
         </tbody>
