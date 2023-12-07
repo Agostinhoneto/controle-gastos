@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('cabecalho')
-    Despesas
+Despesas
 @endsection
 
 @section('conteudo')
@@ -9,43 +9,57 @@
 @include('mensagem', ['mensagem' => $mensagem])
 
 <a href="{{ route('despesas.create') }}" class="btn btn-dark mb-2">Adicionar</a>
-
 <ul class="list-group">
-    @foreach($despesas as $despesa)
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span id="nome-serie-{{ $despesa->id }}">{{ $despesa->descricao }}</span>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descrição da despesa</th>
+                <th scope="col">Data do Pagamento</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Açoes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($despesas as $despesa)
 
-        <div class="input-group w-50" hidden id="input-nome-serie-{{ $despesa->id }}">
-            <input type="text" class="form-control" value="{{ $despesa->descricao }}">
-            <div class="input-group-append">
-                <button class="btn btn-primary">
-                    <i class="fas fa-check"></i>
-                </button>
-                @csrf
-            </div>
-        </div>
+            <tr>
+                <th scope="row">{{ $despesa->id }}</th>
+                <td>{{ $despesa->descricao }}</td>
+                <td>{{ $despesa->data_pagamento }}</td>
+                <td>{{ $despesa->valor}}</td>
+             
+                <td>
+                    <span class="d-flex">
+                        <button class="btn btn-info btn-sm mr-1">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <a href="/despesa/{{ $despesa->id }}/temporadas" class="btn btn-info btn-sm mr-1">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <form method="post" action="/despesa/{{ $despesa->id }}" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </span>
+                </td>
+            </tr>
+            @endforeach
+            <tr>
+                <td>Total das despesas : {{$totalValor}}</td>
+            </tr>
 
-        <span class="d-flex">
-            <button class="btn btn-info btn-sm mr-1">
-                <i class="fas fa-edit"></i>
-            </button>
-            <a href="/despesa/{{ $despesa->id }}/temporadas" class="btn btn-info btn-sm mr-1">
-                <i class="fas fa-external-link-alt"></i>
-            </a>
-            <form method="post" action="/despesa/{{ $despesa->id }}"
-                  onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger btn-sm">
-                    <i class="far fa-trash-alt"></i>
-                </button>
-            </form>
-        </span>
-    </li>
-    @endforeach
+        </tbody>
+    </table>
 </ul>
 
 <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
     /*
     function toggleInput(serieId) {
         const nomeSerieEl = document.getElementById(`nome-serie-${serieId}`);
@@ -80,4 +94,6 @@
     }
     */
 </script>
+
+
 @endsection
