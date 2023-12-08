@@ -46,10 +46,6 @@
                                             <a href="/receita/{{ $receita->id }}/temporadas" class="btn btn-info btn-sm mr-1">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </a>
-
-                                            <a href="/receita/{{ $receita->id }}/temporadas" class="btn btn-info btn-sm mr-1">
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
                                             <form method="post" action="/receita/{{ $receita->id }}" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
                                                 @csrf
                                                 @method('DELETE')
