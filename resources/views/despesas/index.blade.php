@@ -17,32 +17,29 @@
 <script src="{{ URL::asset('assets/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ URL::asset('assets/datatables/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ URL::asset('assets/datatables/datatables-demo.js') }}"></script>
-
 <body>
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
         @include('layouts.sidebar')
         <div class="card shadow mb-4">
             <div class="card-body">
-
                 <ul class="list-group">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Descrição da Receita</th>
-                                    <th scope="col">Data do Recebimento</th>
+                                    <th scope="col">Descrição da Despesa</th>
+                                    <th scope="col">Data do Pagamento</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Açoes</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($despesas as $despesa)
-
                                 <tr>
                                     <th scope="row">{{ $despesa->id }}</th>
                                     <td>{{ $despesa->descricao }}</td>
-                                    <td>{{ $despesa->data_pagamento }}</td>
+                                    <td>{{ $despesa->data_recebimento }}</td>
                                     <td>{{ $despesa->valor}}</td>
                                     <td>
                                         <span class="d-flex">
@@ -64,14 +61,12 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                                <tr>
-                                    <td>
-                                        <p>Total das Despesas :</p>{{$totalValor}}
-                                    </td>
-                                </tr>
-
                             </tbody>
                         </table>
-                    </div>
+                        <a href="{{ route('receitas.create') }}" class="btn btn-dark mb-2">Adicionar</a>
+                </ul>
+            </div>
+        </div>
+
+
 </body>
-</ul>
