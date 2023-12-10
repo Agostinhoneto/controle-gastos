@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DespesaRequest;
-use App\Http\Requests\SeriesFormRequest;
-use App\Models\Despesas;
+
 use App\Models\Receitas;
-use App\Services\CriadorDeSerie;
-use App\Services\ReceitaService;
-use App\Services\RemovedorDeSerie;
+use ConsoleTVs\Charts\Classes\Highcharts\Chart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+//use ConsoleTVs\Charts\Facades\Charts;
+use Charts;
+use ConsoleTVs\Charts\Commands\ChartsCommand;
 
 class ReceitasController extends Controller
 {
     public function index(Request $request)
     {
-        if(!Auth::check()){
+        if (!Auth::check()) {
             echo "Não autenticado";
             exit();
         }
@@ -29,9 +28,10 @@ class ReceitasController extends Controller
         return view('receitas.index', compact('receitas', 'mensagem'));
     }
 
-    public function create() 
+    public function create()
     {
         return view('receitas.create');
+
     }
 
     public function store(Request $request)
@@ -41,11 +41,22 @@ class ReceitasController extends Controller
             'valor' => $request->valor,
             'data_recebimento' => $request->data_recebimento,
         ]);
-            
-        $request->session()->flash('mensagem',"Despesa criada com sucesso");
+
+        $request->session()->flash('mensagem', "Despesa criada com sucesso");
         return redirect()->route('receitas.index');
     }
-    
+
+    public function showChart()
+    {
+        // Exemplo de dados para o gráfico
+        $chart = ChartsCommand::create('bar', 'highcharts')
+        ->title('Meu Gráfico')
+        ->elementLabel('Minha Label')
+        ->labels(['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'])
+        ->values([5, 10, 15, 20, 25]);
+
+      return view('chart', compact('chart'));
+    }
     /*
     public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie)
     {
