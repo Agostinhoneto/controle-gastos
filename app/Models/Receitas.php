@@ -9,6 +9,6 @@ class Receitas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['descricao', 'valor', 'data_recebimento'];
+    protected $fillable = ['descricao', 'valor', 'data_recebimento','status'];
 
 }

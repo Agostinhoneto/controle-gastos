@@ -9,6 +9,6 @@ class Despesas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['descricao', 'valor', 'data_pagamento'];
+    protected $fillable = ['descricao', 'valor', 'data_pagamento','status'];
 
 }
