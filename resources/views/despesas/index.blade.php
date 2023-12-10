@@ -9,15 +9,13 @@
 </head>
 @extends('layout')
 @include('mensagem', ['mensagem' => $mensagem])
-
-
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
         <div class="container" style="margin-top:40px;">
             <div class="card-body">
                 <ul class="list-group">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-light" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
