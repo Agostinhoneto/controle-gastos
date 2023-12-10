@@ -17,12 +17,16 @@ class ReceitasTableSeeder extends Seeder
             'descricao' => 'Salário',
             'valor' => 3500.00,
             'data_recebimento' => '2024-01-01',
+            'status' => true,
+
         ]);
 
         Receitas::create([
             'descricao' => 'Alugueis',
             'valor' => 1700.00,
             'data_recebimento' => '2024-01-01',
+            'status' => true,
+
         ]);
     }
 }

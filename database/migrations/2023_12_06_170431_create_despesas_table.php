@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('descricao');
             $table->decimal('valor', 10, 2);
             $table->date('data_pagamento');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

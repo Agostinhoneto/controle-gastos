@@ -17,30 +17,39 @@ class DespesasTableSeeder extends Seeder
             'descricao' => 'Aluguel',
             'valor' => 1000.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
         ]);
 
         Despesas::create([
             'descricao' => 'Conta de luz',
             'valor' => 300.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
+
         ]);
 
         Despesas::create([
             'descricao' => 'Conta de água',
             'valor' => 100.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
+
         ]);
 
         Despesas::create([
             'descricao' => 'Cartão',
             'valor' => 2000.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
+
         ]);
 
         Despesas::create([
             'descricao' => 'Internet',
             'valor' => 100.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
+
         ]);
 
 
@@ -48,18 +57,24 @@ class DespesasTableSeeder extends Seeder
             'descricao' => 'Funcionárias',
             'valor' => 1000.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
+
         ]);
 
         Despesas::create([
             'descricao' => 'Frutas e Verduras',
             'valor' => 400.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
+
         ]);
 
         Despesas::create([
             'descricao' => 'Carnes',
             'valor' => 400.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
+
         ]);
 
         
@@ -67,6 +82,8 @@ class DespesasTableSeeder extends Seeder
             'descricao' => 'Gás e água',
             'valor' => 250.00,
             'data_pagamento' => '2024-01-01',
+            'status' => true,
+
         ]);
     }
 }
