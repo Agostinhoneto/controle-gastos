@@ -50,7 +50,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <a href="{{ route('receitas.create') }}" class="btn btn-dark mb-2">Adicionar</a>
+                        <a href="{{ route('despesas.create') }}" class="btn btn-dark mb-2">Adicionar</a>
                 </ul>
             </div>
         </div>
