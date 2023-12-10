@@ -9,9 +9,11 @@
 </head>
 @extends('layout')
 @include('mensagem', ['mensagem' => $mensagem])
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
-        @include('layouts.sidebar')
-        <div class="card shadow mb-4">
+
+
+<div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
+    @include('layouts.sidebar')
+        <div class="container" style="margin-top:40px;">
             <div class="card-body">
                 <ul class="list-group">
                     <div class="table-responsive">
@@ -54,3 +56,5 @@
                 </ul>
             </div>
         </div>
+
+    </div>
