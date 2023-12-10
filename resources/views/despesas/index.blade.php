@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="{{ $page->language ?? 'en' }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,12 +9,6 @@
 </head>
 @extends('layout')
 @include('mensagem', ['mensagem' => $mensagem])
-<link href="{{ URL::asset('assets/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-<!-- Scripts DataTables -->
-<script src="{{ URL::asset('assets/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{ URL::asset('assets/datatables/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ URL::asset('assets/datatables/datatables-demo.js') }}"></script>
-<body>
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
         @include('layouts.sidebar')
         <div class="card shadow mb-4">
@@ -63,6 +54,3 @@
                 </ul>
             </div>
         </div>
-
-
-</body>
