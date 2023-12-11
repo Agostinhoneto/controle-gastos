@@ -27,7 +27,7 @@
                                     <th scope="col">Descrição da Despesa</th>
                                     <th scope="col">Data do Pagamento</th>
                                     <th scope="col">Valor</th>
-                                    <th scope="col">Açoes</th>
+                                    <th scope="col">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,8 +35,11 @@
                                 <tr>
                                     <th scope="row">{{ $despesa->id }}</th>
                                     <td>{{ $despesa->descricao }}</td>
-                                    <td>{{ $despesa->data_recebimento }}</td>
+                                    <td>{{Carbon\Carbon::parse( $despesa->data_pagamento)->format('d/m/Y')}}</td>
                                     <td>{{ $despesa->valor}}</td>
+                                    <td>
+                                        <p style="color: green">{{$despesa->status ? 'Ativo' : 'Inativo' }}</p>
+                                    </td>
                                     <td>
                                         <span class="d-flex">
                                             <a href="/despesa/{{ $despesa->id }}/temporadas" class="btn btn-info btn-sm mr-1">
@@ -55,7 +58,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <a href="{{ route('despesas.create') }}" class="btn btn-dark mb-2">Adicionar</a>
+                        <a href="{{ route('despesas.create') }}"></a>  
+                        <i class="fa-solid fa-file-lines">'</i>
+                        <i class="fa-solid fa-file-circle-plus">Adicionar</i>
         </ul>
     </div>
 </div>
@@ -92,19 +97,21 @@
 
 <!-- Page specific script -->
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
     });
-  });
 </script>
