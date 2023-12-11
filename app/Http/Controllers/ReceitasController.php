@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Receitas;
-use ConsoleTVs\Charts\Classes\Highcharts\Chart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-//use ConsoleTVs\Charts\Facades\Charts;
-use Charts;
-use ConsoleTVs\Charts\Commands\ChartsCommand;
+use ConsoleTVs\Charts\Classes\ChartJs\Chart;
 
 class ReceitasController extends Controller
 {
@@ -49,14 +46,15 @@ class ReceitasController extends Controller
     public function showChart()
     {
         // Exemplo de dados para o gráfico
-        $chart = ChartsCommand::create('bar', 'highcharts')
-        ->title('Meu Gráfico')
-        ->elementLabel('Minha Label')
-        ->labels(['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'])
-        ->values([5, 10, 15, 20, 25]);
-
+        $chart = Chart::new('line', 'highcharts')
+        ->setTitle('My nice chart')
+        ->setLabels(['First', 'Second', 'Third'])
+        ->setValues([5,10,20])
+        ->setDimensions(1000,500)
+        ->setResponsive(false);
       return view('chart', compact('chart'));
     }
+
     /*
     public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie)
     {
