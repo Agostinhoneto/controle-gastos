@@ -40,7 +40,7 @@
                                     <td>{{Carbon\Carbon::parse($receita->data_rebecimento)->format('d/m/Y')}}</td>
                                     <td>{{ $receita->valor}}</td>
                                     <td>
-                                        <p>{{$receita->status ? 'Ativo' : 'Inativo' }}</p>
+                                        <p style="color: green">{{$receita->status ? 'Ativo' : 'Inativo' }}</p>
                                     </td>
                                     <td>
                                         <span class="d-flex">
