@@ -11,80 +11,68 @@
 @include('mensagem', ['mensagem' => $mensagem])
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
-    <div class="container" style="margin-top:40px;">
-        <div class="card-body">
-            <ul class="list-group">
-                <div class="table-responsive">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Receitas</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Descrição da Receita</th>
-                                        <th scope="col">Data do Recebimento</th>
-                                        <th scope="col">Valor</th>
-                                        <th scope="col">Açoes</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($receitas as $receita)
-                                    <tr>
-                                        <th scope="row">{{ $receita->id }}</th>
-                                        <td>{{ $receita->descricao }}</td>
-                                        <td>{{ $receita->data_recebimento }}</td>
-                                        <td>{{ $receita->valor}}</td>
-                                        <td>
-                                            <span class="d-flex">
-                                                <a href="/receita/{{ $receita->id }}/temporadas" class="btn btn-info btn-sm mr-1">
-                                                    <i class="fas fa-external-link-alt"></i>
-                                                </a>
-                                                <form method="post" action="/receita/{{ $receita->id }}" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <div class="table-responsive">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Receitas</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Descrição da Receita</th>
+                                    <th scope="col">Data do Recebimento</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Status</th>
+
+                                    <th scope="col">Açoes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($receitas as $receita)
+                                <tr>
+                                    <th scope="row">{{ $receita->id }}</th>
+                                    <td>{{ $receita->descricao }}</td>
+                                    <td>{{Carbon\Carbon::parse($receita->data_rebecimento)->format('d/m/Y')}}</td>
+                                    <td>{{ $receita->valor}}</td>
+                                    <td>
+                                        <p>{{$receita->status ? 'Ativo' : 'Inativo' }}</p>
+                                    </td>
+                                    <td>
+                                        <span class="d-flex">
+                                            <a href="/receita/{{ $receita->id }}/temporadas" class="btn btn-info btn-sm mr-1">
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                            <form method="post" action="/receita/{{ $receita->id }}" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </span>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-            </ul>
-
-            <!-- /.card -->
-
-        </div>
+        </ul>
+        <!-- /.card -->
     </div>
 </div>
-</div>
-<!-- /.content-wrapper -->
+<!-- footer-->
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
         <b>Version</b> 3.2.0
     </div>
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
 </footer>
-
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -106,25 +94,22 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
 <!-- Page specific script -->
 <script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
     });
+  });
 </script>
-
-</body>
