@@ -18,13 +18,10 @@
                     <div class="card-header">
                         <h3 class="card-title">Despesas</h3>
                     </div>
-
-
                     <!-- Botão que abre o modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         Abrir Modal
                     </button>
-
                     <!-- O Modal -->
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
