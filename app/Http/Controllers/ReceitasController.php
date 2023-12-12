@@ -42,20 +42,28 @@ class ReceitasController extends Controller
         return redirect()->route('receitas.index');
     }
 
-    public function edit(Receitas $receitas)
+    public function edit(Receitas $receitas,$id)
     {
-    //    $receitas = Receitas::findOrFaril($id);
+        $receitas = Receitas::find($id);
         return view('receitas.edit', ['receitas' => $receitas]);
     }
 
     public function update(Request $request,Receitas $receitas)
     {
-        $receitas->update([
-            'descricao' => $request->input('descricao'),
-            'valor' => $request->input('valor'),
-            'data_recebimento' => $request->input('data_recebimento'),
-            'status' => $request->input('status'),
-        ]);
+        $receitas = new Receitas();
+        $receitas->descricao = $request->descricao;
+        $receitas->valor = $request->valor;
+        $receitas->data_recebimento = $request->data_recebimento;
+        $receitas->status = $request->status;
+        $receitas->save();
         return redirect()->route('receitas.index')->with('success', 'Receita atualizada com sucesso!');
     }
+
+    public function destroy(Receitas $receitas)
+    {
+        $receitas->delete();
+        $mensagem = session()->get('mensagem');
+        return view('receitas.index', compact('receitas', 'mensagem'));       
+    }
+
 }

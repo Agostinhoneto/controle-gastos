@@ -34,14 +34,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/receitas', [ReceitasController::class, 'index'])->name('receitas.index');
     Route::get('/receitas/create', [ReceitasController::class, 'create'])->name('receitas.create');
     Route::post('/receitas/store', [ReceitasController::class, 'store'])->name('receitas.store');
-    Route::get('/receitas/{receitas}/edit', [ReceitasController::class, 'edit'])->name('receitas.edit');
+    Route::get('/receitas/edit/{id}', [ReceitasController::class, 'edit'])->name('receitas.edit');
     Route::post('/receitas/update', [ReceitasController::class, 'update'])->name('receitas.update');
+    Route::delete('/receitas/destroy/{receitas}', [ReceitasController::class, 'destroy'])->name('receitas.destroy');
+
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/despesas', [DespesasController::class, 'index'])->name('despesas.index');
     Route::get('/despesas/create', [DespesasController::class, 'create'])->name('despesas.create');
     Route::post('/despesas/store', [DespesasController::class, 'store'])->name('despesas.store');
-    Route::get('/despesas/{id}/edit', [DespesasController::class, 'edit'])->name('despesas.edit');
+    Route::get('/despesas/edit/{id}', [DespesasController::class, 'edit'])->name('despesas.edit');
     Route::post('/despesas/update', [DespesasController::class, 'update'])->name('despesas.update');
 });

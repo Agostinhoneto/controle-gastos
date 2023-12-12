@@ -28,7 +28,6 @@
                                     <th scope="col">Data do Recebimento</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Status</th>
-
                                     <th scope="col">Açoes</th>
                                 </tr>
                             </thead>
@@ -44,8 +43,11 @@
                                     </td>
                                     <td>
                                         <span class="d-flex">
-                                            <a href="{{route('receitas.edit', $receitas)}}" class="btn btn-info btn-sm mr-1"><i class="fas fa-external-link-alt"></i></a>
-                                            <form method="post" action="/receitas/delete/" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
+                                            <a href="{{route('receitas.edit',$receita->id)}}"
+                                             class="btn btn-info btn-sm mr-1">
+                                             <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                            <form action="{{ route('receitas.destroy',$receita->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger btn-sm">

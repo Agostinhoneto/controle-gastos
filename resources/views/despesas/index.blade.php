@@ -41,12 +41,12 @@
                                                         <input type="text" class="form-control" name="descricao" id="descricao" required placeholder="Descrição">
                                                     </div>
                                                     <br>
-                                                    <div class="col col-4">
+                                                    <div class="col col-6">
                                                         <label for="valor">Valor</label>
                                                         <input type="number" class="form-control" name="valor" id="valor" required placeholder="Valor $$">
                                                     </div>
                                                     <br>
-                                                    <div class="col col-4">
+                                                    <div class="col col-6">
                                                         <label for="data_pagamento">Data do Pagamento</label>
                                                         <input type="date" class="form-control" name="data_pagamento" id="data_pagamento" required placeholder="Data">
                                                     </div>
@@ -69,7 +69,6 @@
                                 <!-- Rodapé do Modal -->
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                    <!-- Adicione outros botões conforme necessário -->
                                 </div>
 
                             </div>
