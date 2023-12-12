@@ -18,11 +18,6 @@
                     <div class="card-header">
                         <h3 class="card-title">Despesas</h3>
                     </div>
-                    <!-- Botão que abre o modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                        Abrir Modal
-                    </button>
-                    <!-- O Modal -->
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -62,6 +57,11 @@
                                                             <label class="form-check-label" for="exampleCheck1">Status</label>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="status" name="status">
+                                                        <label class="form-check-label" for="status">Ativo</label>
+                                                    </div>
                                                     <br>
                                                     <div class="col col-2">
                                                         <button class="btn btn-primary mt-2">Salvar</button>
@@ -92,7 +92,6 @@
                                     <th scope="col">Status</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
-                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,14 +120,15 @@
                                         </form>
                                         </span>
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                            Abrir Modal
-                                        </button>
-                                    </td>
-                                </tr>
+                                   </tr>
                                 @endforeach
                             </tbody>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                <i class="fa-solid fa-file-lines">
+                                    Add
+                                </i>
+                            </button>
+
                         </table>
 
         </ul>
