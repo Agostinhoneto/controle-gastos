@@ -16,7 +16,7 @@
             <div class="table-responsive">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Despesas</h3>
+                        <h3 class="card-title"></h3>
                     </div>
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
@@ -57,11 +57,6 @@
                                                             <label class="form-check-label" for="exampleCheck1">Status</label>
                                                         </div>
                                                     </div>
-
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input" id="status" name="status">
-                                                        <label class="form-check-label" for="status">Ativo</label>
-                                                    </div>
                                                     <br>
                                                     <div class="col col-2">
                                                         <button class="btn btn-primary mt-2">Salvar</button>
@@ -90,8 +85,8 @@
                                     <th scope="col">Data do Pagamento</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Excluir</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -116,6 +111,7 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm">
                                                 <i class="far fa-trash-alt"></i>
+                                          
                                             </button>
                                         </form>
                                         </span>
@@ -124,9 +120,9 @@
                                 @endforeach
                             </tbody>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                <i class="fa-solid fa-file-lines">
-                                    Add
-                                </i>
+
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                Adcionar
                             </button>
 
                         </table>

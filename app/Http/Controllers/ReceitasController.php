@@ -43,17 +43,11 @@ class ReceitasController extends Controller
         return redirect()->route('receitas.index');
     }
 
-    public function showChart()
+    public function edit(Receitas $receitas)
     {
-        // Exemplo de dados para o gráfico
-        $chart = Chart::new('line', 'highcharts')
-        ->setTitle('My nice chart')
-        ->setLabels(['First', 'Second', 'Third'])
-        ->setValues([5,10,20])
-        ->setDimensions(1000,500)
-        ->setResponsive(false);
-      return view('chart', compact('chart'));
+        return view('receitas.edit', compact('receitas'));
     }
+
 
     /*
     public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie)
