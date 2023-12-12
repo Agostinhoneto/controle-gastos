@@ -101,7 +101,7 @@
                                     </td>
                                     <td>
                                         <span class="d-flex">
-                                            <a href="/despesa/{{ $despesa->id }}/temporadas" class="btn btn-info btn-sm mr-1">
+                                            <a href="/despesa/{{ $despesa->id }}/edit" class="btn btn-info btn-sm mr-1">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </a>
                                     </td>

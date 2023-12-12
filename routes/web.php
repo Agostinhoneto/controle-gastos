@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/receitas', [ReceitasController::class, 'index'])->name('receitas.index');
     Route::get('/receitas/create', [ReceitasController::class, 'create'])->name('receitas.create');
     Route::post('/receitas/store', [ReceitasController::class, 'store'])->name('receitas.store');
-    Route::get('/receitas/{id}/edit', [ReceitasController::class, 'edit'])->name('receitas.edit');
+    Route::get('/receitas/{receitas}/edit', [ReceitasController::class, 'edit'])->name('receitas.edit');
     Route::post('/receitas/update', [ReceitasController::class, 'update'])->name('receitas.update');
 });
 

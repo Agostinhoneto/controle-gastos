@@ -28,7 +28,6 @@ class ReceitasController extends Controller
     public function create()
     {
         return view('receitas.create');
-
     }
 
     public function store(Request $request)
@@ -45,28 +44,18 @@ class ReceitasController extends Controller
 
     public function edit(Receitas $receitas)
     {
-        return view('receitas.edit', compact('receitas'));
+    //    $receitas = Receitas::findOrFaril($id);
+        return view('receitas.edit', ['receitas' => $receitas]);
     }
 
-
-    /*
-    public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie)
+    public function update(Request $request,Receitas $receitas)
     {
-        $nomeSerie = $removedorDeSerie->removerSerie($request->id);
-        $request->session()
-            ->flash(
-                'mensagem',
-                "Série $nomeSerie removida com sucesso"
-            );
-        return redirect()->route('listar_series');
+        $receitas->update([
+            'descricao' => $request->input('descricao'),
+            'valor' => $request->input('valor'),
+            'data_recebimento' => $request->input('data_recebimento'),
+            'status' => $request->input('status'),
+        ]);
+        return redirect()->route('receitas.index')->with('success', 'Receita atualizada com sucesso!');
     }
-
-    public function editaNome(int $id, Request $request)
-    {
-        $serie = Serie::find($id);
-        $novoNome = $request->nome;
-        $serie->nome = $novoNome;
-        $serie->save();
-    }
-    */
 }

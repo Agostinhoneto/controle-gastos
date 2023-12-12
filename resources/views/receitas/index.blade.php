@@ -44,10 +44,8 @@
                                     </td>
                                     <td>
                                         <span class="d-flex">
-                                            <a href="/receita/{{ $receita->id }}/temporadas" class="btn btn-info btn-sm mr-1">
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
-                                            <form method="post" action="/receita/{{ $receita->id }}" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
+                                            <a href="{{route('receitas.edit', $receitas)}}" class="btn btn-info btn-sm mr-1"><i class="fas fa-external-link-alt"></i></a>
+                                            <form method="post" action="/receitas/delete/" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger btn-sm">
