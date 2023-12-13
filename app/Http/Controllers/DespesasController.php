@@ -34,4 +34,29 @@ class DespesasController extends Controller
         $request->session()->flash('mensagem', "Despesa criada com sucesso");
         return redirect()->route('despesas.index');
     } 
+
+    public function edit(Despesas $despesas,$id)
+    {
+        $despesas = Despesas::find($id);
+        return view('despesas.edit', ['despesas' => $despesas]);
+    }
+
+    public function update(Request $request,Despesas $despesas)
+    {
+        $despesas = new Despesas();
+        $despesas->descricao = $request->descricao;
+        $despesas->valor = $request->valor;
+        $despesas->data_pagamento = $request->data_pagamento;
+        $despesas->status = $request->status;
+        $despesas->save();
+        return redirect()->route('despesas.index')->with('success', 'Despesas atualizada com sucesso!');
+    }
+
+    public function destroy(Despesas $despesas)
+    {
+        $despesas->delete();
+        $mensagem = session()->get('mensagem');
+        return redirect()->route('despesas.index')->with('success', 'Despesa excluida com sucesso!');
+
+    }
 }

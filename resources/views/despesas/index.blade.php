@@ -98,14 +98,16 @@
                                     <td>
                                         <p style="color: green">{{$despesa->status ? 'Ativo' : 'Inativo' }}</p>
                                     </td>
+                                    
                                     <td>
                                         <span class="d-flex">
-                                            <a href="/despesa/{{ $despesa->id }}/edit" class="btn btn-info btn-sm mr-1">
+                                            <form action="{{ route('despesas.destroy',$despesa->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
+                                            <a href="{{route('despesas.edit',$despesa->id)}}" class="btn btn-info btn-sm mr-1">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </a>
                                     </td>
                                     <td>
-                                        <form method="post" action="/despesa/{{ $despesa->id }}" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
+                                        <form action="route('despesas.destroy',$despesa->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm">

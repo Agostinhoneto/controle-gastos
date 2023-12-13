@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App\Models\Receitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use ConsoleTVs\Charts\Classes\ChartJs\Chart;
 
 class ReceitasController extends Controller
 {
@@ -63,7 +62,8 @@ class ReceitasController extends Controller
     {
         $receitas->delete();
         $mensagem = session()->get('mensagem');
-        return view('receitas.index', compact('receitas', 'mensagem'));       
+        return redirect()->route('receitas.index')->with('success', 'Receita excluida com sucesso!');
+
     }
 
 }
