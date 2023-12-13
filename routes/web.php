@@ -52,10 +52,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/categorias', [CategoriasController::class, 'index'])->name('despesas.index');
-    Route::get('/despesas/create', [CategoriasController::class, 'create'])->name('despesas.create');
-    Route::post('/despesas/store', [CategoriasController::class, 'store'])->name('despesas.store');
-    Route::get('/despesas/edit/{id}', [CategoriasController::class, 'edit'])->name('despesas.edit');
-    Route::post('/despesas/update', [CategoriasController::class, 'update'])->name('despesas.update');
-    Route::post('/despesas/destroy/{despesas}', [CategoriasController::class, 'destroy'])->name('despesas.destroy');
+    Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
+    Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
+    Route::post('/categorias/store', [CategoriasController::class, 'store'])->name('categorias.store');
+    Route::get('/categorias/edit/{id}', [CategoriasController::class, 'edit'])->name('categorias.edit');
+    Route::post('/categorias/update', [CategoriasController::class, 'update'])->name('categorias.update');
+    Route::post('/categorias/destroy/{categorias}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
 });

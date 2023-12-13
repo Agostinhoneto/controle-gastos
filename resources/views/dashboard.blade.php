@@ -107,7 +107,10 @@
           <a href="{{ route('receitas.index') }}" class="nav-link">Receitas</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('despesas.index') }}"  class="nav-link">Despesas</a>
+          <a href="{{ route('despesas.index') }}" class="nav-link">Despesas</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="{{ route('categorias.index') }}" class="nav-link">Categorias</a>
         </li>
       </ul>
 
