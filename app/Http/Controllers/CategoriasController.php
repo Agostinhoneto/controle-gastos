@@ -12,7 +12,7 @@ class CategoriasController extends Controller
         $categorias = Categorias::query()->orderBy('descricao')
             ->get();    
         $mensagem = $request->session()->get('mensagem');
-        return view('categorias.index', compact('categorias'));
+        return view('categorias.index', compact('categorias','mensagem'));
     }
 
     public function create()
