@@ -98,13 +98,13 @@
                                     <td>
                                         <p style="color: green">{{$despesa->status ? 'Ativo' : 'Inativo' }}</p>
                                     </td>
-                                    
+
                                     <td>
                                         <span class="d-flex">
                                             <form action="{{ route('despesas.destroy',$despesa->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
-                                            <a href="{{route('despesas.edit',$despesa->id)}}" class="btn btn-info btn-sm mr-1">
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
+                                                <a href="{{route('despesas.edit',$despesa->id)}}" class="btn btn-info btn-sm mr-1">
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
                                     </td>
                                     <td>
                                         <form action="route('despesas.destroy',$despesa->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
@@ -112,22 +112,18 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm">
                                                 <i class="far fa-trash-alt"></i>
-                                          
                                             </button>
                                         </form>
                                         </span>
                                     </td>
-                                   </tr>
+                                </tr>
                                 @endforeach
                             </tbody>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                <i class="fa fa-plus" aria-hidden="true"></i>
                                 Adcionar
                             </button>
-
                         </table>
-
         </ul>
     </div>
 </div>

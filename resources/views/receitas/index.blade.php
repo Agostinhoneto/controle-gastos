@@ -100,12 +100,12 @@
                                     </td>
                                     <td>
                                         <span class="d-flex">
-                                            <a href="/receita/{{ $receita->id }}/edit" class="btn btn-info btn-sm mr-1">
+                                            <a href="{{route('receitas.edit',$receita->id)}}" class="btn btn-info btn-sm mr-1">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </a>
                                     </td>
                                     <td>
-                                        <form method="post" action="/receita/{{ $receita->id }}" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
+                                        <form action="{{route('receitas.destroy',$receita->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm">

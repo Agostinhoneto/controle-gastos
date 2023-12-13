@@ -11,4 +11,9 @@ class Despesas extends Model
 
     protected $fillable = ['descricao', 'valor', 'data_pagamento','status'];
 
+    public function categorias()
+    {
+        return $this->belongsTo(Categorias::class);
+    }
+
 }

@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/receitas/store', [ReceitasController::class, 'store'])->name('receitas.store');
     Route::get('/receitas/edit/{id}', [ReceitasController::class, 'edit'])->name('receitas.edit');
     Route::post('/receitas/update', [ReceitasController::class, 'update'])->name('receitas.update');
-    Route::delete('/receitas/destroy/{receitas}', [ReceitasController::class, 'destroy'])->name('receitas.destroy');
+    Route::post('/receitas/destroy/{receitas}', [ReceitasController::class, 'destroy'])->name('receitas.destroy');
 
 });
 
@@ -46,6 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/despesas/store', [DespesasController::class, 'store'])->name('despesas.store');
     Route::get('/despesas/edit/{id}', [DespesasController::class, 'edit'])->name('despesas.edit');
     Route::post('/despesas/update', [DespesasController::class, 'update'])->name('despesas.update');
-    Route::delete('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
+    Route::post('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
 
 });
