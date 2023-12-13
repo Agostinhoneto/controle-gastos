@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\ReceitasController;
+use App\Models\Categorias;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,5 +49,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/despesas/edit/{id}', [DespesasController::class, 'edit'])->name('despesas.edit');
     Route::post('/despesas/update', [DespesasController::class, 'update'])->name('despesas.update');
     Route::post('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
+});
 
+Route::middleware('auth')->group(function () {
+    Route::get('/categorias', [CategoriasController::class, 'index'])->name('despesas.index');
+    Route::get('/despesas/create', [CategoriasController::class, 'create'])->name('despesas.create');
+    Route::post('/despesas/store', [CategoriasController::class, 'store'])->name('despesas.store');
+    Route::get('/despesas/edit/{id}', [CategoriasController::class, 'edit'])->name('despesas.edit');
+    Route::post('/despesas/update', [CategoriasController::class, 'update'])->name('despesas.update');
+    Route::post('/despesas/destroy/{despesas}', [CategoriasController::class, 'destroy'])->name('despesas.destroy');
 });
