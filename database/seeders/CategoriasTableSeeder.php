@@ -15,9 +15,25 @@ class CategoriasTableSeeder extends Seeder
      */
     public function run()
     {
-        Categorias::create(['descricao' => 'Alimentação']);
-        Categorias::create(['descricao' => 'Transporte']);
-        Categorias::create(['descricao' => 'Lazer']);
-        Categorias::create(['descricao' => 'Lazer']);
+        Categorias::create([
+            'descricao' => 'Alimentação',
+            'despesas_id' => 1,
+            'receitas_id' => 1,
+        ]);
+        Categorias::create([
+            'descricao' => 'Transporte',
+            'despesas_id' => 1,
+            'receitas_id' => 1,
+        ]);
+        Categorias::create([
+            'descricao' => 'Lazer',
+            'despesas_id' => 1,
+            'receitas_id' => 1,
+        ]);
+        Categorias::create([
+            'descricao' => 'Lazer',
+            'despesas_id' => 1,
+            'receitas_id' => 1,
+        ]);
     }
 }

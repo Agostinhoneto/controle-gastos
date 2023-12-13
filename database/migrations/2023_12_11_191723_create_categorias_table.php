@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->string('descricao');
+            $table->unsignedBigInteger('despesas_id');
+            $table->foreign('despesas_id')->references('id')->on('despesas');
+            $table->unsignedBigInteger('receitas_id');
+            $table->foreign('receitas_id')->references('id')->on('receitas');
             $table->timestamps();
         });
     }
