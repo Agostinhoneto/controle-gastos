@@ -18,6 +18,7 @@ class ReceitasTableSeeder extends Seeder
             'valor' => 3500.00,
             'data_recebimento' => '2024-01-01',
             'status' => true,
+            'categoria_id' => 1,
 
         ]);
 
@@ -26,7 +27,7 @@ class ReceitasTableSeeder extends Seeder
             'valor' => 1700.00,
             'data_recebimento' => '2024-01-01',
             'status' => true,
-
+            'categoria_id' => 2,
         ]);
     }
 }

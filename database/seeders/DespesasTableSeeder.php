@@ -18,6 +18,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 1000.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
+            'categoria_id' => 1,
         ]);
 
         Despesas::create([
@@ -25,7 +26,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 300.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
-
+            'categoria_id' => 1,
         ]);
 
         Despesas::create([
@@ -33,7 +34,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 100.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
-
+            'categoria_id' => 1,
         ]);
 
         Despesas::create([
@@ -41,7 +42,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 2000.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
-
+            'categoria_id' => 3,
         ]);
 
         Despesas::create([
@@ -49,7 +50,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 100.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
-
+            'categoria_id' => 3,
         ]);
 
 
@@ -58,7 +59,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 1000.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
-
+            'categoria_id' => 2,
         ]);
 
         Despesas::create([
@@ -66,7 +67,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 400.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
-
+            'categoria_id' => 1,
         ]);
 
         Despesas::create([
@@ -74,7 +75,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 400.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
-
+            'categoria_id' => 1,
         ]);
 
         
@@ -83,6 +84,7 @@ class DespesasTableSeeder extends Seeder
             'valor' => 250.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
+            'categoria_id' => 3,
 
         ]);
     }

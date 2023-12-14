@@ -9,7 +9,7 @@ class Despesas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['descricao', 'valor', 'data_pagamento','status'];
+    protected $fillable = ['descricao', 'valor', 'data_pagamento','status','receita_id'];
 
     public function categorias()
     {

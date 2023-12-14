@@ -29,19 +29,6 @@
                         <label for="descricao">Descrição de Categorias</label>
                         <input type="text" id="descricao" class="form-control" name="descricao" required>
                     </div>
-
-                    <div class="col col-2">
-                        <label for="valor">Despesa</label>
-                        <input type="number" id="valor" class="form-control" name="valor" required>
-                    </div>
-
-                    <div class="col col-2">
-                        <label for="data">Data</label>
-                        <input type="date" id="data_recebimento" class="form-control" name="data_recebimento" required>
-                    </div>
-                    <label for="status">Status:</label>
-                    <input type="checkbox" name="status">
-
                 </div>
                 <button class="btn btn-primary mt-2">Adicionar</button>
             </div>

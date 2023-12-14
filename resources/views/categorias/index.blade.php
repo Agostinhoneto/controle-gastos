@@ -34,30 +34,12 @@
                                             <!-- general form elements -->
                                             <div class="card card-primary">
                                                 <br>
-                                                <form class="form" method="POST" action="{{ route('categorias.store') }}">
+                                                <form class="form" method="POST" action="{{route('categorias.store')}}">
                                                     @csrf
                                                     <div class="col col-8">
                                                         <label for="descricao">Descrição:</label>
                                                         <input type="text" class="form-control" name="descricao" id="descricao" required placeholder="Descrição">
                                                     </div>
-                                                    <br>
-                                                    <div class="col col-6">
-                                                        <label for="despesa">Despesa</label>
-                                                        <input type="text" class="form-control" name="despesa" id="despesa" required placeholder="">
-                                                    </div>
-                                                    <br>
-                                                    <div class="col col-6">
-                                                        <label for="receita">Receita</label>
-                                                        <input type="text" class="form-control" name="receita" id="data_pagamento" required placeholder="">
-                                                    </div>
-                                                    <br>
-                                                    <div class="col col-2">
-                                                        <div class="form-check">
-                                                            <input type="checkbox" name="status" class="form-check-input" id="exampleCheck1">
-                                                            <label class="form-check-label" for="exampleCheck1">Status</label>
-                                                        </div>
-                                                    </div>
-                                                    <br>
                                                     <div class="col col-2">
                                                         <button class="btn btn-primary mt-2">Salvar</button>
                                                     </div>
