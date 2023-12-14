@@ -50,6 +50,15 @@
                                                         <label for="data_recebimento">Data do Pagamento</label>
                                                         <input type="date" class="form-control" name="data_recebimento" id="data_recebimento" required placeholder="Data">
                                                     </div>
+                                                    <div class="col col-6">
+                                                        <label for="dropdown">Categoria:</label>
+                                                        <br>
+                                                        <select name="categoria_id" id="dropdown">
+                                                            @foreach ($categorias as $categoria)
+                                                            <option value="{{ $categoria->descricao }}">{{$categoria->descricao}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                     <br>
                                                     <div class="col col-2">
                                                         <div class="form-check">

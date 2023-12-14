@@ -42,18 +42,29 @@
                                                     </div>
                                                     <br>
                                                     <div class="col col-6">
-                                                        <label for="valor">Valor</label>
+                                                        <label for="valor">Valor:</label>
                                                         <input type="number" class="form-control" name="valor" id="valor" required placeholder="Valor $$">
                                                     </div>
                                                     <br>
                                                     <div class="col col-6">
-                                                        <label for="data_pagamento">Data do Pagamento</label>
+                                                        <label for="data_pagamento">Data do Pagamento:</label>
                                                         <input type="date" class="form-control" name="data_pagamento" id="data_pagamento" required placeholder="Data">
                                                     </div>
                                                     <br>
+                                                    <div class="col col-6">
+                                                        <label for="categoria_id">Categoria:</label>
+                                                        <select name="categoria_id" id="categoria_id" class="form-control">
+                                                            <option>Selecione...</option>
+                                                            @foreach($categorias as $c)
+                                                            <option value="{{ $c->id }}">{{ $c->descricao }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
                                                     <div class="col col-2">
                                                         <div class="form-check">
-                                                            <input type="checkbox" name="status" class="form-check-input" id="exampleCheck1">
+
+                                                        <input type="checkbox" name="checkbox" id="checkbox" {{ old('checkbox') ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="exampleCheck1">Status</label>
                                                         </div>
                                                     </div>

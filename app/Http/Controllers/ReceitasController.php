@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Categorias;
 use App\Models\Receitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,12 +16,13 @@ class ReceitasController extends Controller
             exit();
         }
 
-        $receitas = Receitas::query()
-            ->orderBy('descricao')
-            ->get();
+        $receitas = Receitas::query()->orderBy('descricao')->get();
+        
+        $categorias = Categorias::query()->orderBy('descricao')->get();
+ 
         $mensagem = $request->session()->get('mensagem');
 
-        return view('receitas.index', compact('receitas', 'mensagem'));
+        return view('receitas.index', compact('receitas', 'mensagem','categorias'));
     }
 
     public function create()
@@ -35,6 +36,8 @@ class ReceitasController extends Controller
             'descricao' => $request->descricao,
             'valor' => $request->valor,
             'data_recebimento' => $request->data_recebimento,
+            'receita_id'  => $request->receita_id,
+            'status' => $request->status,
         ]);
 
         $request->session()->flash('mensagem', "Despesa criada com sucesso");
@@ -53,6 +56,7 @@ class ReceitasController extends Controller
         $receitas->descricao = $request->descricao;
         $receitas->valor = $request->valor;
         $receitas->data_recebimento = $request->data_recebimento;
+        $receitas->receita_id = $request->receita_id;
         $receitas->status = $request->status;
         $receitas->save();
         return redirect()->route('receitas.index')->with('success', 'Receita atualizada com sucesso!');
