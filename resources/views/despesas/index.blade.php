@@ -60,13 +60,14 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-
-                                                    <div class="col col-2">
-                                                        <div class="form-check">
-
-                                                        <input type="checkbox" name="checkbox" id="checkbox" {{ old('checkbox') ? 'checked' : '' }}>
-                                                            <label class="form-check-label" for="exampleCheck1">Status</label>
-                                                        </div>
+                                                    <br>
+                                                    <div class="col col-6">
+                                                        <label for="status">Status:</label>
+                                                        <select id="status" name="status" class="form-control">
+                                                            <option>Selecione...</option>
+                                                            <option value="1">Ativo</option>
+                                                            <option value="0">Inativo</option>
+                                                        </select>
                                                     </div>
                                                     <br>
                                                     <div class="col col-2">
