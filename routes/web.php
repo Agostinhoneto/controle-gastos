@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\ReceitasController;
+use App\Http\Controllers\RelatorioController;
 use App\Models\Categorias;
 use Illuminate\Support\Facades\Route;
 
@@ -58,4 +59,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/categorias/edit/{id}', [CategoriasController::class, 'edit'])->name('categorias.edit');
     Route::post('/categorias/update', [CategoriasController::class, 'update'])->name('categorias.update');
     Route::delete('/categorias/destroy/{categorias}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/relatorio', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
 });

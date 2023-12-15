@@ -27,12 +27,6 @@ class DespesasController extends Controller
 
     public function store(Request $request)
     {
-        /*
-        $request->validate([
-            'campo1' => 'required',
-            'campo2' => 'required',
-        ]);
-        */
         $despesas = new Despesas();
         $despesas->descricao = $request->input('descricao');
         $despesas->valor = $request->input('valor');

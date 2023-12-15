@@ -9,6 +9,21 @@
 </head>
 @extends('layout')
 @include('mensagem', ['mensagem' => $mensagem])
+<style>
+    #status {
+        padding: 5px;
+    }
+
+    .ativo {
+        background-color: green;
+        color: white;
+    }
+
+    .inativo {
+        background-color: red;
+        color: white;
+    }
+</style>
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="card-body">
@@ -18,121 +33,57 @@
                     <div class="card-header">
                         <h3 class="card-title"></h3>
                     </div>
-                    <div class="modal fade" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <!-- Cabeçalho do Modal -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Criar Receitas</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <!-- Corpo do Modal -->
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <!-- left column -->
-                                        <div class="col-md-12">
-                                            <!-- general form elements -->
-                                            <div class="card card-primary">
-                                                <br>
-                                                <form class="form" method="POST" action="{{ route('receitas.store') }}">
-                                                    @csrf
-                                                    <div class="col col-8">
-                                                        <label for="descricao">Descrição:</label>
-                                                        <input type="text" class="form-control" name="descricao" id="descricao" required placeholder="Descrição">
-                                                    </div>
-                                                    <br>
-                                                    <div class="col col-6">
-                                                        <label for="valor">Valor</label>
-                                                        <input type="number" class="form-control" name="valor" id="valor" required placeholder="Valor $$">
-                                                    </div>
-                                                    <br>
-                                                    <div class="col col-6">
-                                                        <label for="data_recebimento">Data do Pagamento</label>
-                                                        <input type="date" class="form-control" name="data_recebimento" id="data_recebimento" required placeholder="Data">
-                                                    </div>
-                                                    <div class="col col-6">
-                                                        <label for="dropdown">Categoria:</label>
-                                                        <br>
-                                                        <select name="categoria_id" id="dropdown">
-                                                            @foreach ($categorias as $categoria)
-                                                            <option value="{{ $categoria->descricao }}">{{$categoria->descricao}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <br>
-                                                    <div class="col col-2">
-                                                        <div class="form-check">
-                                                            <input type="checkbox" name="status" class="form-check-input" id="exampleCheck1">
-                                                            <label class="form-check-label" for="exampleCheck1">Status</label>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="col col-2">
-                                                        <button class="btn btn-primary mt-2">Salvar</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Rodapé do Modal -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
+                    @include('receitas.create')
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Descrição da Receita</th>
-                                    <th scope="col">Data do Recebimento</th>
-                                    <th scope="col">Valor</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Editar</th>
-                                    <th scope="col">Excluir</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($receitas as $receita)
-                                <tr>
-                                    <th scope="row">{{ $receita->id }}</th>
-                                    <td>{{ $receita->descricao }}</td>
-                                    <td>{{Carbon\Carbon::parse( $receita->data_recebimento)->format('d/m/Y')}}</td>
-                                    <td>{{ $receita->valor}}</td>
-                                    <td>
-                                        <p style="color: green">{{$receita->status ? 'Ativo' : 'Inativo' }}</p>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href="{{route('receitas.edit',$receita->id)}}" class="btn btn-info btn-sm mr-1">
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
-                                    </td>
-                                    <td>
-                                        <form action="{{route('receitas.destroy',$receita->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                        </span>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Descrição da Receita</th>
+                                        <th scope="col">Data do Recebimento</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Excluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($receitas as $receita)
+                                    <tr>
+                                        <th scope="row">{{ $receita->id }}</th>
+                                        <td>{{ $receita->descricao }}</td>
+                                        <td>{{Carbon\Carbon::parse( $receita->data_recebimento)->format('d/m/Y')}}</td>
+                                        <td>{{ $receita->valor}}</td>
+                                        <td>
+                                            <p style="color: green">{{$receita->status ? 'Ativo' : 'Inativo' }}</p>
+                                        </td>
+                                        <td>
+                                            <span class="d-flex">
+                                                <a href="{{route('receitas.edit',$receita->id)}}" class="btn btn-info btn-sm mr-1">
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                        </td>
+                                        <td>
+                                            <form action="{{route('receitas.destroy',$receita->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                Adcionar
-                            </button>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    Adcionar
+                                </button>
 
-                        </table>
+                            </table>
 
         </ul>
     </div>

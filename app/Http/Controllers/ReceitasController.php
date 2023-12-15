@@ -32,13 +32,14 @@ class ReceitasController extends Controller
 
     public function store(Request $request)
     {
-        Receitas::create([
-            'descricao' => $request->descricao,
-            'valor' => $request->valor,
-            'data_recebimento' => $request->data_recebimento,
-            'receita_id'  => $request->receita_id,
-            'status' => $request->status,
-        ]);
+
+        $receitas = new Receitas();
+        $receitas->descricao = $request->input('descricao');
+        $receitas->valor = $request->input('valor');
+        $receitas->data_recebimento = $request->input('data_recebimento');
+        $receitas->categoria_id = $request->input('categoria_id');
+        $receitas->status = $request->input('status', 1); 
+        $receitas->save();
 
         $request->session()->flash('mensagem', "Despesa criada com sucesso");
         return redirect()->route('receitas.index');
