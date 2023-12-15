@@ -56,7 +56,11 @@
                                         <td>{{Carbon\Carbon::parse( $receita->data_recebimento)->format('d/m/Y')}}</td>
                                         <td>{{ $receita->valor}}</td>
                                         <td>
-                                            <p style="color: green">{{$receita->status ? 'Ativo' : 'Inativo' }}</p>
+                                            @if($receita->status == 1)
+                                            <p style="color: green">Pago</p>
+                                            @else
+                                            <p style="color: red">Não Pago</p>
+                                            @endif
                                         </td>
                                         <td>
                                             <span class="d-flex">
