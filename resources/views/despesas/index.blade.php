@@ -9,6 +9,21 @@
 </head>
 @extends('layout')
 @include('mensagem', ['mensagem' => $mensagem])
+<style>
+    #status {
+        padding: 5px;
+    }
+
+    .ativo {
+        background-color: green;
+        color: white;
+    }
+
+    .inativo {
+        background-color: red;
+        color: white;
+    }
+</style>
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="card-body">
@@ -108,7 +123,11 @@
                                     <td>{{Carbon\Carbon::parse( $despesa->data_pagamento)->format('d/m/Y')}}</td>
                                     <td>{{ $despesa->valor}}</td>
                                     <td>
-                                        <p style="color: green">{{$despesa->status ? 'Ativo' : 'Inativo' }}</p>
+                                        @if($despesa->status == 1)
+                                        <p style="color: green">Pago</p>
+                                        @else
+                                        <p style="color: red">Não Pago</p>
+                                        @endif
                                     </td>
 
                                     <td>
