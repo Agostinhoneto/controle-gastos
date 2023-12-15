@@ -47,8 +47,9 @@ class ReceitasController extends Controller
 
     public function edit(Receitas $receitas,$id)
     {
+        $categorias = Categorias::query()->orderBy('descricao')->get();
         $receitas = Receitas::find($id);
-        return view('receitas.edit', ['receitas' => $receitas]);
+        return view('receitas.edit', compact('receitas','categorias'));
     }
 
     public function update(Request $request,Receitas $receitas)
