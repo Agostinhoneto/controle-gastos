@@ -61,16 +61,14 @@
                                         <p style="color: red">Não Pago</p>
                                         @endif
                                     </td>
-
                                     <td>
                                         <span class="d-flex">
-                                        <a href="{{route('despesas.edit',$despesa->id)}}" class="btn btn-info btn-sm mr-1">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
+                                            <a href="{{route('despesas.edit',$despesa->id)}}" class="btn btn-info btn-sm mr-1">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </a>
+                                        </span>
                                     </td>
+
                                     <td>
                                         <form action="route('despesas.destroy',$despesa->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
                                             @csrf
