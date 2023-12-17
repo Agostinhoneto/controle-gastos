@@ -1,77 +1,50 @@
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Cabeçalho do Modal -->
-            <div class="modal-header">
-                <h4 class="modal-title">Editar Receitas</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Corpo do Modal -->
-            <div class="modal-body">
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-12">
-                        <!-- general form elements -->
-                        <div class="card card-primary">
-                            <br>
-                            <form class="form" method="POST" action="{{ route('receitas.store') }}">
-                                @csrf
-                                <div class="col col-8">
-                                    <label for="descricao">Descrição:</label>
-                                    <input type="text" class="form-control" name="descricao" id="descricao" value="{{ $receitas->descricao }}" required>
-                                </div>
-                                <br>
-                                <div class="col col-6">
-                                    <label for="valor">Valor:</label>
-                                    <input type="number" class="form-control" name="valor" id="valor" value="{{ $receitas->valor }}" required>
-                                </div>
-                                <br>
-                                <div class="col col-6">
-                                    <label for="data_pagamento">Data do Recebimento:</label>
-                                    <input type="date" class="form-control" name="data_recebimento" id="data_recebimento" value="{{ $receitas->data_recebimento }}" required>
-                                </div>
-                                <br>
-                                <div class="col col-6">
-                                    <label for="categoria_id">Categoria:</label>
-                                    <select name="categoria_id" id="categoria_id" class="form-control">
-                                        <option>Selecione...</option>
-                                        @foreach($categorias as $c)
-                                        <option value="{{ $c->id }}">{{ $c->descricao }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <br>
-                                <div class="col col-6">
-                                    <label for="status">Status:</label>
-                                    <select id="status" name="status" class="form-control">
-                                        <option>Selecione...</option>
-                                        <option value="1">Ativo</option>
-                                        <option value="0">Inativo</option>
-                                    </select>
-                                </div>
-                                <br>
-                                <div class="col col-2">
-                                    <button class="btn btn-primary mt-2">Salvar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Rodapé do Modal -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="referrer" content="always">
+    <title>Admin</title>
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+</head>
+@extends('layout')
+<div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
+    @include('layouts.sidebar')
+    <div class="container" style="margin-top:40px;">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+        @endif
+        <div class="container mt-5">
+            <h2>Editar Receitas</h2>
+            <form method="post" action="{{route('receitas.update',$receitas)}}">
+                @csrf
+                @method('POST')
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $receitas->descricao }}">
+                </div>
+                <div class="form-group">
+                    <label for="valor">Valor:</label>
+                    <input type="text" class="form-control" id="valor" name="valor" value="{{ $receitas->valor }}">
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <input type="text" class="form-control" id="status" name="status" value="{{ $receitas->status }}">
+                </div>
+                <div class="form-group">
+                    <label for="data_recebimento">Data do Pagamento:</label>
+                    <input type="text" class="form-control" id="data_recebimento" name="data_recebimento" value="{{$receitas->data_recebimento}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </form>
+        </div>
+
     </div>
 </div>
-<!-- /.card-header -->
+       
