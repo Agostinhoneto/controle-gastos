@@ -42,7 +42,8 @@ class DespesasController extends Controller
     public function edit(Despesas $despesas,$id)
     {
         $despesas = Despesas::find($id);
-        return view('despesas.edit', ['despesas' => $despesas]);
+        $categorias = Categorias::query()->orderBy('descricao')->get();
+        return view('despesas.edit', compact('despesas','categorias'));
     }
 
     public function update(Request $request,Despesas $despesas)

@@ -25,26 +25,35 @@
             <form method="post" action="{{route('despesas.update',$despesas)}}">
                 @csrf
                 @method('POST')
-                <div class="form-group">
+                <div class="col col-6">
                     <label for="descricao">Descrição:</label>
                     <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $despesas->descricao }}">
                 </div>
-                <div class="form-group">
+                <div class="col col-2">
                     <label for="valor">Valor:</label>
                     <input type="text" class="form-control" id="valor" name="valor" value="{{ $despesas->valor }}">
                 </div>
-                <div class="form-group">
+                <div class="col col-2">
                     <label for="status">Status:</label>
                     <input type="text" class="form-control" id="status" name="status" value="{{ $despesas->status }}">
                 </div>
-                <div class="form-group">
+                <div class="col col-2">
                     <label for="data_pagamento">Data do Pagamento:</label>
-                    <input type="text" class="form-control" id="data_pagamento" name="data_pagamento" value="{{$despesas->data_pagamento}}">
+                    <input type="date" class="form-control" id="data_pagamento" name="data_pagamento" value="{{$despesas->data_pagamento}}">
                 </div>
+                <div class="col col-2">
+                    <label for="categoria_id">Categoria:</label>
+                    <select name="categoria_id" id="categoria_id" class="form-control">
+                        <option>Selecione...</option>
+                        @foreach($categorias as $c)
+                        <option value="{{ $c->id }}">{{ $c->descricao }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <br>
                 <button type="submit" class="btn btn-primary">Atualizar</button>
             </form>
         </div>
 
     </div>
 </div>
-       
