@@ -11,7 +11,7 @@ class Receitas extends Model
 
     protected $fillable = ['descricao', 'valor', 'data_recebimento','status','receita_id'];
 
-    public function categorias()
+    public function categoria()
     {
         return $this->belongsTo(Categorias::class);
     }

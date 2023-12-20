@@ -11,9 +11,9 @@ class Despesas extends Model
 
     protected $fillable = ['descricao', 'valor', 'data_pagamento','status','receita_id'];
 
-    public function categorias()
+    public function categoria()
     {
-        return $this->belongsTo(Categorias::class);
+        return $this->hasMany(Categorias::class);
     }
 
 }

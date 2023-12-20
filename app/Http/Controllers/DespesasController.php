@@ -13,9 +13,9 @@ class DespesasController extends Controller
     public function index(Request $request)
     {
         $totalValor = Despesas::sum('valor');
-        $categorias = Categorias::query()->orderBy('descricao')->get();
+        $categorias = Despesas::with('categoria')->get();
         $despesas = Despesas::query()->orderBy('descricao')->get();
-     
+
         $mensagem = $request->session()->get('mensagem');
         return view('despesas.index', compact('despesas', 'mensagem','totalValor','categorias'));
     }
@@ -32,12 +32,12 @@ class DespesasController extends Controller
         $despesas->valor = $request->input('valor');
         $despesas->data_pagamento = $request->input('data_pagamento');
         $despesas->categoria_id = $request->input('categoria_id');
-        $despesas->status = $request->input('status', 1); 
+        $despesas->status = $request->input('status', 1);
         $despesas->save();
 
         $request->session()->flash('mensagem', "Despesa criada com sucesso");
         return redirect()->route('despesas.index');
-    } 
+    }
 
     public function edit(Despesas $despesas,$id)
     {

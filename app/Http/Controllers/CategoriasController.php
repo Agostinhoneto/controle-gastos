@@ -9,8 +9,8 @@ class CategoriasController extends Controller
 {
     public function index(Request $request)
     {
-        $categorias = Categorias::query()->orderBy('descricao')
-            ->get();    
+        $categorias = Receita::with('categoria')->get();
+       // $categorias = Categorias::query()->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
         return view('categorias.index', compact('categorias','mensagem'));
     }
@@ -29,7 +29,7 @@ class CategoriasController extends Controller
         ]);
         $request->session()->flash('mensagem', "Categorias criada com sucesso");
         return redirect()->route('categorias.index');
-    } 
+    }
 
     public function edit(Categorias $categorias,$id)
     {

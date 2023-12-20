@@ -17,9 +17,10 @@ class ReceitasController extends Controller
         }
 
         $receitas = Receitas::query()->orderBy('descricao')->get();
-        
-        $categorias = Categorias::query()->orderBy('descricao')->get();
- 
+        $categorias = Receitas::with('categoria')->get();
+
+        //$categorias = Categorias::query()->orderBy('descricao')->get();
+
         $mensagem = $request->session()->get('mensagem');
 
         return view('receitas.index', compact('receitas', 'mensagem','categorias'));
@@ -38,7 +39,7 @@ class ReceitasController extends Controller
         $receitas->valor = $request->input('valor');
         $receitas->data_recebimento = $request->input('data_recebimento');
         $receitas->categoria_id = $request->input('categoria_id');
-        $receitas->status = $request->input('status', 1); 
+        $receitas->status = $request->input('status', 1);
         $receitas->save();
 
         $request->session()->flash('mensagem', "Despesa criada com sucesso");
