@@ -43,6 +43,7 @@
                                     <th scope="col">Data do Pagamento</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Categoria</th>
                                     <th scope="col">Editar</th>
                                     <th scope="col">Excluir</th>
                                 </tr>
@@ -60,6 +61,9 @@
                                         @else
                                         <p style="color: red">Não Pago</p>
                                         @endif
+                                    </td>
+                                    <td>
+                                        {{$despesa->categoria->descricao}}
                                     </td>
                                     <td>
                                         <span class="d-flex">

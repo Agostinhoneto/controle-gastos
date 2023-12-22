@@ -19,8 +19,6 @@ class ReceitasController extends Controller
         $receitas = Receitas::query()->orderBy('descricao')->get();
         $categorias = Receitas::with('categoria')->get();
 
-        //$categorias = Categorias::query()->orderBy('descricao')->get();
-
         $mensagem = $request->session()->get('mensagem');
 
         return view('receitas.index', compact('receitas', 'mensagem','categorias'));

@@ -13,7 +13,7 @@ class Despesas extends Model
 
     public function categoria()
     {
-        return $this->hasMany(Categorias::class);
+        return $this->belongsTo(Categorias::class);
     }
 
 }
