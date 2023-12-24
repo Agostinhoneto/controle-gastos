@@ -11,10 +11,9 @@ class DespesasController extends Controller
 
     public function index(Request $request)
     {
+        $categorias = Categorias::query()->orderBy('descricao')->get();
         $totalValor = Despesas::sum('valor');
-        $despesas = Despesas::query()->orderBy('descricao')->get();
-        $categorias = Despesas::with('categoria')->get();
-
+        $despesas = Despesas::query()->with('categoria')->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
         return view('despesas.index', compact('despesas', 'mensagem','totalValor','categorias'));
     }

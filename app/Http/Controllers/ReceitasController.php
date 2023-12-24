@@ -16,11 +16,10 @@ class ReceitasController extends Controller
             exit();
         }
 
-        $receitas = Receitas::query()->orderBy('descricao')->get();
-        $categorias = Receitas::with('categoria')->get();
-
+        $receitas = Receitas::query()->with('categoria')->orderBy('descricao')->get();
+        $categorias = Categorias::query()->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
-
+ 
         return view('receitas.index', compact('receitas', 'mensagem','categorias'));
     }
 
