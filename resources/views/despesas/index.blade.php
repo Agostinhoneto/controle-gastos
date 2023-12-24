@@ -74,7 +74,7 @@
                                     </td>
 
                                     <td>
-                                        <form action="route('despesas.destroy',$despesa->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
+                                        <form action="{{route('despesas.destroy',$despesa->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm">
