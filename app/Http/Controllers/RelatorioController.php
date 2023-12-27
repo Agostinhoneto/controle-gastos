@@ -16,15 +16,8 @@ class RelatorioController extends Controller
 
     public function gerarPDF()
     {
-
-        // Use Eloquent para buscar dados
-        $data = Despesas::all();
-        dd($data);
-
-        // Carregue a visualização do relatório
-        $pdf = PDF::loadView('relatorio', compact('data'));
-
-        // Faça o download do PDF ou exiba na tela
-        return $pdf->download('relatorio.pdf');
+        $despesas = Despesas::all();
+        $pdf = PDF::loadView('pdf', compact('despesas'));
+        return $pdf->setPaper('a4')->stream('relatorios.despesas.pdf');
     }
 }
