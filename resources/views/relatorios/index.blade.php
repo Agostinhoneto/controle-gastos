@@ -17,17 +17,28 @@
                     <div class="card-header">
                         <h3 class="card-title">Relatórios</h3>
                     </div>
-                    <div class="container mt-5">
-                        <div class="row">
-                            <div class="col-md-6 offset-md-3">
-                                <h2 class="mb-4"></h2>
-                                <p></p>
-                            </div>
-                        </div>
+
+                    <h1>Relatório PDF</h1>
+                    <div class="container">
+                        <form action="{{ route('relatorios.despesas') }}" method="post">
+                            @csrf
+                            <!-- Adicione seus campos de filtro aqui -->
+                            <label for="filter1">Descrição:</label>
+                            <input type="text" name="filter1">
+
+                            <label for="filter2">Categorias :</label>
+                            <input type="text" name="filter2">
+
+                            <label for="filter2">Data :</label>
+                            <input type="date" name="filter2">
+
+                            <button type="submit">Gerar PDF</button>
+                        </form>
                     </div>
-                    <i class="fa-solid fa-print"></i>
                 </div>
             </div>
         </ul>
     </div>
 </div>
+
+<!-- resources/views/reports/index.blade.php -->
