@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorias;
 use App\Models\Despesas;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
@@ -13,7 +14,9 @@ class RelatorioController extends Controller
 
     public function index()
     {
-        return view('relatorios.index');
+        $categorias = Categorias::query()->orderBy('descricao')->get();
+
+        return view('relatorios.index',compact('categorias'));
     }
 
     public function gerarPDF(Request $request)
