@@ -18,31 +18,21 @@ class RelatorioController extends Controller
 
     public function gerarPDF(Request $request)
     {
+        // Lógica para gerar o PDF com base nos filtros do formulário
+        $filter1 = $request->input('filter1');
+        $filter2 = $request->input('filter2');
+        // Consulta ao banco de dados com base nos filtros
+        $reports = Despesas::where('descricao', $filter1)
+            ->where('id', $filter2)
+            ->get();
+        $data = [
+            'descricao' => $filter1,
+            'id' => $filter2,
+        ];
+        $pdf = FacadePdf::loadView('relatorios.pdf', compact('data'));
 
-          // Lógica para gerar o PDF com base nos filtros do formulário
-          $filter1 = $request->input('filter1');
-          $filter2 = $request->input('filter2');
-          // Consulta ao banco de dados com base nos filtros
-          $reports = Despesas::where('descricao', $filter1)
-                          ->where('id', $filter2)
-                          ->get();
-          $data = [
-              'descricao' => $filter1,
-              'id' => $filter2,
-          ];
-  
-          $pdf = FacadePdf::loadView('relatorios.pdf', compact('data'));
+        return $pdf->download('relatorio.pdf');
 
-          return $pdf->download('relatorio.pdf');
-
-      //  dd($data); 
-       //   return $reports->download('relatorio.pdf');
-
-        /*
-        $despesas = Despesas::all();
-        $pdf = PDF::loadView('pdf', compact('despesas'));
-        return $pdf->setPaper('a4')->stream('relatorios.despesas.pdf');
-
-        */
+      
     }
 }
