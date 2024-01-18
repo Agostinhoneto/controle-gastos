@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiReceitasController;
 use App\Http\Controllers\Api\ApiUsersController;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -28,3 +29,8 @@ Route::get('/user/{id}', function (string $id) {
 
 //Users.
 Route::get('/users/index',[ApiUsersController::class,'index']);
+
+
+//Receitas.
+Route::get('/receitas/index',[ApiReceitasController::class,'index']);
+
