@@ -5,7 +5,6 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
-use App\Models\Categorias;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/receitas/edit/{id}', [ReceitasController::class, 'edit'])->name('receitas.edit');
     Route::post('/receitas/update', [ReceitasController::class, 'update'])->name('receitas.update');
     Route::delete('/receitas/destroy/{receitas}', [ReceitasController::class, 'destroy'])->name('receitas.destroy');
-
 });
 
 Route::middleware('auth')->group(function () {
