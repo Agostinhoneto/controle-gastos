@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiDespesasController;
 use App\Http\Controllers\Api\ApiReceitasController;
 use App\Http\Controllers\Api\ApiUsersController;
 use App\Http\Resources\UserResource;
@@ -22,15 +23,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/user/{id}', function (string $id) {
-    return new UserResource(User::findOrFail($id));
-});
-
-
 //Users.
 Route::get('/users/index',[ApiUsersController::class,'index']);
+Route::post('/users/store',[ApiUsersController::class,'store']);
 
 
 //Receitas.
 Route::get('/receitas/index',[ApiReceitasController::class,'index']);
 
+
+// Receitas .
+Route::get('/receitas/index',[ApiDespesasController::class,'index']);
+Route::get('/receitas/store',[ApiDespesasController::class,'store']);
