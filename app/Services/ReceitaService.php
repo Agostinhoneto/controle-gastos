@@ -1,38 +1,75 @@
 <?php
 
 namespace App\Services;
-
-use App\Models\Despesas;
-use App\Models\Receitas;
+use App\Repositories\ReceitasRepository;
+use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use InvalidArgumentException;
 
 class ReceitaService
 {
-    public function criarReceita($numero, $nome, $pais)
+
+    private $receitasRepository;
+
+    public function __construct(ReceitasRepository $receitasRepository)
     {
-            DB::beginTransaction();
-            try {
-                $data = $this->receitaRepository->salvar($numero, $nome, $pais);
-                DB::commit();
-                return $data;
-            } catch (\Exception $e) {
-                DB::rollback();
-                throw new \Exception($e);
-            }
-     
+        $this->receitasRepository = $receitasRepository;
+    }
+    public function getAll()
+    {
+        return $this->receitasRepository->getAllUsers();
     }
 
-    public function atualizarReceita(Receitas $receita, array $dados)
+    public function getById($id)
     {
-        // Lógica para atualizar uma receita existente
-        $receita->update($dados);
-
-        return $receita;
+        return $this->receitasRepository
+            ->getById($id);
     }
 
-    public function excluirReceita(Receitas $receita)
+
+    public function getUserById($id)
     {
-        // Lógica para excluir uma receita
-        $receita->delete();
+        return $this->receitasRepository->getById($id);
+    }
+
+    public function createUser($id, $name, $email, $password)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $this->receitasRepository->salvar($id, $name, $email, $password);
+            DB::commit();
+            return $data;
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw new \Exception($e);
+        }
+    }
+
+    public function updateUser($id, $name, $email, $password)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $this->receitasRepository->update($id, $name, $email, $password);
+            DB::commit();
+            return $data;
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw new \Exception($e);
+        }
+    }
+
+    public function destroyUser($id){
+        DB::beginTransaction();
+        try{
+            $user = $this->receitasRepository->delete($id);
+            DB::commit();
+        }
+        catch(Exception $e){
+            DB::roolBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Não pode ser deletado');
+        }
+        return $user;
     }
 }

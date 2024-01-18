@@ -25,7 +25,7 @@ class ApiUsersController extends Controller
         $limit = 10;
         try {
             $result['data'] = $this->userService->getAll($limit);
-            return response()->json([Messages::SUCCESS_MESSAGE,HttpStatusCodes::OK,$result]);
+            return response()->json([Messages::SUCCESS_MESSAGE, HttpStatusCodes::OK, $result]);
         } catch (Exception $e) {
             return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
         }
@@ -36,13 +36,13 @@ class ApiUsersController extends Controller
         try {
             if (!empty($id)) {
                 $result['data'] = $this->userService->getById($id);
-                return response()->json([Messages::SUCCESS_MESSAGE, HttpStatusCodes::OK,$result]);
+                return response()->json([Messages::SUCCESS_MESSAGE, HttpStatusCodes::OK, $result]);
             }
         } catch (Exception $e) {
             return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
         }
     }
-   
+
     public function store(Request $request)
     {
         $result['data'] = $this->userService->createUser(
@@ -65,14 +65,14 @@ class ApiUsersController extends Controller
         return response()->json([Messages::UPDATE_MESSAGE, HttpStatusCodes::OK, $result]);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $result = ['status' => 200];
-        try{
+        try {
             $result['data'] = $this->userService->destroyUser($id);
             return response()->json([Messages::DELETE_MESSAGE, HttpStatusCodes::OK, $result]);
-        }catch (Exception $e) {
-                return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
-            }
+        } catch (Exception $e) {
+            return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
         }
     }
-
+}

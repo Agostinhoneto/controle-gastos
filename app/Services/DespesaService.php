@@ -4,24 +4,76 @@ namespace App\Services;
 
 use App\Models\Despesas;
 use App\Models\Receitas;
+use App\Repositories\DespesasRepository;
+use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use InvalidArgumentException;
 
 class DespesaService
 {
-    public function criarReceita(array $dados)
+ 
+    private $despesasRepository;
+
+    public function __construct(DespesasRepository $despesasRepository)
     {
-        return Despesas::create($dados);
+        $this->despesasRepository = $despesasRepository;
     }
 
-    public function atualizarReceita(Despesas $receita, array $dados)
+    public function getAll()
     {
-        $receita->update($dados);
-
-        return $receita;
+        return $this->despesasRepository->getAllUsers();
     }
 
-    public function excluirReceita(Despesas $receita)
+    public function getById($id)
     {
-        $receita->delete();
+        return $this->despesasRepository
+            ->getById($id);
+    }
+
+
+    public function getUserById($id)
+    {
+        return $this->despesasRepository->getById($id);
+    }
+
+    public function createUser($id, $name, $email, $password)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $this->despesasRepository->salvar($id, $name, $email, $password);
+            DB::commit();
+            return $data;
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw new \Exception($e);
+        }
+    }
+
+    public function updateUser($id, $name, $email, $password)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $this->despesasRepository->update($id, $name, $email, $password);
+            DB::commit();
+            return $data;
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw new \Exception($e);
+        }
+    }
+
+    public function destroyUser($id){
+        DB::beginTransaction();
+        try{
+            $user = $this->despesasRepository->delete($id);
+            DB::commit();
+        }
+        catch(Exception $e){
+            DB::roolBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Não pode ser deletado');
+        }
+        return $user;
     }
 }

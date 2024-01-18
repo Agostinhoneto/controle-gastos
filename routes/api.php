@@ -24,14 +24,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Users.
-Route::get('/users/index',[ApiUsersController::class,'index']);
-Route::post('/users/store',[ApiUsersController::class,'store']);
-
+Route::get('/users/index',[ApiUsersController::class,'index'])->name('users.index');
+Route::post('/users/store',[ApiUsersController::class,'store'])->name('users.store');
+Route::get('/users/show/{id}', [ApiUsersController::class, 'show'])->name('users.show');
+Route::put('/users/update/{id}', [ApiUsersController::class, 'update'])->name('users.update');
+Route::delete('/users/destroy/{id}', [ApiUsersController::class, 'destroy'])->name('users.destroy');
 
 //Receitas.
 Route::get('/receitas/index',[ApiReceitasController::class,'index']);
+Route::post('/receitas/store',[ApiReceitasController::class,'store']);
+Route::get('/receitas/show/{id}', [ApiReceitasController::class, 'show'])->name('receitas.show');
+Route::put('/receitas/update/{id}', [ApiReceitasController::class, 'update'])->name('receitas.update');
+Route::delete('/receitas/destroy/{id}', [ApiReceitasController::class, 'destroy'])->name('receitas.destroy');
 
 
-// Receitas .
-Route::get('/receitas/index',[ApiDespesasController::class,'index']);
-Route::get('/receitas/store',[ApiDespesasController::class,'store']);
+// Despesas .
+Route::get('/despesas/index',[ApiDespesasController::class,'index']);
+Route::get('/despesas/store',[ApiDespesasController::class,'store']);
+Route::get('/despesas/show/{id}', [ApiDespesasController::class, 'show'])->name('despesas.show');
+Route::put('/despesas/update/{id}', [ApiDespesasController::class, 'update'])->name('despesas.update');
+Route::delete('/despesas/destroy/{id}', [ApiDespesasController::class, 'destroy'])->name('despesas.destroy');
