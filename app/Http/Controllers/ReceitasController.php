@@ -39,7 +39,7 @@ class ReceitasController extends Controller
         $receitas->status = $request->input('status', 1);
         $receitas->save();
 
-        $request->session()->flash('mensagem', "Despesa criada com sucesso");
+        $request->$request->session()->flash('mensagem', "Despesa criada com sucesso");
         return redirect()->route('receitas.index');
     }
 
