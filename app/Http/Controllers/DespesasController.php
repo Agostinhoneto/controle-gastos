@@ -33,6 +33,7 @@ class DespesasController extends Controller
         $despesas->status = $request->input('status', 1);
         $despesas->save();
 
+
         $request->session()->flash('mensagem', "Despesa criada com sucesso");
         return redirect()->route('despesas.index');
     }

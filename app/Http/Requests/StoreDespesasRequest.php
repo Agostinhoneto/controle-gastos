@@ -13,7 +13,7 @@ class StoreDespesasRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class StoreDespesasRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descricao' => 'required|string|max:255',
+            'valor' => 'double|email|max:80',
+            'data_recebimento' => 'required',
+            'categoria_id' => 'required',
+            'status' => 'required',
         ];
     }
 }

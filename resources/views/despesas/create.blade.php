@@ -42,10 +42,10 @@
                                 <br>
                                 <div class="col col-6">
                                     <label for="categoria_id">Categoria:</label>
-                                    <select name="categoria_id" id="categoria_id" class="form-control">
+                                    <select name="categoria_id" id="categoria_id" required class="form-control">
                                         <option>Selecione...</option>
                                         @foreach($categorias as $c)
-                                        <option value="{{ $c->id }}">{{ $c->descricao }}</option>
+                                        <option value="{{ $c->id }}" required>{{ $c->descricao }}</option>
                                         @endforeach
                                     </select>
                                 </div>
