@@ -32,17 +32,17 @@ class DespesasController extends Controller
         $despesas->categoria_id = $request->input('categoria_id');
         $despesas->status = $request->input('status', 1);
         $despesas->save();
-
-
         $request->session()->flash('mensagem', "Despesa criada com sucesso");
         return redirect()->route('despesas.index');
     }
 
-    public function edit(Despesas $despesas,$id)
+    public function edit(Request $request,Despesas $despesas,$id)
     {
         $despesas = Despesas::find($id);
+        $mensagem = $request->session()->get('mensagem');
+
         $categorias = Categorias::query()->orderBy('descricao')->get();
-        return view('despesas.edit', compact('despesas','categorias'));
+        return view('despesas.edit', compact('despesas','categorias','mensagem'));
     }
 
     public function update(Request $request,Despesas $despesas)
@@ -62,7 +62,5 @@ class DespesasController extends Controller
         $despesas->delete();
         $mensagem = session()->get('mensagem');
         return redirect()->route('despesas.index')->with('success', 'Receita excluida com sucesso!');
-
-
     }
 }

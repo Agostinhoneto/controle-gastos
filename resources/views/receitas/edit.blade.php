@@ -8,6 +8,8 @@
     @vite('resources/js/app.js')
 </head>
 @extends('layout')
+@include('mensagem', ['mensagem' => $mensagem])
+
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="container" style="margin-top:40px;">
@@ -35,7 +37,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('active') ? ' has-error' : '' }}">
                     <label for="status">Status:</label>
-                    <select class="form-control" name="active" id="active">
+                    <select class="form-control" name="status" id="status">
                         <option value="1" @if (old('active')==1) selected @endif>Ativo</option>
                         <option value="0" @if (old('active')==0) selected @endif>Inativo</option>
                     </select>

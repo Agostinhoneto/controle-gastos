@@ -8,6 +8,16 @@
     @vite('resources/js/app.js')
 </head>
 @extends('layout')
+@include('mensagem', ['mensagem' => $mensagem])
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="container" style="margin-top:40px;">
@@ -33,9 +43,12 @@
                     <label for="valor">Valor:</label>
                     <input type="text" class="form-control" id="valor" name="valor" value="{{ $despesas->valor }}">
                 </div>
-                <div class="col col-2">
+                <div class="col col-2{{ $errors->has('active') ? ' has-error' : '' }}">
                     <label for="status">Status:</label>
-                    <input type="text" class="form-control" id="status" name="status" value="{{ $despesas->status }}">
+                    <select class="form-control" name="status" id="status">
+                        <option value="1" @if (old('active')==1) selected @endif>Ativo</option>
+                        <option value="0" @if (old('active')==0) selected @endif>Inativo</option>
+                    </select>
                 </div>
                 <div class="col col-2">
                     <label for="data_pagamento">Data do Pagamento:</label>
@@ -43,7 +56,7 @@
                 </div>
                 <div class="col col-2">
                     <label for="categoria_id">Categoria:</label>
-                    <select name="categoria_id" id="categoria_id" class="form-control">
+                    <select name="categoria_id" id="categoria_id" required class="form-control">
                         <option>Selecione...</option>
                         @foreach($categorias as $c)
                         <option value="{{ $c->id }}">{{ $c->descricao }}</option>

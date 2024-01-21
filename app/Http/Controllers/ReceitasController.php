@@ -43,11 +43,13 @@ class ReceitasController extends Controller
         return redirect()->route('receitas.index');
     }
 
-    public function edit(Receitas $receitas,$id)
+    public function edit(Request $request,Receitas $receitas,$id)
     {
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $receitas = Receitas::find($id);
-        return view('receitas.edit', compact('receitas','categorias'));
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('receitas.edit', compact('receitas','categorias','mensagem'));
     }
 
     public function update(Request $request,Receitas $receitas)
@@ -56,7 +58,7 @@ class ReceitasController extends Controller
         $receitas->descricao = $request->descricao;
         $receitas->valor = $request->valor;
         $receitas->data_recebimento = $request->data_recebimento;
-        $receitas->receita_id = $request->receita_id;
+        $receitas->categoria_id = $request->categoria_id;
         $receitas->status = $request->status;
         $receitas->save();
         return redirect()->route('receitas.index')->with('success', 'Receita atualizada com sucesso!');
