@@ -36,7 +36,7 @@ class CategoriasController extends Controller
         return view('categorias.edit', ['categorias' => $categorias]);
     }
 
-    public function update(Request $request,Categorias $despesas)
+    public function update(Request $request)
     {
         $categorias = new Categorias();
         $categorias->descricao = $request->descricao;
@@ -51,6 +51,5 @@ class CategoriasController extends Controller
         $categorias->delete();
         $mensagem = session()->get('mensagem');
         return redirect()->route('categorias.index')->with('success', 'Despesa excluida com sucesso!');
-
     }
 }

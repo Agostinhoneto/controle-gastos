@@ -17,11 +17,7 @@ class CategoriasSeeder extends Seeder
     {
         Categorias::create([
             'descricao' => 'Casa',
-        ]);
-        Categorias::create([
-            'descricao' => 'Carro',
-        ]);
-        
+        ]);       
         Categorias::create([
             'descricao' => 'Alimentação',
         ]);

@@ -33,9 +33,12 @@
                     <label for="valor">Valor:</label>
                     <input type="text" class="form-control" id="valor" name="valor" value="{{ $receitas->valor }}">
                 </div>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('active') ? ' has-error' : '' }}">
                     <label for="status">Status:</label>
-                    <input type="text" class="form-control" id="status" name="status" value="{{ $receitas->status }}">
+                    <select class="form-control" name="active" id="active">
+                        <option value="1" @if (old('active')==1) selected @endif>Ativo</option>
+                        <option value="0" @if (old('active')==0) selected @endif>Inativo</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="data_recebimento">Data do Pagamento:</label>
