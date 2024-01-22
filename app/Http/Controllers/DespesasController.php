@@ -32,8 +32,8 @@ class DespesasController extends Controller
         $despesas->categoria_id = $request->input('categoria_id');
         $despesas->status = $request->input('status', 1);
         $despesas->save();
-        $request->session()->flash('mensagem', "Despesa criada com sucesso");
-        return redirect()->route('despesas.index');
+        return redirect()->route('despesas.index')->with('sucesso','Despesa cadastrada com sucesso');
+
     }
 
     public function edit(Request $request,Despesas $despesas,$id)

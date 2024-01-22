@@ -34,6 +34,8 @@
                         <h3 class="card-title"></h3>
                     </div>
                     @include('receitas.create')
+                    @include('components.flash-message')
+
                     <div class="card-body">
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">

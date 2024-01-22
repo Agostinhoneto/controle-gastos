@@ -34,6 +34,7 @@
                         <h3 class="card-title"></h3>
                     </div>
                     @include('despesas.create')
+                    @include('components.flash-message')
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -91,7 +92,9 @@
                                 Adcionar
                             </button>
                         </table>
-                        <div><b>Total de Despesas :</b><p style="color: green"> {{$total}} </p></div>
+                        <div><b>Total de Despesas :</b>
+                            <p style="color: green"> {{$total}} </p>
+                        </div>
 
         </ul>
     </div>

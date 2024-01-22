@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReceitasRequest;
 use App\Models\Categorias;
 use App\Models\Receitas;
 use Illuminate\Http\Request;
@@ -20,8 +21,8 @@ class ReceitasController extends Controller
         $total = $receitas->sum('valor');
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
- 
-        return view('receitas.index', compact('receitas', 'mensagem','categorias','total'));
+
+        return view('receitas.index', compact('receitas', 'mensagem', 'categorias', 'total'));
     }
 
     public function create()
@@ -29,7 +30,7 @@ class ReceitasController extends Controller
         return view('receitas.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreReceitasRequest $request)
     {
 
         $receitas = new Receitas();
@@ -39,21 +40,19 @@ class ReceitasController extends Controller
         $receitas->categoria_id = $request->input('categoria_id');
         $receitas->status = $request->input('status', 1);
         $receitas->save();
-
-        $request->session()->flash('mensagem', "Receita criada com sucesso");
-        return redirect()->route('receitas.index');
+        return redirect()->route('receitas.index')->with('sucesso','Receita cadastrada com sucesso');
     }
 
-    public function edit(Request $request,Receitas $receitas,$id)
+    public function edit(Request $request, Receitas $receitas, $id)
     {
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $receitas = Receitas::find($id);
         $mensagem = $request->session()->get('mensagem');
 
-        return view('receitas.edit', compact('receitas','categorias','mensagem'));
+        return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));
     }
 
-    public function update(Request $request,Receitas $receitas)
+    public function update(Request $request, Receitas $receitas)
     {
         $receitas = new Receitas();
         $receitas->descricao = $request->descricao;
@@ -70,7 +69,5 @@ class ReceitasController extends Controller
         $receitas->delete();
         $mensagem = session()->get('mensagem');
         return redirect()->route('receitas.index')->with('success', 'Receita excluida com sucesso!');
-
     }
-
 }

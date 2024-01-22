@@ -24,7 +24,10 @@ class StoreReceitasRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+                'descricao' => 'required|string|max:255',
+                'valor' => 'required',
+                'categoria_id' => 'required',
+                'status' => 'required',
         ];
     }
 }
