@@ -17,10 +17,11 @@ class ReceitasController extends Controller
         }
 
         $receitas = Receitas::query()->with('categoria')->orderBy('descricao')->get();
+        $total = $receitas->sum('valor');
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
  
-        return view('receitas.index', compact('receitas', 'mensagem','categorias'));
+        return view('receitas.index', compact('receitas', 'mensagem','categorias','total'));
     }
 
     public function create()

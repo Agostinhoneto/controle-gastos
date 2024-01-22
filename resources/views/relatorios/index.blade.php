@@ -95,5 +95,4 @@
         </div>
     </div>
 </div>
-
-<!-- resources/views/reports/index.blade.php -->
+@include('layouts.footer')
