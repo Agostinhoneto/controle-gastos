@@ -3,3 +3,9 @@
     {{session('sucesso')}}
 </div>
 @endif
+
+@if(session('erro'))
+<div class="alert alert-danger">
+    {{session('erro')}}
+</div>
+@endif
