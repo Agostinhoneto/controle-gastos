@@ -48,8 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/despesas/edit/{id}', [DespesasController::class, 'edit'])->name('despesas.edit');
     Route::post('/despesas/update', [DespesasController::class, 'update'])->name('despesas.update');
     Route::delete('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
+    //relatorios
     Route::get('/despesas/gerar-pdf-despesas', [DespesasController::class, 'gerarPdf'])->name('despesas.gerar-pdf');
-
 });
 
 Route::middleware('auth')->group(function () {
