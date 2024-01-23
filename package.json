@@ -17,6 +17,7 @@
         "vite": "^3.0.9"
     },
     "dependencies": {
-        "chart.js": "^4.4.1"
+        "chart.js": "^4.4.1",
+        "inputmask": "^5.0.8"
     }
 }
