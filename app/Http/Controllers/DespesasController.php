@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorias;
 use App\Models\Despesas;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class DespesasController extends Controller
 {
@@ -15,7 +16,7 @@ class DespesasController extends Controller
         $total = Despesas::sum('valor');
         $despesas = Despesas::query()->with('categoria')->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
-        return view('despesas.index', compact('despesas', 'mensagem','total','categorias'));
+        return view('despesas.index', compact('despesas', 'mensagem', 'total', 'categorias'));
     }
 
     public function create()
@@ -32,20 +33,19 @@ class DespesasController extends Controller
         $despesas->categoria_id = $request->input('categoria_id');
         $despesas->status = $request->input('status', 1);
         $despesas->save();
-        return redirect()->route('despesas.index')->with('sucesso','Despesa cadastrada com sucesso');
-
+        return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso');
     }
 
-    public function edit(Request $request,Despesas $despesas,$id)
+    public function edit(Request $request, Despesas $despesas, $id)
     {
         $despesas = Despesas::find($id);
         $mensagem = $request->session()->get('mensagem');
 
         $categorias = Categorias::query()->orderBy('descricao')->get();
-        return view('despesas.edit', compact('despesas','categorias','mensagem'));
+        return view('despesas.edit', compact('despesas', 'categorias', 'mensagem'));
     }
 
-    public function update(Request $request,Despesas $despesas)
+    public function update(Request $request, Despesas $despesas)
     {
         $despesas = new Despesas();
         $despesas->descricao = $request->descricao;
@@ -62,5 +62,14 @@ class DespesasController extends Controller
         $despesas->delete();
         $mensagem = session()->get('mensagem');
         return redirect()->route('despesas.index')->with('success', 'Receita excluida com sucesso!');
+    }
+
+    public function gerarPdf()
+    {
+        $despesas = Despesas::orderByDesc('created_at')->get();
+
+        $pdf = FacadePdf::loadView('relatorios.pdf',['despesas' => $despesas])->setPaper('a4', 'portrait');
+
+        return $pdf->download('listar_despesas.pdf');
     }
 }
