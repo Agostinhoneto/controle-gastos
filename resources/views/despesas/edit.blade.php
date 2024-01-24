@@ -3,26 +3,26 @@
     <form method="post" action="{{route('despesas.update',$despesas)}}">
         @csrf
         @method('POST')
-        <div class="col col-6">
-            <label for="descricao">Descrição:</label>
+        <div class="form-group">
+               <label for="descricao">Descrição:</label>
             <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $despesas->descricao }}">
         </div>
-        <div class="col col-2">
+        <div class="form-group">
             <label for="valor">Valor:</label>
             <input type="text" class="form-control" id="valor" name="valor" value="{{ $despesas->valor }}">
         </div>
-        <div class="col col-2{{ $errors->has('active') ? ' has-error' : '' }}">
+        <div class="col col-4{{ $errors->has('active') ? ' has-error' : '' }}">
             <label for="status">Status:</label>
             <select class="form-control" name="status" id="status">
                 <option value="1" @if (old('active')==1) selected @endif>Ativo</option>
                 <option value="0" @if (old('active')==0) selected @endif>Inativo</option>
             </select>
         </div>
-        <div class="col col-2">
-            <label for="data_pagamento">Data do Pagamento:</label>
+        <div class="form-group">
+           <label for="data_pagamento">Data do Pagamento:</label>
             <input type="date" class="form-control" id="data_pagamento" name="data_pagamento" value="{{$despesas->data_pagamento}}">
         </div>
-        <div class="col col-2">
+        <div class="form-group">
             <label for="categoria_id">Categoria:</label>
             <select name="categoria_id" id="categoria_id" required class="form-control">
                 <option>Selecione...</option>
