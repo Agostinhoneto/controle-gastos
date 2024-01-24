@@ -61,7 +61,8 @@ color: white;
                                 </td>
                                 <td>
                                     <span class="d-flex">
-                                        <a href="{{route('receitas.edit',$receita->id)}}" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#editModal">
+                                        <a href="{{route('receitas.edit',$receita->id)}}" 
+                                        class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#editModal">
                                             <i class="fas fa-external-link-alt"></i>
                                         </a>
                                     </span>

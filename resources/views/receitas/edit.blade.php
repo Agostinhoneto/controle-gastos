@@ -1,6 +1,8 @@
 <div class="container mt-5">
     <h2>Editar Receitas</h2>
-    <form method="post" action="{{route('receitas.update',$receitas)}}">
+    <form method="post" action="{{route('receitas.update',$receitas->id)}}">
+
+
         @csrf
         @method('POST')
         <div class="form-group">

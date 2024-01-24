@@ -43,24 +43,34 @@ class ReceitasController extends Controller
         return redirect()->route('receitas.index')->with('sucesso','Receita cadastrada com sucesso');
     }
 
-    public function edit(Request $request, Receitas $receitas, $id)
+    public function edit(Request $request,$id)
     {
+        $receitas = Receitas::find($id);
+        $mensagem = $request->session()->get('mensagem');
+        $categorias = Categorias::query()->orderBy('descricao')->get();
+       
+        return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));
+      /*
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $receitas = Receitas::find($id);
         $mensagem = $request->session()->get('mensagem');
-
-        return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));
+        */
+       // return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));
     }
 
-    public function update(Request $request, Receitas $receitas)
+    public function update(Request $request,$id)
     {
-        $receitas = new Receitas();
-        $receitas->descricao = $request->descricao;
-        $receitas->valor = $request->valor;
-        $receitas->data_recebimento = $request->data_recebimento;
-        $receitas->categoria_id = $request->categoria_id;
-        $receitas->status = $request->status;
-        $receitas->save();
+
+        $receitas = Receitas::findOrFail($id)->first()->fill($request->all())->save();
+        /*
+        $receitas =  Receitas::find($receitas);
+        $receitas->descricao = $request->input('descricao');
+        $receitas->valor = $request->input('valor');
+        $receitas->data_recebimento = $request->input('data_recebimento');
+        $receitas->categoria_id = $request->input('categoria_id');
+        $receitas->status = $request->input('status');
+        $receitas->update();
+        */
         return redirect()->route('receitas.index')->with('success', 'Receita atualizada com sucesso!');
     }
 
