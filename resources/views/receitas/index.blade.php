@@ -23,7 +23,7 @@ color: white;
     <div class="table-responsive">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"></h3>
+                <h3 class="card-title">Receitas</h3>
             </div>
             @include('receitas.create')
             @include('components.flash-message')

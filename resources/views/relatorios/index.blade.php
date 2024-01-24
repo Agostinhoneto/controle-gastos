@@ -13,12 +13,12 @@
                         <div class="card card-primary">
                             <form action="{{ route('relatorios.despesas')}}" method="post">
                                 <br>
-                                <div class="col col-6">
+                                <div class="col col-4">
                                     <label for="descricao">Descrição</label>
                                     <input type="text" class="form-control" id="descricao" aria-describedby="">
                                 </div>
                                 <br>
-                                <div class="col col-6">
+                                <div class="col col-4">
                                     <label for="categoria">Categoria</label>
                                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
                                 </div>
@@ -31,7 +31,6 @@
                                     <input type="date" name="filter2">
                                 </div>
                                 <br>
-                                <button type="submit" class="btn btn-primary">Gerar PDF</button>
                             </form>
                         </div>
                     </ul>
