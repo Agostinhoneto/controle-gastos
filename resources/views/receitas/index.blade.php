@@ -84,6 +84,7 @@ color: white;
                             Adcionar
                         </button>
                     </table>
+                    
                     <div>
                         <b>Total de Receitas :</b>
                         <p style="color: green"> {{$total}} </p>
