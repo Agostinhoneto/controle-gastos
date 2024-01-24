@@ -16,7 +16,7 @@
             <div class="table-responsive">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"></h3>
+                        <h3 class="card-title">Categorias</h3>
                     </div>
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
