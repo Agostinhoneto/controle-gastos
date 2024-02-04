@@ -1,10 +1,16 @@
 <div class="container mt-5">
     <h2>Editar Receitas</h2>
     <form method="post" action="{{route('receitas.update',$receitas->id)}}">
-
-
         @csrf
         @method('POST')
+        <input type="text" id="receita_id" name="receita_id">
+        <input type="text" name="user_id" value="">
+
+        <div class="form-group">
+            <label for="descricao">Id:</label>
+            <input type="text" class="form-control" id="id" name="id" value="{{ $receitas->id }}">
+        </div>
+        
         <div class="form-group">
             <label for="descricao">Descrição:</label>
             <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $receitas->descricao }}">

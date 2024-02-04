@@ -116,7 +116,7 @@
           <a href="{{ route('relatorios.index') }}" class="nav-link">Relatórios</a>
         </li>
       </ul>
-
+     
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">

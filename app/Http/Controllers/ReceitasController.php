@@ -7,6 +7,7 @@ use App\Models\Categorias;
 use App\Models\Receitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReceitasController extends Controller
 {
@@ -17,7 +18,8 @@ class ReceitasController extends Controller
             exit();
         }
 
-        $receitas = Receitas::query()->with('categoria')->orderBy('descricao')->get();
+        $receitas = Receitas::query()->with('categoria')->get();
+        //$receitas = DB::table('receitas')->get()->find($id);
         $total = $receitas->sum('valor');
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
@@ -48,19 +50,12 @@ class ReceitasController extends Controller
         $receitas = Receitas::find($id);
         $mensagem = $request->session()->get('mensagem');
         $categorias = Categorias::query()->orderBy('descricao')->get();
-       
         return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));
-      /*
-        $categorias = Categorias::query()->orderBy('descricao')->get();
-        $receitas = Receitas::find($id);
-        $mensagem = $request->session()->get('mensagem');
-        */
-       // return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));
     }
 
     public function update(Request $request,$id)
     {
-
+        
         $receitas = Receitas::findOrFail($id)->first()->fill($request->all())->save();
         /*
         $receitas =  Receitas::find($receitas);
