@@ -31,8 +31,8 @@
                                 </div>
                                 <br>
                                 <div class="col col-6">
-                                    <label for="valor">Valor:</label>
-                                    <input type="number" class="form-control" name="valor" id="valor" required placeholder="Valor $$">
+                                    <label for="valor">Valor R$:</label>
+                                    <input type="number" class="form-control" name="valor" id="valor" step="0.01" min="0.01"  required>
                                 </div>
                                 <br>
                                 <div class="col col-6">
