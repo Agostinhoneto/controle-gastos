@@ -45,11 +45,6 @@
 
                                 <tbody>
                                     @foreach($receitas as $receita)
-                                    @if(isset($receita))
-                                    {{ $receita }}
-                                    @else
-                                    A variável $receita não está definida.
-                                    @endif
                                     <th scope="row">{{ $receita->id }}</th>
                                     <td>{{ $receita->descricao }}</td>
                                     <td>{{Carbon\Carbon::parse( $receita->data_recebimento)->format('d/m/Y')}}</td>

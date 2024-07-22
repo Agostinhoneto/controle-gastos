@@ -23,6 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//testando api
+Route::get('/', function () {
+    return response()->json([
+        'sucess' => true
+    ]);
+});
+
+
 //Users.
 Route::get('/users/index',[ApiUsersController::class,'index'])->name('users.index');
 Route::post('/users/store',[ApiUsersController::class,'store'])->name('users.store');
