@@ -63,5 +63,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorios.index');
-    Route::post('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
+
+    Route::get('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
+
+
 });

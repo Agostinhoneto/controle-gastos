@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categorias;
+use App\Exports\OrdersExport;
 use App\Models\Despesas;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+
 
 class RelatorioController extends Controller
 {
+    /*
+        public function index()
+        {
+            $categorias = Categorias::query()->orderBy('descricao')->get();
 
+            return view('relatorios.index',compact('categorias'));
+        }
+    */
     public function index()
     {
-        $categorias = Categorias::query()->orderBy('descricao')->get();
-
-        return view('relatorios.index',compact('categorias'));
+        $despesas = Despesas::all(); 
+        return view('relatorios.index',compact('despesas'));
     }
 
     public function gerarPDF(Request $request)
@@ -31,7 +40,7 @@ class RelatorioController extends Controller
         $pdf = FacadePdf::loadView('relatorios.pdf', compact('data'));
 
         return $pdf->download('relatorio.pdf');
-
       
     }
+
 }
