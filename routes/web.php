@@ -66,5 +66,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
 
+    // reports
+    Route::get('/report/gerar', [RelatorioController::class, 'generatePDF'])->name('report.despesas');
+
 
 });

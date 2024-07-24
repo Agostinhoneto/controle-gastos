@@ -11,7 +11,8 @@
                 <div class="col-md-12">
                     <ul class="list-group">
                         <div class="card card-primary">
-                            <form action="{{ route('relatorios.despesas')}}" method="get">
+
+                           <form action="{{ route('report.despesas') }}" method="GET">
                                 <br>
                                 <div class="col col-4">
                                     <label for="descricao">Descrição</label>
@@ -32,8 +33,8 @@
                                 </div>
                                 <br>
                                 <button type="submit">Gerar Relatório</button>
-
                             </form>
+                            
                         </div>
                     </ul>
                 </div>
