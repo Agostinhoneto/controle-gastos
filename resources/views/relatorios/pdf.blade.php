@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório PDF</title>
+    <title></title>
 </head>
 <body>
-    <h1>Relatório PDF</h1>
-    <p>Descrição : {{ $data['descricao'] }}</p>
-    <p>Categorias: {{ $data['id'] }}</p>
+    <h1></h1>
+    <p>Data:</p>
+
+    <table width="100%" border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($reports as $report)
+            <tr>
+                <td>{{ $report->id }}</td>
+                <td>{{ $report->id }}</td>
+                <td>{{ $report->id }}</td>
+                <td>{{ $report->created_at }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </body>
 </html>

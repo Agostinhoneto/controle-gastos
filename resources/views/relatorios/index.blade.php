@@ -32,56 +32,67 @@
 </head>
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.topo')
-        @include('layouts.sidebar')
-        <h1>@yield('cabecalho')</h1>
-        @yield('conteudo')
-        <div class="wrapper">
-            <div class="col-sm-6">
-                <h1>Relatórios</h1>
-            </div>
-            <div class="card">
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Descrição</th>
-                                <th>Data</th>
-                                <th>Valor</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($despesas as $despesa)
-                            <tr>
-                                <td>{{ $despesa->id }}</td>
-                                <td>{{ $despesa->descricao }}</td>
-                                <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
-                                <td>{{ $despesa->valor}}</td>
-                                <td>
-                                    @if($despesa->status == 1)
-                                    <p style="color: green">Pago</p>
-                                    @else
-                                    <p style="color: red">Não Pago</p>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-
-                        </tfoot>
-                    </table>
-                    <td>{{$total}}</td>
-
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+    @include('layouts.sidebar')
+    <h1>@yield('cabecalho')</h1>
+    @yield('conteudo')
+    <div class="wrapper">
+        <div class="col-sm-6">
+            <h1>Relatórios</h1>
         </div>
-        <!-- /.col -->
+        <div class="card">
+
+            <form method="GET" action="{{ url('/reports') }}">
+                <label for="created_at">Data Inicial:</label>
+                <input type="date" name="created_at" id="created_at">
+
+                <label for="data_pagamento">Data Final:</label>
+                <input type="date" name="data_pagamento" id="data_pagamento">
+
+                <button type="submit">Filtrar</button>
+            </form>
+
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($despesas as $despesa)
+                        <tr>
+                            <td>{{ $despesa->id }}</td>
+                            <td>{{ $despesa->descricao }}</td>
+                            <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
+                            <td>{{ $despesa->valor}}</td>
+                            <td>
+                                @if($despesa->status == 1)
+                                <p style="color: green">Pago</p>
+                                @else
+                                <p style="color: red">Não Pago</p>
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+                    </tfoot>
+                </table>
+                <td>{{$total}}</td>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
     </div>
-    <!-- /.row -->
+    <!-- /.col -->
+</div>
+<!-- /.row -->
 </div>
 <!-- /.container-fluid -->
 </section>
@@ -101,4 +112,3 @@
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>
-
