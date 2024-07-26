@@ -90,6 +90,7 @@
 <aside class="control-sidebar control-sidebar-dark">
 </aside>
 </div>
+@include('layouts.footer')
 <script>
     $(function() {
         $("#example1").DataTable({
@@ -100,3 +101,4 @@
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
 </script>
+
