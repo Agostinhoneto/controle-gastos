@@ -36,58 +36,55 @@
     <div class="card-body">
         <ul class="list-group">
             <div class="table-responsive">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Relatórios</h3>
-                    </div>
-
+                <div class="card-header">
+                    <h3 class="card-title">Relatórios</h3>
+                </div>
+                <div class="mb-5">
                     <form method="GET" action="{{ url('/reports') }}">
-                    <div class="mb-3">
                         <label for="created_at">Data Inicial:</label>
-                        <input  type="date" name="created_at" id="created_at">
-                 
+                        <input type="date" name="created_at" id="created_at">
+
                         <label for="data_pagamento">Data Final:</label>
                         <input type="date" name="data_pagamento" id="data_pagamento">
-                    </div>
                         <button type="submit" class="btn btn-success">Filtrar</button>
                     </form>
-                    <div class="wrapper">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Descrição</th>
-                                    <th>Data</th>
-                                    <th>Valor</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($despesas as $despesa)
-                                <tr>
-                                    <td>{{ $despesa->id }}</td>
-                                    <td>{{ $despesa->descricao }}</td>
-                                    <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
-                                    <td>{{ $despesa->valor}}</td>
-                                    <td>
-                                        @if($despesa->status == 1)
-                                        <p style="color: green">Pago</p>
-                                        @else
-                                        <p style="color: red">Não Pago</p>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-
-                        </table>
-                        <td>{{$total}}</td>
-
-                    </div>
-                    <!-- /.card-body -->
                 </div>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Descrição</th>
+                                <th>Data</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($despesas as $despesa)
+                            <tr>
+                                <td>{{ $despesa->id }}</td>
+                                <td>{{ $despesa->descricao }}</td>
+                                <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
+                                <td>{{ $despesa->valor}}</td>
+                                <td>
+                                    @if($despesa->status == 1)
+                                    <p style="color: green">Pago</p>
+                                    @else
+                                    <p style="color: red">Não Pago</p>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+
+                    </table>
+                    <td>{{$total}}</td>
+
+                </div>
+                <!-- /.card-body -->
             </div>
-        </ul>
     </div>
+    </ul>
+</div>
 </div>
 @include('layouts.footer')
 
