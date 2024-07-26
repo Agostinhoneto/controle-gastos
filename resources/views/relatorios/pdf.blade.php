@@ -20,8 +20,8 @@
             @foreach($reports as $report)
             <tr>
                 <td>{{ $report->id }}</td>
-                <td>{{ $report->id }}</td>
-                <td>{{ $report->id }}</td>
+                <td>{{ $report->descricao}}</td>
+                <td>{{ $report->valor}}</td'>
                 <td>{{ $report->created_at }}</td>
             </tr>
             @endforeach

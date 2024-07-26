@@ -17,13 +17,10 @@ class ReceitasController extends Controller
             echo "Não autenticado";
             exit();
         }
-
         $receitas = Receitas::query()->with('categoria')->get();
-        //$receitas = DB::table('receitas')->get()->find($id);
         $total = $receitas->sum('valor');
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
-
         return view('receitas.index', compact('receitas', 'mensagem', 'categorias', 'total'));
     }
 
@@ -55,17 +52,7 @@ class ReceitasController extends Controller
 
     public function update(Request $request,$id)
     {
-        
         $receitas = Receitas::findOrFail($id)->first()->fill($request->all())->save();
-        /*
-        $receitas =  Receitas::find($receitas);
-        $receitas->descricao = $request->input('descricao');
-        $receitas->valor = $request->input('valor');
-        $receitas->data_recebimento = $request->input('data_recebimento');
-        $receitas->categoria_id = $request->input('categoria_id');
-        $receitas->status = $request->input('status');
-        $receitas->update();
-        */
         return redirect()->route('receitas.index')->with('success', 'Receita atualizada com sucesso!');
     }
 

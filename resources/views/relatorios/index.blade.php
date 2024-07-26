@@ -49,41 +49,41 @@
                         <button type="submit" class="btn btn-success">Filtrar</button>
                     </form>
                 </div>
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Descrição</th>
-                                <th>Data</th>
-                                <th>Valor</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($despesas as $despesa)
-                            <tr>
-                                <td>{{ $despesa->id }}</td>
-                                <td>{{ $despesa->descricao }}</td>
-                                <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
-                                <td>{{ $despesa->valor}}</td>
-                                <td>
-                                    @if($despesa->status == 1)
-                                    <p style="color: green">Pago</p>
-                                    @else
-                                    <p style="color: red">Não Pago</p>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($despesas as $despesa)
+                        <tr>
+                            <td>{{ $despesa->id }}</td>
+                            <td>{{ $despesa->descricao }}</td>
+                            <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
+                            <td>{{ $despesa->valor}}</td>
+                            <td>
+                                @if($despesa->status == 1)
+                                <p style="color: green">Pago</p>
+                                @else
+                                <p style="color: red">Não Pago</p>
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach
 
-                    </table>
-                    <td>{{$total}}</td>
+                </table>
+                <td>{{$total}}</td>
 
-                </div>
-                <!-- /.card-body -->
             </div>
+            <!-- /.card-body -->
     </div>
-    </ul>
+</div>
+</ul>
 </div>
 </div>
 @include('layouts.footer')
