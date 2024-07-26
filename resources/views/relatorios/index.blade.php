@@ -33,75 +33,64 @@
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.topo')
     @include('layouts.sidebar')
-    <h1>@yield('cabecalho')</h1>
-    @yield('conteudo')
-    <div class="wrapper">
-        <div class="col-sm-6">
-            <h1>Relatórios</h1>
-        </div>
-        <div class="card">
+    <div class="card-body">
+        <ul class="list-group">
+            <div class="table-responsive">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Relatórios</h3>
+                    </div>
 
-            <form method="GET" action="{{ url('/reports') }}">
-                <label for="created_at">Data Inicial:</label>
-                <input type="date" name="created_at" id="created_at">
+                    <form method="GET" action="{{ url('/reports') }}">
+                    <div class="mb-3">
+                        <label for="created_at">Data Inicial:</label>
+                        <input  type="date" name="created_at" id="created_at">
+                 
+                        <label for="data_pagamento">Data Final:</label>
+                        <input type="date" name="data_pagamento" id="data_pagamento">
+                    </div>
+                        <button type="submit" class="btn btn-success">Filtrar</button>
+                    </form>
+                    <div class="wrapper">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Descrição</th>
+                                    <th>Data</th>
+                                    <th>Valor</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($despesas as $despesa)
+                                <tr>
+                                    <td>{{ $despesa->id }}</td>
+                                    <td>{{ $despesa->descricao }}</td>
+                                    <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
+                                    <td>{{ $despesa->valor}}</td>
+                                    <td>
+                                        @if($despesa->status == 1)
+                                        <p style="color: green">Pago</p>
+                                        @else
+                                        <p style="color: red">Não Pago</p>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                <label for="data_pagamento">Data Final:</label>
-                <input type="date" name="data_pagamento" id="data_pagamento">
+                        </table>
+                        <td>{{$total}}</td>
 
-                <button type="submit">Filtrar</button>
-            </form>
-
-            <!-- /.card-header -->
-            <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Descrição</th>
-                            <th>Data</th>
-                            <th>Valor</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($despesas as $despesa)
-                        <tr>
-                            <td>{{ $despesa->id }}</td>
-                            <td>{{ $despesa->descricao }}</td>
-                            <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
-                            <td>{{ $despesa->valor}}</td>
-                            <td>
-                                @if($despesa->status == 1)
-                                <p style="color: green">Pago</p>
-                                @else
-                                <p style="color: red">Não Pago</p>
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-
-                    </tfoot>
-                </table>
-                <td>{{$total}}</td>
-
+                    </div>
+                    <!-- /.card-body -->
+                </div>
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+        </ul>
     </div>
-    <!-- /.col -->
-</div>
-<!-- /.row -->
-</div>
-<!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-</div>
-<aside class="control-sidebar control-sidebar-dark">
-</aside>
 </div>
 @include('layouts.footer')
+
 <script>
     $(function() {
         $("#example1").DataTable({
