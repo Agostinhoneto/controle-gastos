@@ -1,115 +1,102 @@
-@include('layouts.topo')
-@extends('layout')
+<head>
+    <!-- Google Font: Source Sans Pro -->
+    <link href="{{ URL::asset('assets/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <!-- Scripts DataTables -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../plugins/jszip/jszip.min.js"></script>
+    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <!-- Google Font: Source Sans Pro -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
-    @include('layouts.sidebar')
-    <div class="card-body">
-        <div class="table-responsive">
-            <div class="card-header">
-                <h1>Relatório PDF</h1>
+    @include('layouts.topo')
+        @include('layouts.sidebar')
+        <h1>@yield('cabecalho')</h1>
+        @yield('conteudo')
+        <div class="wrapper">
+            <div class="col-sm-6">
+                <h1>Relatórios</h1>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="list-group">
-                        <div class="card card-primary">
+            <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Descrição</th>
+                                <th>Data</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($despesas as $despesa)
+                            <tr>
+                                <td>{{ $despesa->id }}</td>
+                                <td>{{ $despesa->descricao }}</td>
+                                <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
+                                <td>{{ $despesa->valor}}</td>
+                                <td>
+                                    @if($despesa->status == 1)
+                                    <p style="color: green">Pago</p>
+                                    @else
+                                    <p style="color: red">Não Pago</p>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
 
-                           <form action="{{ route('report.despesas') }}" method="GET">
-                                <br>
-                                <div class="col col-4">
-                                    <label for="descricao">Descrição</label>
-                                    <input type="text" class="form-control" id="descricao" aria-describedby="">
-                                </div>
-                                <br>
-                                <div class="col col-4">
-                                    <label for="categoria">Categoria</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
-                                </div>
-                                <br>
-                                <div class="col col-6">
-                                    <label for="filter2">Data :</label>
-                                    <input type="date" name="filter2">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label for="filter2">Data :</label>
-                                    <input type="date" name="filter2">
-                                </div>
-                                <br>
-                                <button type="submit">Gerar Relatório</button>
-                            </form>
-                            
-                        </div>
-                    </ul>
+                        </tfoot>
+                    </table>
+                    <td>{{$total}}</td>
+
                 </div>
+                <!-- /.card-body -->
             </div>
-            <h1 class="card-title">Todas as Despesas</h1>
-            <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Descrição</th>
-                            <th>Valor</th>
-                            <th>Data do Pagamento</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($despesas as $despesa)
-                        <tr>
-                            <td>{{ $despesa->id }}</td>
-                            <td>{{ $despesa->descricao }}</td>
-                            <td>{{ $despesa->valor }}</td>
-                            <td>{{Carbon\Carbon::parse( $despesa->data_pagamento)->format('d/m/Y')}}</td>
-                            <td>
-                                @if($despesa->status == 1)
-                                <p style="color: green">Pago</p>
-                                @else
-                                <p style="color: red">Não Pago</p>
-                                @endif
-                            </td>
-                            <td>{{ $despesa->descricao }}</td>
-
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            <!-- /.card -->
         </div>
+        <!-- /.col -->
     </div>
-
-    <script>
-        $(document).ready(function() {
-            var tabela = $('#example1').DataTable();
-
-            // Configurar o evento de clique para salvar
-            $('#example1 tbody').on('click', 'button.btnSalvar', function() {
-                var tr = $(this).closest('tr');
-                var id = tr.find('td:first-child').text();
-                var coluna1 = tr.find('td:nth-child(2)').text();
-                var coluna2 = tr.find('td:nth-child(3)').text();
-                // ... obter outras colunas ...
-
-                // Enviar dados para o servidor (Laravel) para salvar
-                $.ajax({
-                    url: '/categorias/update',
-                    type: 'POST',
-                    data: {
-                        id: id,
-                        coluna1: coluna1,
-                        coluna2: coluna2,
-                        // ... enviar outras colunas ...
-                    },
-                    success: function(response) {
-                        // Atualizar DataTable após salvar
-                        tabela.ajax.reload();
-                    },
-                    error: function(error) {
-                        console.error('Erro ao salvar', error);
-                    }
-                });
-            });
-        });
-    </script>
-    </ul>
+    <!-- /.row -->
 </div>
+<!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 </div>
-@include('layouts.footer')
+<aside class="control-sidebar control-sidebar-dark">
+</aside>
+</div>
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>

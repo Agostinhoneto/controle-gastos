@@ -21,7 +21,9 @@ class RelatorioController extends Controller
     public function index()
     {
         $despesas = Despesas::all(); 
-        return view('relatorios.index',compact('despesas'));
+        $total = $despesas->sum('valor');
+
+        return view('relatorios.index',compact('despesas','total'));
     }
 
     public function gerarPDF(Request $request)
