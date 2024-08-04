@@ -104,6 +104,9 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
+          <a href="{{ route('users.index') }}" class="nav-link">Usuários</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
           <a href="{{ route('receitas.index') }}" class="nav-link">Receitas</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
