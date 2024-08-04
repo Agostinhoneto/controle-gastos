@@ -34,12 +34,7 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Descrição da Receita</th>
-                                        <th scope="col">Data do Recebimento</th>
-                                        <th scope="col">Valor</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Categoria</th>
-                                        <th scope="col">Editar</th>
-                                        <th scope="col">Excluir</th>
+                                        <th scope="col">Data do Criação</th>
                                     </tr>
                                 </thead>
 
@@ -48,13 +43,6 @@
                                     <th scope="row">{{ $user->id }}</th>
                                     <td>{{ $user->name }}</td>
                                     <td>{{Carbon\Carbon::parse( $user->created_at)->format('d/m/Y')}}</td>
-                                    <td>
-                                        @if($user->status == 1)
-                                        <p style="color: green">Pago</p>
-                                        @else
-                                        <p style="color: red">Não Pago</p>
-                                        @endif
-                                    </td>
                                     <td>
                                         <span class="d-flex">
                                            
