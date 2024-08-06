@@ -38,7 +38,7 @@ class UserController extends Controller
         ]);
 
         //Enviar e-mail       
-        Mail::to($users->email)->send(new SendWelcomeEmail($users));
+       // Mail::to($users->email)->send(new SendWelcomeEmail($users));
         DB::commit();
         return redirect()->route('users.create')->with('success', 'Usuário cadastro com sucesso!');
     }
@@ -53,8 +53,10 @@ class UserController extends Controller
         dd('oi');
     }
 
-    public function destroy(Request $request)
+    public function destroy(User $users)
     {
-        dd('oi');
+        $users->delete();
+        $mensagem = session()->get('mensagem');
+        return redirect()->route('users.index')->with('success', 'Usuário excluida com sucesso!');    
     }
 }

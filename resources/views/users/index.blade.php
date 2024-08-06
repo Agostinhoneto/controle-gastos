@@ -45,11 +45,13 @@
                                     <td>{{Carbon\Carbon::parse( $user->created_at)->format('d/m/Y')}}</td>
                                     <td>
                                         <span class="d-flex">
-                                           
+                                            <a href="edit.blade.php#editModal" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#editModal" data-userid="{{$user->id}}" onclick="propsReceitaId('{{$user->id}}')">
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
                                         </span>
                                     </td>
                                     <td>
-                                        <form action="" method="post" onsubmit="return confirm('Tem certeza que deseja remover ?')">
+                                        <form action="{{route('users.destroy',$user->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($user->name) }}?')">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm">
@@ -59,6 +61,7 @@
                                         </span>
                                     </td>
                                     </tr>
+
                                     @endforeach
                                 </tbody>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
