@@ -57,7 +57,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        {{$receita->categoria->descricao}}
+                                        {{$receita->categoria?->descricao}}
                                     </td>
                                     <td>
                                         <span class="d-flex">

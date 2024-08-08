@@ -13,13 +13,6 @@ class DespesasTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Despesas::create([
-            'descricao' => 'Aluguel',
-            'valor' => 1000.00,
-            'data_pagamento' => '2024-01-01',
-            'status' => true,
-            'categoria_id' => 1,
-        ]);
 
         Despesas::create([
             'descricao' => 'Conta de luz',
@@ -77,7 +70,6 @@ class DespesasTableSeeder extends Seeder
             'status' => true,
             'categoria_id' => 1,
         ]);
-
         
         Despesas::create([
             'descricao' => 'Gás e água',

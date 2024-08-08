@@ -36,20 +36,17 @@ class CategoriasController extends Controller
         return view('categorias.edit', ['categorias' => $categorias]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        $categorias = new Categorias();
-        $categorias->descricao = $request->descricao;
-        $categorias->despesas_id = $request->despesas_id;
-        $categorias->receitas_id = $request->receitas_id;
-        $categorias->save();
-        return redirect()->route('categorias.index')->with('success', 'categorias atualizada com sucesso!');
+        $categorias = Categorias::findOrFail($id);
+        $categorias->update($request->all());
+        return redirect()->route('categorias.index')->with('success', 'Categorias atualizada com sucesso!');   
     }
 
     public function destroy(Categorias $categorias)
     {
         $categorias->delete();
         $mensagem = session()->get('mensagem');
-        return redirect()->route('categorias.index')->with('success', 'Despesa excluida com sucesso!');
+        return redirect()->route('categorias.index')->with('success', 'Categorias excluida com sucesso!');
     }
 }

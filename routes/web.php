@@ -33,8 +33,6 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
 
 require __DIR__ . '/auth.php';
 
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
@@ -43,8 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/destroy/{users}', [UserController::class, 'destroy'])->name('users.destroy');
 });
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/receitas', [ReceitasController::class, 'index'])->name('receitas.index');
@@ -60,7 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/despesas/create', [DespesasController::class, 'create'])->name('despesas.create');
     Route::post('/despesas/store', [DespesasController::class, 'store'])->name('despesas.store');
     Route::get('/despesas/edit/{id}', [DespesasController::class, 'edit'])->name('despesas.edit');
-    Route::post('/despesas/update', [DespesasController::class, 'update'])->name('despesas.update');
+    Route::post('/despesas/update/{id}', [DespesasController::class, 'update'])->name('despesas.update');
     Route::delete('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
     //relatorios
     Route::get('/despesas/gerar-pdf-despesas', [DespesasController::class, 'gerarPdf'])->name('despesas.gerar-pdf');
@@ -71,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
     Route::post('/categorias/store', [CategoriasController::class, 'store'])->name('categorias.store');
     Route::get('/categorias/edit/{id}', [CategoriasController::class, 'edit'])->name('categorias.edit');
-    Route::post('/categorias/update', [CategoriasController::class, 'update'])->name('categorias.update');
+    Route::post('/categorias/update/{id}', [CategoriasController::class, 'update'])->name('categorias.update');
     Route::delete('/categorias/destroy/{categorias}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
 });
 
@@ -79,7 +75,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorios.index');
 
     Route::get('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
-
     // routes/web.php
     Route::get('/reports', [RelatorioController::class, 'gerarPDF'])->name('report.despesas');
 });

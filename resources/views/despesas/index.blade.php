@@ -58,7 +58,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{$despesa->categoria->descricao}}
+                                            {{$despesa->categoria?->descricao}}
                                         </td>
 
                                         <td>
