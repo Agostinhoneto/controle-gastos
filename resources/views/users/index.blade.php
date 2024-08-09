@@ -45,7 +45,7 @@
                                     <td>{{Carbon\Carbon::parse( $user->created_at)->format('d/m/Y')}}</td>
                                     <td>
                                         <span class="d-flex">
-                                            <a href="edit.blade.php#editModal" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#editModal" data-userid="{{$user->id}}" onclick="propsReceitaId('{{$user->id}}')">
+                                            <a href="{{route('users.edit',$user->id)}}" class="btn btn-info btn-sm mr-1">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </a>
                                         </span>

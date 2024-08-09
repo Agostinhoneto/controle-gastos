@@ -43,14 +43,17 @@ class UserController extends Controller
         return redirect()->route('users.create')->with('success', 'Usuário cadastro com sucesso!');
     }
 
-    public function edit(Request $request)
+    public function edit(User $users,$id)
     {
-        dd('oi');
+        $users = User::findOrFail($id);
+        return view('users.edit', ['users' => $users]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        dd('oi');
+        $users = User::findOrFail($id);
+        $users->update($request->all());
+        return redirect()->route('users.index')->with('success', 'Usuários atualizada com sucesso!');   
     }
 
     public function destroy(User $users)
