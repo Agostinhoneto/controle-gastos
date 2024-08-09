@@ -45,6 +45,9 @@
                 </select>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Atualizar</button>
+            <div class="form-group">
+                <a href="{{ route('receitas.index') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </div>    
         </form>
     </div>
