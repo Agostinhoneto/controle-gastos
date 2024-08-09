@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Mail;
 
 class ContatoController extends Controller
 {
+    public function index(){
+        return view('contatos.index');
+    }
+
     public function create()
     {
         return view('contact.create');

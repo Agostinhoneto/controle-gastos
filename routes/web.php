@@ -73,8 +73,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/contato', [ContatoController::class, 'create'])->name('contact.create');
-    Route::post('/contato', [ContatoController::class, 'store'])->name('contact.store');
+    Route::get('/contatos', [ContatoController::class, 'index'])->name('contatos.index');
+    Route::post('/contatos/store', [ContatoController::class, 'store'])->name('contatos.store');
 });
 
 Route::middleware('auth')->group(function () {

@@ -118,6 +118,9 @@
         <li class="nav-item d-none d-sm-inline-block">
           <a href="{{ route('relatorios.index') }}" class="nav-link">Relatórios</a>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="{{ route('contatos.index') }}" class="nav-link">Contatos</a>
+        </li>
       </ul>
      
       <ul class="navbar-nav ml-auto">
