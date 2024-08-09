@@ -45,7 +45,6 @@
 
                                 <tbody>
                                     @foreach($receitas as $receita)
-                                    <th scope="row">{{ $receita->id }}</th>
                                     <td>{{ $receita->descricao }}</td>
                                     <td>{{Carbon\Carbon::parse( $receita->data_recebimento)->format('d/m/Y')}}</td>
                                     <td>{{ $receita->valor}}</td>
@@ -60,9 +59,9 @@
                                         {{$receita->categoria?->descricao}}
                                     </td>
                                     <td>
+                                    <td>
                                         <span class="d-flex">
-                                            <a  href="edit.blade.php#editModal" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#editModal" data-userid="{{$receita->id}}"
-                                            onclick="propsReceitaId('{{$receita->id}}')">
+                                            <a href="{{route('receitas.edit',$receita->id)}}" class="btn btn-info btn-sm mr-1">
                                                 <i class="fas fa-external-link-alt"></i>
                                             </a>
                                         </span>

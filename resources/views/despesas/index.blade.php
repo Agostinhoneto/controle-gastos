@@ -60,11 +60,12 @@
                                         <td>
                                             {{$despesa->categoria?->descricao}}
                                         </td>
-
                                         <td>
-                                            <a href="{{route('despesas.edit',$despesa->id)}}" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#editModal">
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
+                                            <span class="d-flex">
+                                                <a href="{{route('despesas.edit',$despesa->id)}}" class="btn btn-info btn-sm mr-1">
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            </span>
                                         </td>
                                         <td>
                                             <form action="{{route('despesas.destroy',$despesa->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($despesa->descricao) }}?')">
