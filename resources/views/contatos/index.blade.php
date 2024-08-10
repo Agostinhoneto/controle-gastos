@@ -14,39 +14,91 @@
         <ul class="list-group">
             <div class="table-responsive">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Contatos</h3>
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <section class="content-header">
+                            <div class="container-fluid">
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <h1>Contato</h1>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ol class="breadcrumb float-sm-right">
+                                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                            <li class="breadcrumb-item active">Contact us</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div><!-- /.container-fluid -->
+                        </section>
+
+                        <!-- Main content -->
+                        <section class="content">
+
+                            <!-- Default box -->
+                            <div class="card">
+                                <div class="card-body row">
+                                    <div class="col-5 text-center d-flex align-items-center justify-content-center">
+                                        <div class="">
+                                            <h2>Admin<strong>LTE</strong></h2>
+                                            <p class="lead mb-5">123 Testing Ave, Testtown, 9876 NA<br>
+                                                Phone: +1 234 56789012
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="form-group">
+                                            <label for="inputName">Name</label>
+                                            <input type="text" id="inputName" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail">E-Mail</label>
+                                            <input type="email" id="inputEmail" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputSubject">Subject</label>
+                                            <input type="text" id="inputSubject" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputMessage">Message</label>
+                                            <textarea id="inputMessage" class="form-control" rows="4"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-primary" value="Send message">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+                        <!-- /.content -->
                     </div>
-                    <form action="{{ route('contatos.store') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
-                            @error('name')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <!-- /.content-wrapper -->
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
-                            @error('email')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                    <footer class="main-footer">
+                        <div class="float-right d-none d-sm-block">
+                            <b>Version</b> 3.2.0
                         </div>
+                        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+                    </footer>
 
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Mensagem</label>
-                            <textarea class="form-control" id="message" name="message" rows="5" required>{{ old('message') }}</textarea>
-                            @error('message')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
+                    <!-- Control Sidebar -->
+                    <aside class="control-sidebar control-sidebar-dark">
+                        <!-- Control sidebar content goes here -->
+                    </aside>
+                    <!-- /.control-sidebar -->
                 </div>
-            </div>
-        </ul>
-    </div>
-</div>
+                <!-- ./wrapper -->
+
+                <!-- jQuery -->
+                <script src="../../plugins/jquery/jquery.min.js"></script>
+                <!-- Bootstrap 4 -->
+                <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- AdminLTE App -->
+                <script src="../../dist/js/adminlte.min.js"></script>
+                <!-- AdminLTE for demo purposes -->
+                <script src="../../dist/js/demo.js"></script>
+                </body>
+
+                </html>

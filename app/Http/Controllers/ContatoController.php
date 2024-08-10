@@ -13,7 +13,7 @@ class ContatoController extends Controller
 
     public function create()
     {
-        return view('contact.create');
+        return view('contatos.create');
     }
 
     // Processa o envio do formulário
@@ -27,7 +27,7 @@ class ContatoController extends Controller
         ]);
 
         // Enviar o e-mail (substitua 'admin@example.com' pelo seu e-mail de destino)
-        Mail::send('emails.contact', [
+        Mail::send('emails.contato', [
             'name' => $request->name,
             'email' => $request->email,
             'user_message' => $request->message,
