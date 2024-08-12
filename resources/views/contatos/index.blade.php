@@ -15,7 +15,6 @@
             <div class="table-responsive">
                 <div class="card">
                     <!-- Content Wrapper. Contains page content -->
-                    <div class="content-wrapper">
                         <!-- Content Header (Page header) -->
                         <section class="content-header">
                             <div class="container-fluid">
@@ -41,9 +40,9 @@
                                 <div class="card-body row">
                                     <div class="col-5 text-center d-flex align-items-center justify-content-center">
                                         <div class="">
-                                            <h2>Admin<strong>LTE</strong></h2>
-                                            <p class="lead mb-5">123 Testing Ave, Testtown, 9876 NA<br>
-                                                Phone: +1 234 56789012
+                                            <h2><strong>Sistemas de Controle de Gastos</strong></h2>
+                                            <p class="lead mb-5">Monte Santo - Bahia<br>
+                                                Telefone: 75 999291-5575
                                             </p>
                                         </div>
                                     </div>
@@ -72,8 +71,6 @@
                             </div>
                         </section>
                         <!-- /.content -->
-                    </div>
-                    <!-- /.content-wrapper -->
                     <footer class="main-footer">
                         <div class="float-right d-none d-sm-block">
                             <b>Version</b> 3.2.0
