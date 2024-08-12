@@ -24,6 +24,7 @@ class UserController extends Controller
         $mensagem = $request->session()->get('mensagem');
         return view('users.index', compact('mensagem', 'users'));
     }
+    
     public function create(Request $request)
     {
         return view('users.create');

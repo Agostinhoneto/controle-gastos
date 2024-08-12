@@ -33,15 +33,18 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Descrição da Receita</th>
+                                        <th scope="col">Descrição da Usuário</th>
+                                        <th scope="col">Tipo</th>
                                         <th scope="col">Data do Criação</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Excluir</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     @foreach($users as $user)
                                     <th scope="row">{{ $user->id }}</th>
                                     <td>{{ $user->name }}</td>
+                                    <td></td>
                                     <td>{{Carbon\Carbon::parse( $user->created_at)->format('d/m/Y')}}</td>
                                     <td>
                                         <span class="d-flex">
