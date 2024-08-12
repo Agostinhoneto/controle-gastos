@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="col-7">
                                         <div class="form-group">
-                                            <label for="inputName">Name</label>
+                                            <label for="inputName">Nome</label>
                                             <input type="text" id="inputName" class="form-control" />
                                         </div>
                                         <div class="form-group">
@@ -57,32 +57,29 @@
                                             <input type="email" id="inputEmail" class="form-control" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputSubject">Subject</label>
+                                            <label for="inputSubject">Assunto</label>
                                             <input type="text" id="inputSubject" class="form-control" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputMessage">Message</label>
+                                            <label for="inputMessage">Mensagem</label>
                                             <textarea id="inputMessage" class="form-control" rows="4"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-primary" value="Send message">
+                                            <input type="submit" class="btn btn-primary" value="Enviar">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </section>
                         <!-- /.content -->
                     </div>
                     <!-- /.content-wrapper -->
-
                     <footer class="main-footer">
                         <div class="float-right d-none d-sm-block">
                             <b>Version</b> 3.2.0
                         </div>
                         <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
                     </footer>
-
                     <!-- Control Sidebar -->
                     <aside class="control-sidebar control-sidebar-dark">
                         <!-- Control sidebar content goes here -->
@@ -90,15 +87,18 @@
                     <!-- /.control-sidebar -->
                 </div>
                 <!-- ./wrapper -->
+            </div>
+        </ul>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+</body>
 
-                <!-- jQuery -->
-                <script src="../../plugins/jquery/jquery.min.js"></script>
-                <!-- Bootstrap 4 -->
-                <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-                <!-- AdminLTE App -->
-                <script src="../../dist/js/adminlte.min.js"></script>
-                <!-- AdminLTE for demo purposes -->
-                <script src="../../dist/js/demo.js"></script>
-                </body>
-
-                </html>
+</html>
