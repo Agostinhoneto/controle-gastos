@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('role_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id')->constrained()->onDelete('cascade'); // Referencia para a tabela roles
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Referencia para a tabela users
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');   
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users'); 
             $table->timestamps();
         });
     }

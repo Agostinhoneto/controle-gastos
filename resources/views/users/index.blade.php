@@ -44,7 +44,13 @@
                                     @foreach($users as $user)
                                     <th scope="row">{{ $user->id }}</th>
                                     <td>{{ $user->name }}</td>
-                                    <td></td>
+                                    <td>
+                                        @if($user->isadmin == 1)
+                                        Admin
+                                        @else
+                                        Usúario
+                                        @endif
+                                    </td>
                                     <td>{{Carbon\Carbon::parse( $user->created_at)->format('d/m/Y')}}</td>
                                     <td>
                                         <span class="d-flex">

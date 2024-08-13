@@ -35,9 +35,9 @@ class UserController extends Controller
         $users = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'is_admin' =>  $request->input('is_admin'),
             'password' => Hash::make($request->input('password')),
         ]);
-
         //Enviar e-mail       
        // Mail::to($users->email)->send(new SendWelcomeEmail($users));
         DB::commit();

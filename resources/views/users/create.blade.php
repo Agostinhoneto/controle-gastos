@@ -30,6 +30,15 @@
                                     <input type="text" class="form-control" name="name" id="descricao" required placeholder="Nome">
                                 </div>
                                 <br>
+                                <br>
+                                <div class="form-group">
+                                    <label for="exampleSelectBorder">Tipo</label>
+                                    <select class="custom-select form-control-border" id="is_admin" name="is_admin">
+                                        <option>Selecione</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Usuário</option>
+                                    </select>
+                                </div>
                                 <div class="col col-8">
                                     <label for="valor">Email:</label>
                                     <input type="email" class="form-control" name="email" id="email" required placeholder="Email">
