@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('permission_role', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('permission_id')->constrained()->onDelete('cascade'); // Referencia para a tabela permissions
-            $table->foreignId('role_id')->constrained()->onDelete('cascade'); // Referencia para a tabela roles
+            $table->unsignedBigInteger('permission_id');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('permission_id')->references('id')->on('permission')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->timestamps();
         });
     }
