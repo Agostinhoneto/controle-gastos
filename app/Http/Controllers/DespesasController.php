@@ -45,16 +45,12 @@ class DespesasController extends Controller
         return view('despesas.edit', compact('despesas', 'categorias', 'mensagem'));
     }
 
-    public function update(Request $request, Despesas $despesas)
+    public function update(Request $request, Despesas $despesas,$id)
     {
-        $despesas = new Despesas();
-        $despesas->descricao = $request->descricao;
-        $despesas->valor = $request->valor;
-        $despesas->data_pagamento = $request->data_pagamento;
-        $despesas->categoria_id  = $request->categoria_id;
-        $despesas->status = $request->status;
-        $despesas->save();
+        $despesas = Despesas::findOrFail($id);
+        $despesas->update($request->all());
         return redirect()->route('despesas.index')->with('success', 'Despesas atualizada com sucesso!');
+
     }
 
     public function destroy(Despesas $despesas)
