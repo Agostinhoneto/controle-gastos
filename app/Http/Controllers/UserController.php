@@ -41,7 +41,7 @@ class UserController extends Controller
         //Enviar e-mail       
        // Mail::to($users->email)->send(new SendWelcomeEmail($users));
         DB::commit();
-        return redirect()->route('users.create')->with('success', 'Usuário cadastro com sucesso!');
+        return redirect()->route('users.index')->with('success', 'Usuário cadastro com sucesso!');
     }
 
     public function edit(User $users,$id)
