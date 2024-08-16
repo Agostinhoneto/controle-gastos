@@ -25,9 +25,17 @@
                             <br>
                             <form class="form" method="POST" action="{{ route('users.store') }}">
                                 @csrf
+                                <!-- Name -->
                                 <div class="col col-8">
-                                    <label for="descricao">Nome:</label>
-                                    <input type="text" class="form-control" name="name" id="descricao" required placeholder="Nome">
+                                    <x-label for="name" :value="__('Nome')" />
+                                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                                </div>
+                                <br>
+                                <!-- Email Address -->
+                                <div class="col col-8">
+                                    <x-label for="email" :value="__('Email')" />
+
+                                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
                                 </div>
                                 <br>
                                 <div class="col col-8">
@@ -39,23 +47,32 @@
                                     </select>
                                 </div>
                                 <br>
+                                <!-- Password -->
                                 <div class="col col-8">
-                                    <label for="valor">Email:</label>
-                                    <input type="email" class="form-control" name="email" id="email" required placeholder="Email">
+                                    <x-label for="password" :value="__('Senha')" />
+
+                                    <x-input id="password" class="block mt-1 w-full"
+                                        type="password"
+                                        name="password"
+                                        required autocomplete="new-password" />
                                 </div>
                                 <br>
-                                <div class="col col-6">
-                                    <label for="data_pagamento">Senha:</label>
-                                    <input type="password" class="form-control" name="password" id="password" required placeholder="Senha">
+                                <!-- Confirm Password -->
+                                <div class="col col-8">
+                                    <x-label for="password_confirmation" :value="__('Confirmar Senha')" />
+
+                                    <x-input id="password_confirmation" class="block mt-1 w-full"
+                                        type="password"
+                                        name="password_confirmation" required />
                                 </div>
                                 <br>
-                                <div class="col col-6">
-                                    <label for="data_pagamento">Repetir Senha:</label>
-                                    <input type="password" class="form-control" name="password" id="password" required placeholder="Senha">
-                                </div>
-                                <br>
-                                <div class="col col-2">
-                                    <button class="btn btn-primary mt-2">Salvar</button>
+                                <div class="flex items-center justify-end mt-4">
+                                    <x-button class="ml-4">
+                                        {{ __('Salvar') }}
+                                    </x-button>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -63,9 +80,7 @@
                 </div>
             </div>
             <!-- Rodapé do Modal -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            </div>
+
         </div>
     </div>
 </div>

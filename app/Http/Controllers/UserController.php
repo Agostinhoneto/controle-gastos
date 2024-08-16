@@ -25,9 +25,9 @@ class UserController extends Controller
         return view('users.index', compact('mensagem', 'users'));
     }
     
-    public function create(Request $request)
+    public function create()
     {
-        return view('users.create');
+        return view('auth.register');
     }
 
     public function store(Request $request)

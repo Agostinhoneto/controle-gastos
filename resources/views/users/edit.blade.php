@@ -35,7 +35,11 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Senha:</label>
-                    <input type="password" class="form-control" id="password" name="password" value="{{ $users->password}}">
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="password">Repetir Senha:</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                 </div>
                 <div class="form-group">
                 <br>
