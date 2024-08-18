@@ -46,7 +46,7 @@
                 </select>
             </div>
             <br>
-            <a href="{{ route('receitas.index') }}" class="btn btn-secondary">Cancelar</a>
+            <a href="{{ route('despesas.index') }}" class="btn btn-secondary">Cancelar</a>
             <button type="submit" class="btn btn-primary">Atualizar</button>
         </form>
     </div>
