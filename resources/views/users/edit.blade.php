@@ -35,11 +35,11 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Senha:</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Repetir Senha:</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                 </div>
                 <div class="form-group">
                 <br>

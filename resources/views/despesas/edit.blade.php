@@ -15,11 +15,11 @@
         <form method="post" action="{{route('despesas.update',$despesas)}}">
             @csrf
             @method('POST')
-            <div class="form-group">
+            <div class="col col-6">
                 <label for="descricao">Descrição:</label>
                 <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $despesas->descricao }}">
             </div>
-            <div class="form-group">
+            <div class="col col-4">
                 <label for="valor">Valor:</label>
                 <input type="text" class="form-control" id="valor" name="valor" value="{{ $despesas->valor }}">
             </div>
@@ -30,13 +30,15 @@
                     <option value="0" @if (old('active')==0) selected @endif>Inativo</option>
                 </select>
             </div>
-            <div class="form-group">
+            <br>
+            <div class="col col-4">
                 <label for="data_pagamento">Data do Pagamento:</label>
                 <input type="date" class="form-control" id="data_pagamento" name="data_pagamento" value="{{$despesas->data_pagamento}}">
             </div>
-            <div class="form-group">
+            <br> 
+            <div class="col col-4">
                 <label for="categoria_id">Categoria:</label>
-                <select name="categoria_id" id="categoria_id" required class="form-control">
+                <select name="categoria_id" id="categoria_id" required class="form-control" required>
                     <option>Selecione...</option>
                     @foreach($categorias as $c)
                     <option value="{{ $c->id }}">{{ $c->descricao }}</option>
