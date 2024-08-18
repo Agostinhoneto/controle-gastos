@@ -57,7 +57,7 @@ class DespesasController extends Controller
     {
         $despesas->delete();
         $mensagem = session()->get('mensagem');
-        return redirect()->route('despesas.index')->with('success', 'Receita excluida com sucesso!');
+        return redirect()->route('despesas.index')->with('success', 'Despesa excluida com sucesso!');
     }
 
     public function gerarPdf()
