@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Mail\SendWelcomeEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class UserController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $users = User::create([
             'name' => $request->input('name'),
@@ -38,9 +39,9 @@ class UserController extends Controller
             'is_admin' =>  $request->input('is_admin'),
             'password' => Hash::make($request->input('password')),
         ]);
+      
         //Enviar e-mail       
        // Mail::to($users->email)->send(new SendWelcomeEmail($users));
-        DB::commit();
         return redirect()->route('users.index')->with('success', 'Usuário cadastro com sucesso!');
     }
 
