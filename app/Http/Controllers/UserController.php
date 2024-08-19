@@ -54,6 +54,9 @@ class UserController extends Controller
     public function update(Request $request,$id)
     {
         $users = User::findOrFail($id);
+        if ($id == null){
+            dd('erro');
+        }
         $users->update($request->all());
         return redirect()->route('users.index')->with('success', 'Usuários atualizada com sucesso!');   
     }
