@@ -17,8 +17,11 @@ return new class extends Migration
             $table->decimal('valor', 10, 2);
             $table->date('data_recebimento');
             $table->boolean('status')->default(true);
-            $table->unsignedBigInteger('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias');   
+            //$table->unsignedBigInteger('categoria_id');
+            //$table->foreign('categoria_id')->references('id')->on('categorias'); 
+            
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

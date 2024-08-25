@@ -21,26 +21,28 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-7">
-                                    <div class="form-group">
-                                        <label for="inputName">Nome</label>
-                                        <input type="text" id="inputName" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail">E-Mail</label>
-                                        <input type="email" id="inputEmail" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputSubject">Assunto</label>
-                                        <input type="text" id="inputSubject" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputMessage">Mensagem</label>
-                                        <textarea id="inputMessage" class="form-control" rows="4"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" class="btn btn-primary" value="Enviar">
-                                    </div>
+                                <div class="col-6">
+                                    <form action="{{ route('contatos.store') }}" method="POST">
+                                        <div class="form-group">
+                                            <label for="inputName">Nome</label>
+                                            <input type="text" id="inputName" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail">E-Mail</label>
+                                            <input type="email" id="inputEmail" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputSubject">Assunto</label>
+                                            <input type="text" id="inputSubject" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputMessage">Mensagem</label>
+                                            <textarea id="inputMessage" class="form-control" rows="4"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-primary" value="Enviar">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
