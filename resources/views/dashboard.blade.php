@@ -258,7 +258,7 @@
             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block"> {{ auth()->user()->name }}</a>
           </div>
         </div>
 
@@ -275,7 +275,7 @@
 
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
+           <!-- 
             <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -305,6 +305,7 @@
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="pages/widgets.html" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
@@ -587,6 +588,8 @@
                 </li>
               </ul>
             </li>
+            -->
+            <!--
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
@@ -626,6 +629,7 @@
                     <p>Project Add</p>
                   </a>
                 </li>
+             
                 <li class="nav-item">
                   <a href="pages/examples/project-edit.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -658,6 +662,7 @@
                 </li>
               </ul>
             </li>
+            
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon far fa-plus-square"></i>
@@ -702,6 +707,7 @@
                     </li>
                   </ul>
                 </li>
+                 
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -749,6 +755,7 @@
                     <p>Legacy User Menu</p>
                   </a>
                 </li>
+               
                 <li class="nav-item">
                   <a href="pages/examples/language-menu.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -761,6 +768,7 @@
                     <p>Error 404</p>
                   </a>
                 </li>
+                   
                 <li class="nav-item">
                   <a href="pages/examples/500.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -779,6 +787,7 @@
                     <p>Blank Page</p>
                   </a>
                 </li>
+                
                 <li class="nav-item">
                   <a href="starter.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -787,6 +796,7 @@
                 </li>
               </ul>
             </li>
+             -->
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-search"></i>
@@ -914,6 +924,7 @@
 
     </aside>
 
+
     <div class="content-wrapper">
 
       <div class="content-header">
@@ -931,7 +942,6 @@
           </div>
         </div>
       </div>
-
 
       <section class="content">
         <div class="container-fluid">
@@ -995,7 +1005,7 @@
 
           </div>
 
-
+       
           <div class="row">
 
 
@@ -1068,8 +1078,9 @@
 
         </div>
       </section>
-
+ 
     </div>
+
     @include('layouts.footer')
 
     <aside class="control-sidebar control-sidebar-dark">
@@ -1112,6 +1123,7 @@
   <script src="dist/js/demo.js"></script>
 
   <script src="dist/js/pages/dashboard.js"></script>
+
 </body>
 
 </html>
