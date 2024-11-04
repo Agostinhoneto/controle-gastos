@@ -44,7 +44,7 @@ class ReceitasController extends Controller
 
     public function edit(Request $request,$id)
     {
-        $receitas = Receitas::find($id);
+        $receitas = Receitas::findOrFail($id);
         $mensagem = $request->session()->get('mensagem');
         $categorias = Categorias::query()->orderBy('descricao')->get();
         return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));

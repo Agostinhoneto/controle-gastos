@@ -17,7 +17,7 @@
             @method('POST')
             <div class="col col-6">
                 <label for="descricao">Descrição:</label>
-                <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $receitas->descricao }}">
+                <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $receitas->descricao  ?? 'Não encontrada'}}">
             </div>
             <br>
             <div class="col col-2">
