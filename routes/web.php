@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\DespesasController;
@@ -23,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

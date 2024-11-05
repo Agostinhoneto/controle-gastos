@@ -20,6 +20,12 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/'); 
+    }
+
     /**
      * Handle an incoming authentication request.
      *
