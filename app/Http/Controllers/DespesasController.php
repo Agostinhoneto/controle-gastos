@@ -14,7 +14,7 @@ class DespesasController extends Controller
     {
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $total = Despesas::sum('valor');
-        $despesas = Despesas::query()->with('categoria')->orderBy('descricao')->get();
+        $despesas = Despesas::query()->with('categoria')->orderBy('descricao')->paginate(10);
         $mensagem = $request->session()->get('mensagem');
         return view('despesas.index', compact('despesas', 'mensagem', 'total', 'categorias'));
     }
