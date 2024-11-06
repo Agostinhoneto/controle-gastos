@@ -63,6 +63,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/despesas/edit/{id}', [DespesasController::class, 'edit'])->name('despesas.edit');
     Route::post('/despesas/update/{id}', [DespesasController::class, 'update'])->name('despesas.update');
     Route::delete('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
+    
+    Route::get('/enviar-alerta/{userId}/{gastoAtual}/{limiteGastos}', [DespesasController::class, 'enviarAlertaDespesa'])->name('enviar.alerta');
+    Route::get('/enviar-email', [DespesasController::class, 'enviarEmail']);
+
     //relatorios
     Route::get('/despesas/gerar-pdf-despesas', [DespesasController::class, 'gerarPdf'])->name('despesas.gerar-pdf');
 });

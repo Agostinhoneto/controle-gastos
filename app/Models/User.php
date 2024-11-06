@@ -54,4 +54,15 @@ class User extends Authenticatable
             $query->where('name', $permission);
         })->exists();
     }
+
+    public function despesas()
+    {
+        return $this->hasMany(Despesas::class);
+    }
+
+    // Método para calcular o total de gastos
+    public function gastosTotais()
+    {
+        return $this->despesas()->sum('valor'); // Considerando que 'valor' é a coluna de valor da despesa
+    }
 }
