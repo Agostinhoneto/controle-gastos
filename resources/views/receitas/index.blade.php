@@ -96,4 +96,3 @@
         </ul>
     </div>
 </div>
-@include('layouts.footer')
