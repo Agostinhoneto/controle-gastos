@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Despesas as MailDespesas;
+use App\Mail\MailDespesas as MailMailDespesas;
 use App\Mail\SendWelcomeEmail;
 use App\Models\Categorias;
 use App\Models\Despesas;
@@ -37,11 +38,12 @@ class DespesasController extends Controller
         $despesas->data_pagamento = $request->input('data_pagamento');
         $despesas->categoria_id = $request->input('categoria_id');
         $despesas->status = $request->input('status', 1);
+        $despesas->user_id = auth()->id();
         $despesas->save();
 
         // Enviar e-mail
-        Mail::to('destinatario@provedor.com')->send(new DespesaCadastradaMail($despesa));
-        
+        Mail::to('agostneto6@gmail.com')->send(new MailMailDespesas($despesas));
+
         return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso');
     }
 
