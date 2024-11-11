@@ -9,24 +9,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class Despesas extends Mailable
+class MailReceitas extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $dados;
-
-    public function __construct($dados)
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $this->dados = $dados;
+        //
     }
 
-
-    public function build()
-    {
-        return $this->from(config('mail.from.address'))
-                    ->subject('Assunto do E-mail')
-                    ->markdown('emails.despesas.nova-despesa');
-    }
     /**
      * Get the message envelope.
      *
@@ -35,7 +31,7 @@ class Despesas extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Despesas',
+            subject: 'Receitas',
         );
     }
 
@@ -47,7 +43,7 @@ class Despesas extends Mailable
     public function content()
     {
         return new Content(
-            view: 'despesa.nova-despesa',
+            view: 'view.name',
         );
     }
 

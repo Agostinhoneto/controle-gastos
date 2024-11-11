@@ -38,6 +38,10 @@ class DespesasController extends Controller
         $despesas->categoria_id = $request->input('categoria_id');
         $despesas->status = $request->input('status', 1);
         $despesas->save();
+
+        // Enviar e-mail
+        Mail::to('destinatario@provedor.com')->send(new DespesaCadastradaMail($despesa));
+        
         return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso');
     }
 
