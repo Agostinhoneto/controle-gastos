@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\DespesasController;
+use App\Http\Controllers\FinancialGoalController;
 use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
@@ -91,4 +92,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
     // routes/web.php
     Route::get('/reports', [RelatorioController::class, 'gerarPDF'])->name('report.despesas');
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/categorias', [FinancialGoalController::class, 'index'])->name('categorias.index');
+    Route::get('/categorias/create', [FinancialGoalController::class, 'create'])->name('categorias.create');
+    Route::post('/categorias/store', [FinancialGoalController::class, 'store'])->name('categorias.store');
+    Route::get('/categorias/edit/{id}', [FinancialGoalController::class, 'edit'])->name('categorias.edit');
+    Route::post('/categorias/update/{id}', [FinancialGoalController::class, 'update'])->name('categorias.update');
+    Route::delete('/categorias/destroy/{categorias}', [FinancialGoalController::class, 'destroy'])->name('categorias.destroy');
 });
