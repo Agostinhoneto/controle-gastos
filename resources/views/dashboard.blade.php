@@ -224,7 +224,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
-                  Users
+                  Usuários
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -232,19 +232,25 @@
                 <li class="nav-item">
                   <a href="{{route('users.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Profile</p>
+                    <p>Criar</p>
                   </a>
                 </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Metas
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="pages/examples/e-commerce.html" class="nav-link">
+                  <a href="{{route('financial.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>E-commerce</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/projects.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Usuários</p>
+                    <p>Criar</p>
                   </a>
                 </li>
               </ul>

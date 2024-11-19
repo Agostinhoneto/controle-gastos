@@ -60,9 +60,13 @@ class User extends Authenticatable
         return $this->hasMany(Despesas::class);
     }
 
-    // Método para calcular o total de gastos
+    public function financialGoals()
+    {
+        return $this->hasMany(FinancialGoal::class);
+    }
+
     public function gastosTotais()
     {
-        return $this->despesas()->sum('valor'); // Considerando que 'valor' é a coluna de valor da despesa
+        return $this->despesas()->sum('valor'); 
     }
 }

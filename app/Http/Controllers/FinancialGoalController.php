@@ -9,13 +9,13 @@ class FinancialGoalController extends Controller
 {
     public function index()
     {
-        $goals = auth()->user()->financialGoals; // Pega metas do usuário logado
-        return view('financial_goals.index', compact('goals'));
+        $goals = auth()->user()->financialGoals ?? collect(); 
+        return view('financial.index', compact('goals'));
     }
 
     public function create()
     {
-        return view('financial_goals.create');
+        return view('financial.create');
     }
 
     public function store(Request $request)
@@ -31,14 +31,14 @@ class FinancialGoalController extends Controller
 
         FinancialGoal::create($validated);
 
-        return redirect()->route('financial_goals.index')->with('success', 'Meta criada com sucesso!');
+        return redirect()->route('financial.index')->with('success', 'Meta criada com sucesso!');
     }
 
     public function show(FinancialGoal $financialGoal)
     {
         $this->authorize('view', $financialGoal);
 
-        return view('financial_goals.show', compact('financialGoal'));
+        return view('financial.show', compact('financialGoal'));
     }
 
     public function update(Request $request, FinancialGoal $financialGoal)
@@ -51,7 +51,7 @@ class FinancialGoalController extends Controller
 
         $financialGoal->update($validated);
 
-        return redirect()->route('financial_goals.index')->with('success', 'Meta atualizada!');
+        return redirect()->route('financial.index')->with('success', 'Meta atualizada!');
     }
 
     public function destroy(FinancialGoal $financialGoal)
@@ -60,6 +60,6 @@ class FinancialGoalController extends Controller
 
         $financialGoal->delete();
 
-        return redirect()->route('financial_goals.index')->with('success', 'Meta removida!');
+        return redirect()->route('financial.index')->with('success', 'Meta removida!');
     }
 }

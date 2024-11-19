@@ -96,10 +96,10 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/categorias', [FinancialGoalController::class, 'index'])->name('categorias.index');
-    Route::get('/categorias/create', [FinancialGoalController::class, 'create'])->name('categorias.create');
-    Route::post('/categorias/store', [FinancialGoalController::class, 'store'])->name('categorias.store');
-    Route::get('/categorias/edit/{id}', [FinancialGoalController::class, 'edit'])->name('categorias.edit');
-    Route::post('/categorias/update/{id}', [FinancialGoalController::class, 'update'])->name('categorias.update');
-    Route::delete('/categorias/destroy/{categorias}', [FinancialGoalController::class, 'destroy'])->name('categorias.destroy');
+    Route::get('/financial/index', [FinancialGoalController::class, 'index'])->name('financial.index');
+    Route::get('/financial/create', [FinancialGoalController::class, 'create'])->name('financial.create');
+    Route::post('/financial/store', [FinancialGoalController::class, 'store'])->name('financial.store');
+    Route::get('/financial/edit/{id}', [FinancialGoalController::class, 'edit'])->name('financial.edit');
+    Route::post('/financial/update/{id}', [FinancialGoalController::class, 'update'])->name('financial.update');
+    Route::delete('/financial/destroy/{financial}', [FinancialGoalController::class, 'destroy'])->name('financial.destroy');
 });
