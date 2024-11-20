@@ -26,6 +26,22 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+  <style>
+    .nav-link.custom-active {
+      background-color: #cc0000;
+      /* Fundo vermelho escuro */
+      color: #ffffff;
+      /* Texto branco */
+    }
+
+    .nav-link.custom-active:hover {
+      background-color: #ff4d4d;
+      /* Fundo vermelho claro ao passar o mouse */
+      color: #ffffff;
+      /* Texto branco */
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -78,7 +94,7 @@
                with font-awesome or any other icon font library -->
             <li class="nav-item">
               <a href="{{route('receitas.index')}}" class="nav-link active">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-dollar-sign"></i>
                 <p>
                   Receitas
                   <span class="right badge badge-danger"></span>
@@ -86,8 +102,17 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{route('despesas.index')}}" class="nav-link custom-active">
+                <i class="nav-icon fas fa-money-bill-wave"></i>
+                <p>
+                  Despesas
+                  <span class="right badge badge-danger"></span>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>
                   Usuários
                   <i class="fas fa-angle-left right"></i>
@@ -105,7 +130,7 @@
 
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
+                <i class="nav-icon fas fa-bullseye"></i>
                 <p>
                   Metas
                   <i class="fas fa-angle-left right"></i>
@@ -406,7 +431,7 @@
     </aside>
 
 
-  <!--
+    <!--
     <footer class="main-footer">
       <div class="float-right d-none d-sm-block">
         <b>Version</b> 1.0.0
