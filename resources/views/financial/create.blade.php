@@ -27,7 +27,7 @@
                                 @csrf
                                 <div class="col col-8">
                                     <label for="descricao">Descrição:</label>
-                                    <input type="text" class="form-control" name="descricao" id="descricao" required placeholder="Descrição">
+                                    <input type="text" class="form-control" name="nome" id="nome required placeholder="Descrição">
                                 </div>
                                 <br>
                                 <div class="col col-6">
@@ -36,19 +36,15 @@
                                 </div>
                                 <br>
                                 <div class="col col-6">
-                                    <label for="data_pagamento">Data do Pagamento:</label>
-                                    <input type="date" class="form-control" name="data_pagamento" id="data_pagamento" required placeholder="Data">
+                                    <label for="data_pagamento">Data Inicio:</label>
+                                    <input type="date" class="form-control" name="start_date" id="start_date" required placeholder="Data">
                                 </div>
-                                <br>
                                 <br>
                                 <div class="col col-6">
-                                    <label for="status">Status:</label>
-                                    <select id="status" name="status" class="form-control">
-                                        <option>Selecione...</option>
-                                        <option value="1">Ativo</option>
-                                        <option value="0">Inativo</option>
-                                    </select>
+                                    <label for="data_pagamento">Data Fim:</label>
+                                    <input type="date" class="form-control" name="end_date" id="end_date" required placeholder="Data">
                                 </div>
+                                
                                 <br>
                                 <div class="col col-2">
                                     <button class="btn btn-primary mt-2">Salvar</button>

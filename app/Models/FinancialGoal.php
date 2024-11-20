@@ -13,7 +13,6 @@ class FinancialGoal extends Model
         'user_id',
         'nome',
         'valor',
-        'saved_amount',
         'start_date',
         'end_date'
     ];

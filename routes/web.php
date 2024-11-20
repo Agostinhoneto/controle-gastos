@@ -97,6 +97,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/financial/index', [FinancialGoalController::class, 'index'])->name('financial.index');
+    Route::get('/financial/show/{id}', [CategoriasController::class, 'show'])->name('financial.show');
     Route::get('/financial/create', [FinancialGoalController::class, 'create'])->name('financial.create');
     Route::post('/financial/store', [FinancialGoalController::class, 'store'])->name('financial.store');
     Route::get('/financial/edit/{id}', [FinancialGoalController::class, 'edit'])->name('financial.edit');

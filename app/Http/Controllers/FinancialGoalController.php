@@ -20,16 +20,16 @@ class FinancialGoalController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nome' => 'required|string|max:255',
-            'valor' => 'required|numeric|min:1',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-        ]);
+        $financialGoal = new FinancialGoal();
+        $financialGoal->nome = $request->input('nome');
+        $financialGoal->valor = $request->input('valor');
+        $financialGoal->start_date = $request->input('start_date');
+        $financialGoal->end_date = $request->input('end_date');
+        $financialGoal->user_id = auth()->id();
 
-        $validated['user_id'] = auth()->id();
+        $financialGoal->save();
 
-        FinancialGoal::create($validated);
+   // FinancialGoal::create($validated);
 
         return redirect()->route('financial.index')->with('success', 'Meta criada com sucesso!');
     }

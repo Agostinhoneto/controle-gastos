@@ -26,16 +26,20 @@
                     <tr>
                         <th>Nome</th>
                         <th>Progresso</th>
-                        <th>Prazo</th>
+                        <th>Data Inicio</th>
+                        <th>Data Fim</th>
+                   
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($goals as $goal)
                     <tr>
-                        <td>{{ $goal->name }}</td>
-                        <td>{{ $goal->saved_amount }} / {{ $goal->target_amount }}</td>
-                        <td>{{ $goal->start_date }} - {{ $goal->end_date }}</td>
+                        <td>{{ $goal->nome }}</td>
+                        <td>{{ $goal->valor }} / {{ $goal->target_amount }}</td>
+                        <td>{{ $goal->start_date }}</td>
+                        <td>{{ $goal->end_date }}</td>
+
                         <td>
                             <a href="{{ route('financial.show', $goal) }}" class="btn btn-info btn-sm">Ver</a>
                             <form action="{{ route('financial.destroy', $goal) }}" method="POST" style="display:inline;">

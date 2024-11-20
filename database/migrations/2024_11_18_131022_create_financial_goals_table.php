@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('nome'); 
             $table->decimal('valor', 10, 2);
-            $table->decimal('salvo', 10, 2)->default(0); 
             $table->date('start_date'); 
             $table->date('end_date'); 
             $table->timestamps();
