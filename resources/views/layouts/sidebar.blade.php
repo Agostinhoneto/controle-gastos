@@ -91,7 +91,6 @@
             <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <h1>Bem-vindo ao Dashboard</h1>
             <a href="#" class="d-block">Olá, {{ Auth::user()->name }}!</a>
           </div>
         </div>
