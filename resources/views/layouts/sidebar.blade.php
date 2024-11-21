@@ -91,7 +91,6 @@
             <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <h1>Bem-vindo ao Dashboards </h1>
             <a href="#" class="d-block">Olá, {{ Auth::user()->name }}!</a>
           </div>
         </div>
@@ -133,7 +132,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{route('despesas.index')}}" class="nav-link custom-active-orange">
+              <a href="{{route('users.index')}}" class="nav-link custom-active-orange">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                   Usuários
@@ -143,8 +142,8 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{route('despesas.index')}}" class="nav-link custom-active-green">
-                <i class="nav-icon fas fa-user"></i>
+              <a href="{{route('financial.index')}}" class="nav-link custom-active-green">
+                <i class="nav-icon fas fa-bullseye"></i>
                 <p>
                 Metas
                   <span class="right badge badge-danger"></span>
