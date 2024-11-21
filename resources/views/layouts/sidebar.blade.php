@@ -35,11 +35,31 @@
       /* Texto branco */
     }
 
+    .nav-link.custom-active-orange {
+      background-color: #ff8c00;
+      /* Fundo laranja claro */
+      color: #ffffff;
+      /* Texto branco */
+    }
+
     .nav-link.custom-active:hover {
       background-color: #ff4d4d;
       /* Fundo vermelho claro ao passar o mouse */
       color: #ffffff;
       /* Texto branco */
+    }
+
+    .nav-link.custom-active-green {
+      background-color: #28a745;
+      /* Verde padrão */
+      color: #ffffff;
+      /* Texto branco */
+    }
+
+    .nav-link.custom-active:hover {
+      background-color: #218838;
+      /* Verde mais escuro no hover */
+      color: #ffffff;
     }
   </style>
 </head>
@@ -71,7 +91,8 @@
             <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <h1>Bem-vindo ao Dashboard</h1>
+            <a href="#" class="d-block">Olá, {{ Auth::user()->name }}!</a>
           </div>
         </div>
 
@@ -110,42 +131,27 @@
                 </p>
               </a>
             </li>
+
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('despesas.index')}}" class="nav-link custom-active-orange">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                   Usuários
-                  <i class="fas fa-angle-left right"></i>
+                  <span class="right badge badge-danger"></span>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('users.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Criar</p>
-                  </a>
-                </li>
-              </ul>
             </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-bullseye"></i>
+              <a href="{{route('despesas.index')}}" class="nav-link custom-active-green">
+                <i class="nav-icon fas fa-user"></i>
                 <p>
-                  Metas
-                  <i class="fas fa-angle-left right"></i>
+                Metas
+                  <span class="right badge badge-danger"></span>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('financial.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Criar</p>
-                  </a>
-                </li>
-              </ul>
             </li>
-            <li class="nav-header">EXAMPLES</li>
+            <li class="nav-header">OUTRAS FUNCIONALIDADES</li>
             <li class="nav-item">
               <a href="pages/calendar.html" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
