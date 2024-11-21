@@ -27,7 +27,7 @@
                                 @csrf
                                 <div class="col col-8">
                                     <label for="descricao">Descrição:</label>
-                                    <input type="text" class="form-control" name="nome" id="nome required placeholder="Descrição">
+                                    <input type="text" class="form-control" name="nome" id="nome required" placeholder="Descrição">
                                 </div>
                                 <br>
                                 <div class="col col-6">

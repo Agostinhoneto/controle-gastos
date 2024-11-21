@@ -36,9 +36,9 @@
     }
 
     .nav-link.custom-active-orange {
-      background-color: #ff8c00;
+      background-color: #e0a800;
       /* Fundo laranja claro */
-      color: #ffffff;
+      color: #000000;
       /* Texto branco */
     }
 
@@ -146,10 +146,8 @@
                 <li class="nav-item">
                   <a href="{{route('users.index')}}" class="nav-link custom-active-orange">
                     <i class="nav-icon fas fa-user"></i>
-                    <p>
                       Usuários
                       <span class="right badge badge-danger"></span>
-                    </p>
                   </a>
                 </li>
 
