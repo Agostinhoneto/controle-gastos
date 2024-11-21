@@ -56,22 +56,4 @@ class RouteServiceProvider extends ServiceProvider
         $userName = Auth::user()->name;
         return redirect()->route('dashboard')->with('userName', $user->name);
     }
-
-    public function dashboard()
-    {
-        dd('aqui');
-        $hour = now()->hour; // Obtém a hora atual (24h)
-        $greeting = '';
-
-        if ($hour >= 5 && $hour < 12) {
-            $greeting = 'Bom dia';
-        } elseif ($hour >= 12 && $hour < 18) {
-            $greeting = 'Boa tarde';
-        } else {
-            $greeting = 'Boa noite';
-        }
-
-        $user = Auth::user(); // Obtém o usuário logado
-        return view('dashboard', compact('greeting', 'user'));
-    }
 }
