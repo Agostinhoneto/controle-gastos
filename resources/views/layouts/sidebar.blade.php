@@ -174,7 +174,7 @@
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
                     <p>
-                      Users
+                      Outros
                       <i class="fas fa-angle-left right"></i>
                     </p>
                   </a>
@@ -226,7 +226,7 @@
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-search"></i>
                     <p>
-                      Search
+                      Pesquisar
                       <i class="fas fa-angle-left right"></i>
                     </p>
                   </a>

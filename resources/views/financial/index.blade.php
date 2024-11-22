@@ -21,9 +21,6 @@
         <ul class="list-group">
             <div class="table-responsive">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Despesas</h3>
-                    </div>
                     <div class="card-body">
                         <div class="container">
                             <h1>Metas Financeiras</h1>

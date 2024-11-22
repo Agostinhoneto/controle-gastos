@@ -17,6 +17,10 @@ class Kernel extends ConsoleKernel
         Commands\EnviarEmailCommand::class,
     ];
 
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('reminders:send')->daily();
+    }
     /**
      * Register the commands for the application.
      *
