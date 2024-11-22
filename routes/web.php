@@ -9,6 +9,7 @@ use App\Http\Controllers\FinancialGoalController;
 use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
+use App\Models\MetasCategorias;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,10 +96,22 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/financial/index', [FinancialGoalController::class, 'index'])->name('financial.index');
-    Route::get('/financial/show/{id}', [CategoriasController::class, 'show'])->name('financial.show');
+    Route::get('/financial/show/{id}', [FinancialGoalController::class, 'show'])->name('financial.show');
     Route::get('/financial/create', [FinancialGoalController::class, 'create'])->name('financial.create');
     Route::post('/financial/store', [FinancialGoalController::class, 'store'])->name('financial.store');
     Route::get('/financial/edit/{id}', [FinancialGoalController::class, 'edit'])->name('financial.edit');
     Route::post('/financial/update/{id}', [FinancialGoalController::class, 'update'])->name('financial.update');
     Route::delete('/financial/destroy/{financial}', [FinancialGoalController::class, 'destroy'])->name('financial.destroy');
+});
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/metascategorias/index', [MetasCategorias::class, 'index'])->name('metascategorias.index');
+    Route::get('/metascategorias/show/{id}', [MetasCategorias::class, 'show'])->name('metascategorias.show');
+    Route::get('/metascategorias/create', [MetasCategorias::class, 'create'])->name('metascategorias.create');
+    Route::post('/metascategorias/store', [MetasCategorias::class, 'store'])->name('metascategorias.store');
+    Route::get('/metascategorias/edit/{id}', [MetasCategorias::class, 'edit'])->name('metascategorias.edit');
+    Route::post('/metascategorias/update/{id}', [MetasCategorias::class, 'update'])->name('metascategorias.update');
+    Route::delete('/metascategorias/destroy/{financial}', [MetasCategorias::class, 'destroy'])->name('metascategorias.destroy');
 });

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('despesas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('categoria_id');
             $table->string('descricao');
             $table->decimal('valor', 10, 2);
             $table->date('data_pagamento');
             $table->boolean('status')->default(true);
-            $table->unsignedBigInteger('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias');   
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->timestamps();
         });
     }

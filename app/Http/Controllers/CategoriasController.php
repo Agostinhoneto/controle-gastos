@@ -14,6 +14,28 @@ class CategoriasController extends Controller
         return view('categorias.index', compact('categorias','mensagem'));
     }
 
+    public function show($id)
+    {
+        $category = Categorias::with('metas', 'despesas')->findOrFail($id);
+
+        $progressData = $category->goals->map(function ($goal) use ($category) {
+            $totalExpenses = $category->expenses()
+                ->whereBetween('data', [$goal->start_date, $goal->end_date])
+                ->sum('valor');
+
+            $progress = $totalExpenses / $goal->goal_amount * 100;
+
+            return [
+                'metas' => $goal,
+                'totalExpenses' => $totalExpenses,
+                'progress' => $progress,
+                'status' => $progress > 100 ? 'Meta ultrapassada!' : 'Dentro do limite',
+            ];
+        });
+
+        return view('categories.show', compact('category', 'progressData'));
+    }
+    
     public function create()
     {
         return view('categorias.create');
