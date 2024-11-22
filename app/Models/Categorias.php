@@ -20,4 +20,9 @@ class Categorias extends Model
     {
         return $this->hasMany(Receitas::class);
     }
+
+    public function metas()
+    {
+        return $this->hasMany(MetasCategorias::class);
+    }
 }
