@@ -79,6 +79,14 @@
                                                     <i class="fas fa-external-link-alt"></i>
                                                 </a>
                                     </td>
+                                    <a href="{{ route('categorias.show', $categoria->id) }}" class="list-group-item list-group-item-action">
+                                        <h5>{{ $categoria->descricao }}</h5>
+                                        @if($categoria->metas)
+                                        <p class="mb-0">Metas Ativas: {{ $categoria->metas->count() }}</p>
+                                        @else
+                                        <p class="mb-0 text-muted">Sem metas definidas.</p>
+                                        @endif
+                                    </a>
                                     <td>
                                         <form action="route('categorias.destroy',$categoria->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($categoria->descricao) }}?')">
                                             @csrf

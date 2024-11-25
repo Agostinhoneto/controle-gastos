@@ -21,8 +21,8 @@ class Categorias extends Model
         return $this->hasMany(Receitas::class);
     }
 
-    public function metas()
+    public function Categoriasmetas()
     {
-        return $this->hasMany(MetasCategorias::class);
+        return $this->hasMany(CategoriasMetas::class);
     }
 }

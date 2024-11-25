@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('categorias_metas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('categoria_id');
-            $table->foreignId('categoria_id')->constrained()->onDelete('cascade'); 
+            $table->unsignedBigInteger('categorias_id');
             $table->decimal('meta_valor', 10, 2); 
             $table->date('start_date'); 
             $table->date('end_date'); 
             $table->timestamps();
+            $table->foreign('categorias_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }
 
