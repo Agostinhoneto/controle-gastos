@@ -11,7 +11,7 @@ class CategoriasController extends Controller
     {
         $categorias = Categorias::query()->orderBy('descricao')->get();
         $mensagem = $request->session()->get('mensagem');
-        return view('categorias.index', compact('categorias','mensagem'));
+        return view('categorias.index', compact('categorias', 'mensagem'));
     }
 
     public function show($id)
@@ -19,13 +19,18 @@ class CategoriasController extends Controller
         $category = Categorias::with('Categoriasmetas', 'despesas')->findOrFail($id);
         $progressData = $category->categoriasmetas->map(function ($goal) use ($category) {
             $totalExpenses = $category->despesas()
-                ->whereBetween('data', [$goal->start_date, $goal->end_date])
+                ->whereBetween('data_pagamento', [$goal->start_date, $goal->end_date])
                 ->sum('valor');
 
-            $progress = $totalExpenses / $goal->goal_amount * 100;
+
+            if ($goal->meta_valor != 0 && $goal->meta_valor != null) {
+                $progress = ($totalExpenses / $goal->meta_valor) * 100;
+            } else {
+                $progress = 0;  
+            }
 
             return [
-                'metas' => $goal,
+                'goal' => $goal,
                 'totalExpenses' => $totalExpenses,
                 'progress' => $progress,
                 'status' => $progress > 100 ? 'Meta ultrapassada!' : 'Dentro do limite',
@@ -51,17 +56,17 @@ class CategoriasController extends Controller
         return redirect()->route('categorias.index');
     }
 
-    public function edit(Categorias $categorias,$id)
+    public function edit(Categorias $categorias, $id)
     {
         $categorias = Categorias::find($id);
         return view('categorias.edit', ['categorias' => $categorias]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $categorias = Categorias::findOrFail($id);
         $categorias->update($request->all());
-        return redirect()->route('categorias.index')->with('success', 'Categorias atualizada com sucesso!');   
+        return redirect()->route('categorias.index')->with('success', 'Categorias atualizada com sucesso!');
     }
 
     public function destroy(Categorias $categorias)
