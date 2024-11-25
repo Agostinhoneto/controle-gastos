@@ -16,19 +16,19 @@ class CategoriasMetas extends Seeder
     {
         $categoryGoals = [
             [
-                'categorias_id' => 1, 
+                'categoria_id' => 1, 
                 'meta_valor' => 500.00, 
                 'start_date' => '2024-11-01',
                 'end_date' => '2024-11-30',
             ],
             [
-                'categorias_id' => 2,
+                'categoria_id' => 2,
                 'meta_valor' => 1000.00,
                 'start_date' => '2024-11-01',
                 'end_date' => '2024-11-30',
             ],
             [
-                'categorias_id' => 3,
+                'categoria_id' => 3,
                 'meta_valor' => 750.00,
                 'start_date' => '2024-11-01',
                 'end_date' => '2024-11-30',

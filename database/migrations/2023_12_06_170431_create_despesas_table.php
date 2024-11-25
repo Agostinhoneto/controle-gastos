@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('valor', 10, 2);
             $table->date('data_pagamento');
             $table->boolean('status')->default(true);
+
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->timestamps();
         });

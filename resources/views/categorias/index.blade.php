@@ -81,8 +81,8 @@
                                     </td>
                                     <a href="{{ route('categorias.show', $categoria->id) }}" class="list-group-item list-group-item-action">
                                         <h5>{{ $categoria->descricao }}</h5>
-                                        @if($categoria->metas)
-                                        <p class="mb-0">Metas Ativas: {{ $categoria->metas->count() }}</p>
+                                        @if($categoria->categoriasmetas)
+                                        <p class="mb-0">Metas Ativas: {{ $categoria->categoriasmetas->count() }}</p>
                                         @else
                                         <p class="mb-0 text-muted">Sem metas definidas.</p>
                                         @endif

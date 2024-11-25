@@ -106,7 +106,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/financial/destroy/{financial}', [FinancialGoalController::class, 'destroy'])->name('financial.destroy');
 });
 
-
+/*
 
 Route::middleware('auth')->group(function () {
     Route::get('/metascategorias/index', [MetasCategorias::class, 'index'])->name('metascategorias.index');
@@ -117,3 +117,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/metascategorias/update/{id}', [MetasCategorias::class, 'update'])->name('metascategorias.update');
     Route::delete('/metascategorias/destroy/{financial}', [MetasCategorias::class, 'destroy'])->name('metascategorias.destroy');
 });
+*/

@@ -9,10 +9,10 @@ class CategoriasMetas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['categorias_id', 'meta_valor', 'start_date', 'end_date'];
+    protected $fillable = ['categoria_id', 'meta_valor', 'start_date', 'end_date'];
 
     public function categorias()
     {
-        return $this->hasMany(CategoriasMetas::class, 'categorias_id');
+        return $this->hasMany(Categorias::class, 'categoria_id');
     }
 }

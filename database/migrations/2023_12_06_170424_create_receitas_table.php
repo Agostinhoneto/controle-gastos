@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('receitas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('categoria_id');
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade'); // Apenas esta linha é necessária
             $table->string('descricao');
             $table->decimal('valor', 10, 2);
             $table->date('data_recebimento');
             $table->boolean('status')->default(true);            
-            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
 
             $table->timestamps();
         });

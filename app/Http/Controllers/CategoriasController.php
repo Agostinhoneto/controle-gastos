@@ -16,9 +16,8 @@ class CategoriasController extends Controller
 
     public function show($id)
     {
-        $category = Categorias::with('metas', 'despesas')->findOrFail($id);
-
-        $progressData = $category->goals->map(function ($goal) use ($category) {
+        $category = Categorias::with('Categoriasmetas', 'despesas')->findOrFail($id);
+        $progressData = $category->categoriasmetas->map(function ($goal) use ($category) {
             $totalExpenses = $category->despesas()
                 ->whereBetween('data', [$goal->start_date, $goal->end_date])
                 ->sum('valor');
