@@ -148,11 +148,11 @@
             </a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i>  <span class="float-right text-muted text-sm"></span>
+              <i class="fas fa-users mr-2"></i> <span class="float-right text-muted text-sm"></span>
             </a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 
+              <i class="fas fa-file mr-2"></i>
               <span class="float-right text-muted text-sm"></span>
             </a>
             <div class="dropdown-divider"></div>
@@ -207,8 +207,13 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>10</h3>
+                  @if ($totalReceitas)
+                    <h3>{{$totalReceitas}}</h3>
+                  @else
+                    <p>Não há receitas registradas.</p>
+                  @endif
                   <p>Receitas</p>
+
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
@@ -258,7 +263,7 @@
                 <a href="{{route('financial.index')}}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
-            
+
           </div>
           <!-- /.row -->
           <!-- Main row -->

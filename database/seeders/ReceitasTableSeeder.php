@@ -15,7 +15,7 @@ class ReceitasTableSeeder extends Seeder
     {
         Receitas::create([
             'descricao' => 'Salário',
-            'valor' => 3500.00,
+            'valor' => 1500.00,
             'data_recebimento' => '2024-01-01',
             'status' => true,
             'categoria_id' => 1,
@@ -23,8 +23,8 @@ class ReceitasTableSeeder extends Seeder
         ]);
 
         Receitas::create([
-            'descricao' => 'Alugueis',
-            'valor' => 1700.00,
+            'descricao' => 'Aluguel',
+            'valor' => 400.00,
             'data_recebimento' => '2024-01-01',
             'status' => true,
             'categoria_id' => 2,

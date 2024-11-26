@@ -54,7 +54,7 @@ class DespesasTableSeeder extends Seeder
         Despesas::create([
             'user_id' => 1,
             'descricao' => 'Funcionárias',
-            'valor' => 1000.00,
+            'valor' => 400.00,
             'data_pagamento' => '2024-01-01',
             'status' => true,
             'categoria_id' => 2,

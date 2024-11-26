@@ -10,6 +10,7 @@ use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
 use App\Models\MetasCategorias;
+use App\Models\Receitas;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,11 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'logout'])->name('
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    
+    $totalReceitas = Receitas::count('id');  
+    //dd($totalReceitas);
+    return view('dashboard',compact('totalReceitas'));
+
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth', 'is_admin'])->group(function () {

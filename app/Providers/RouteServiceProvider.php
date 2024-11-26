@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Receitas;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -54,6 +55,8 @@ class RouteServiceProvider extends ServiceProvider
     public function homeWithData($user)
     {
         $userName = Auth::user()->name;
+      //  $totalReceitas = Receitas::count('id');  
+        //dd($totalReceitas);
         return redirect()->route('dashboard')->with('userName', $user->name);
     }
 }
