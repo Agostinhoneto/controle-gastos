@@ -208,9 +208,9 @@
               <div class="small-box bg-info">
                 <div class="inner">
                   @if ($totalReceitas)
-                    <h3>{{$totalReceitas}}</h3>
+                  <h3>{{$totalReceitas}}</h3>
                   @else
-                    <p>Não há receitas registradas.</p>
+                  <p>Não há receitas registradas.</p>
                   @endif
                   <p>Receitas</p>
 
@@ -226,7 +226,11 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65</h3>
+                  @if ($totalDespesas)
+                  <h3>{{$totalDespesas}}</h3>
+                  @else
+                  <p>Não há despesas registradas.</p>
+                  @endif
                   <p>Despesas</p>
                 </div>
                 <div class="icon">
@@ -240,7 +244,11 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44</h3>
+                  @if ($totalUsuarios)
+                  <h3>{{$totalUsuarios}}</h3>
+                  @else
+                  <p>Não há Usuários registradas.</p>
+                  @endif
                   <p>Usuários</p>
                 </div>
                 <div class="icon">
@@ -254,7 +262,11 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
+                  @if ($totalMetas)
+                  <h3>{{$totalMetas}}<sup style="font-size: 20px">%</sup></h3>
+                  @else
+                  <p>Não há Usuários registradas.</p>
+                  @endif
                   <p>Metas</p>
                 </div>
                 <div class="icon">

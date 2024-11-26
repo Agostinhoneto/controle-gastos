@@ -9,8 +9,11 @@ use App\Http\Controllers\FinancialGoalController;
 use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
+use App\Models\Despesas;
+use App\Models\FinancialGoal;
 use App\Models\MetasCategorias;
 use App\Models\Receitas;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,11 +34,12 @@ Route::get('/', function () {
 Route::get('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
 
 
-Route::get('/dashboard', function () {
-    
-    $totalReceitas = Receitas::count('id');  
-    //dd($totalReceitas);
-    return view('dashboard',compact('totalReceitas'));
+Route::get('/dashboard', function () {    
+    $totalReceitas = Receitas::count('id');
+    $totalDespesas = Despesas::count('id');
+    $totalUsuarios = User::count('id');
+    $totalMetas = FinancialGoal::count('id');
+    return view('dashboard',compact('totalReceitas','totalDespesas','totalUsuarios','totalMetas'));
 
 })->middleware(['auth'])->name('dashboard');
 

@@ -55,8 +55,6 @@ class RouteServiceProvider extends ServiceProvider
     public function homeWithData($user)
     {
         $userName = Auth::user()->name;
-      //  $totalReceitas = Receitas::count('id');  
-        //dd($totalReceitas);
         return redirect()->route('dashboard')->with('userName', $user->name);
     }
 }
