@@ -11,21 +11,13 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         // Criar permissões
-        $permissions = [
-            'view_users',
-            'edit_users',
-            'delete_users',
-        ];
+        Permission::create(['name' => 'ver_usuarios']);
+        Permission::create(['name' => 'criar_usuarios']);
+        Permission::create(['name' => 'editar_usuarios']);
+        Permission::create(['name' => 'deletar_usuarios']);
 
-        foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
-        }
-
-        // Criar papéis
-        $adminRole = Role::create(['name' => 'admin']);
-        $userRole = Role::create(['name' => 'user']);
-
-        // Atribuir permissões ao papel admin
-        $adminRole->permissions()->attach(Permission::all());
+        // Outras permissões
+        Permission::create(['name' => 'ver_permissoes']);
+        Permission::create(['name' => 'editar_permissoes']);
     }
 }

@@ -55,7 +55,15 @@
                             <option value="1">Sim</option>
                         </select>
                     </div>
-
+                    <div class="mb-3">
+                        <label>Permissões:</label>
+                        @foreach($permissions as $permission)
+                        <div>
+                            <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" id="permission-{{ $permission->id }}">
+                            <label for="permission-{{ $permission->id }}">{{ $permission->name }}</label>
+                        </div>
+                        @endforeach
+                    </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
             </div>

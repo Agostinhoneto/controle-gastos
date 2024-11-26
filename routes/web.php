@@ -40,7 +40,6 @@ Route::get('/dashboard', function () {
     $totalUsuarios = User::count('id');
     $totalMetas = FinancialGoal::count('id');
     return view('dashboard',compact('totalReceitas','totalDespesas','totalUsuarios','totalMetas'));
-
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
