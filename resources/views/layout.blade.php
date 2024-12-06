@@ -33,9 +33,9 @@
 <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 
 <body>
-    <h1>@yield('cabecalho')</h1>
+  <h1>@yield('cabecalho')</h1>
 
-    @yield('conteudo')
+  @yield('conteudo')
 
 </body>
 
