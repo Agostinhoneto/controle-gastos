@@ -63,7 +63,7 @@
     }
 
     .nav-link.custom-active-gray {
-      background-color: #6C757D      ;
+      background-color: #6C757D;
       /* Verde padrão */
       color: #ffffff;
       /* Texto branco */
@@ -75,7 +75,19 @@
       color: #ffffff;
     }
 
+    .nav-link.custom-active-blue {
+      background-color: #007BFF;
+      /* Azul padrão */
+      color: #ffffff;
+      /* Texto branco */
+    }
 
+    .nav-link.custom-active-blue:hover {
+      background-color: #0056b3;
+      /* Azul mais escuro no hover */
+      color: #ffffff;
+      /* Texto branco */
+    }
   </style>
 </head>
 
@@ -98,17 +110,17 @@
         <span class="brand-text font-weight-light">Controle de gastos</span>
       </a>
 
-        @php
-          $hour = now()->hour;
-          $greeting = '';
-          if ($hour >= 5 && $hour < 12) {
-            $greeting='Bom dia' ;
-            } elseif ($hour>= 12 && $hour < 18) {
-              $greeting='Boa tarde' ;
-              } else {
-              $greeting='Boa noite' ;
+      @php
+      $hour = now()->hour;
+      $greeting = '';
+      if ($hour >= 5 && $hour < 12) {
+        $greeting='Bom dia' ;
+        } elseif ($hour>= 12 && $hour < 18) {
+          $greeting='Boa tarde' ;
+          } else {
+          $greeting='Boa noite' ;
           }
-        @endphp
+          @endphp
           <!-- Sidebar -->
           <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
@@ -117,7 +129,7 @@
                 <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
               </div>
               <div class="info">
-                <a href="#" class="d-block">Olá, {{$greeting}} {{ Auth::user()->name }}!  </a>
+                <a href="#" class="d-block">Olá, {{$greeting}} {{ Auth::user()->name }}! </a>
 
               </div>
             </div>
@@ -161,8 +173,8 @@
                 <li class="nav-item">
                   <a href="{{route('users.index')}}" class="nav-link custom-active-orange">
                     <i class="nav-icon fas fa-user"></i>
-                      Usuários
-                      <span class="right badge badge-danger"></span>
+                    Usuários
+                    <span class="right badge badge-danger"></span>
                   </a>
                 </li>
 
@@ -185,7 +197,15 @@
                     </p>
                   </a>
                 </li>
-
+                <li class="nav-item">
+                  <a href="{{route('contatos.index')}}" class="nav-link custom-active-blue">
+                    <i class="nav-icon fas fa-address-book"></i>
+                    <p>
+                      Contatos
+                      <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
 
                 <li class="nav-header">OUTRAS FUNCIONALIDADES</li>
                 <li class="nav-item">
@@ -206,7 +226,7 @@
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
-                  
+
                   </ul>
                 </li>
                 <li class="nav-item">
