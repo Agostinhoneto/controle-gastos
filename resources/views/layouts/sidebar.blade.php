@@ -88,6 +88,22 @@
       color: #ffffff;
       /* Texto branco */
     }
+
+    .nav-link.custom-active-fin {
+      color: #000;
+      /* Texto preto para contraste */
+      background-color: #FFF3CD;
+      /* Amarelo pastel suave */
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link.custom-active-fin:hover {
+      background-color: #FFE8A1;
+      /* Amarelo um pouco mais intenso no hover */
+    }
   </style>
 </head>
 
@@ -169,10 +185,10 @@
                     </p>
                   </a>
                 </li>
-                
+
                 <li class="nav-item">
-                  <a href="{{route('financas.index')}}" class="nav-link custom-active">
-                    <i class="nav-icon fas fa-money-bill-wave"></i>
+                  <a href="{{route('financas.index')}}" class="nav-link custom-active-fin">
+                    <i class="fas fa-chart-line"></i>
                     <p>
                       Minhas Finanças
                       <span class="right badge badge-danger"></span>
