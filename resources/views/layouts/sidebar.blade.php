@@ -169,6 +169,16 @@
                     </p>
                   </a>
                 </li>
+                
+                <li class="nav-item">
+                  <a href="{{route('financas.index')}}" class="nav-link custom-active">
+                    <i class="nav-icon fas fa-money-bill-wave"></i>
+                    <p>
+                      Minhas Finanças
+                      <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
 
                 <li class="nav-item">
                   <a href="{{route('users.index')}}" class="nav-link custom-active-orange">

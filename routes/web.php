@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\DespesasController;
+use App\Http\Controllers\FinancasController;
 use App\Http\Controllers\FinancialGoalController;
 use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
@@ -78,6 +79,8 @@ Route::middleware('auth')->group(function () {
     //relatorios
     Route::get('/despesas/gerar-pdf-despesas', [DespesasController::class, 'gerarPdf'])->name('despesas.gerar-pdf');
 });
+
+Route::get('/minhas-financas', [FinancasController::class, 'index'])->name('financas.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
