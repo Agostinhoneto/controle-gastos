@@ -35,12 +35,12 @@ Route::get('/', function () {
 Route::get('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
 
 
-Route::get('/dashboard', function () {    
+Route::get('/dashboard', function () {
     $totalReceitas = Receitas::count('id');
     $totalDespesas = Despesas::count('id');
     $totalUsuarios = User::count('id');
     $totalMetas = FinancialGoal::count('id');
-    return view('dashboard',compact('totalReceitas','totalDespesas','totalUsuarios','totalMetas'));
+    return view('dashboard', compact('totalReceitas', 'totalDespesas', 'totalUsuarios', 'totalMetas'));
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
@@ -73,7 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/despesas/store', [DespesasController::class, 'store'])->name('despesas.store');
     Route::get('/despesas/edit/{id}', [DespesasController::class, 'edit'])->name('despesas.edit');
     Route::post('/despesas/update/{id}', [DespesasController::class, 'update'])->name('despesas.update');
-    Route::delete('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');    
+    Route::delete('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
     Route::get('/enviar-alerta/{userId}/{gastoAtual}/{limiteGastos}', [DespesasController::class, 'enviarAlertaDespesa'])->name('enviar.alerta');
     Route::get('/enviar-email', [DespesasController::class, 'enviarEmail']);
     //relatorios
@@ -99,11 +99,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/relatorios/exportar/pdf', [RelatorioController::class, 'exportarPDF'])->name('relatorios.exportar.pdf');
+    Route::get('/relatorios/exportar/excel', [RelatorioController::class, 'exportarExcel'])->name('relatorios.exportar.excel');
     Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorios.index');
-
     Route::get('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
     // routes/web.php
     Route::get('/reports', [RelatorioController::class, 'gerarPDF'])->name('report.despesas');
+
+    Route::get('/relatorios/comparacao', [RelatorioController::class, 'comparar'])->name('relatorios.comparacao');
+
 });
 
 

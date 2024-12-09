@@ -92,8 +92,8 @@
     .nav-link.custom-active-fin {
       color: #000;
       /* Texto preto para contraste */
-      background-color: #FFF3CD;
-      /* Amarelo pastel suave */
+      background-color: #F5F5F5;
+      /* Cinza claro */
       border-radius: 5px;
       padding: 8px 16px;
       font-weight: bold;
@@ -103,6 +103,21 @@
     .nav-link.custom-active-fin:hover {
       background-color: #FFE8A1;
       /* Amarelo um pouco mais intenso no hover */
+    }
+
+
+    .nav-link.custom-active-rel {
+      color: #fff;
+      /* Texto branco para contraste */
+      background-color: #6F42C1;/* Roxo elegante */
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link.custom-active-fin:hover {
+      background-color: #59389A; /* Roxo mais escuro no hover */
     }
   </style>
 </head>
@@ -219,6 +234,15 @@
                     <i class="nav-icon fas fa-tags"></i>
                     <p>
                       Catogorias
+                      <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('relatorios.index')}}" class="nav-link custom-active-rel">
+                    <i class="fas fa-chart-pie"></i>
+                    <p>
+                      Relatórios
                       <span class="right badge badge-danger"></span>
                     </p>
                   </a>
