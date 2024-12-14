@@ -18,7 +18,9 @@
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="container">
+        <br>
         <h1>Minhas Finanças</h1>
+        <hr>
 
         <div class="row">
             <div class="col-md-4">
@@ -46,49 +48,50 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <h2>Últimas Despesas</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($despesasRecentes as $despesa)
+                    <tr>
+                        <td>{{ $despesa->data }}</td>
+                        <td>{{ $despesa->descricao }}</td>
+                        <td>{{ $despesa->categoria->nome }}</td>
+                        <td>R$ {{ number_format($despesa->valor, 2, ',', '.') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-        <h2>Últimas Despesas</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                    <th>Categoria</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($despesasRecentes as $despesa)
-                <tr>
-                    <td>{{ $despesa->data }}</td>
-                    <td>{{ $despesa->descricao }}</td>
-                    <td>{{ $despesa->categoria->nome }}</td>
-                    <td>R$ {{ number_format($despesa->valor, 2, ',', '.') }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <h2>Últimas Receitas</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                    <th>Categoria</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($receitasRecentes as $receita)
-                <tr>
-                    <td>{{ $receita->data }}</td>
-                    <td>{{ $receita->descricao }}</td>
-                    <td>{{ $receita->categoria->nome }}</td>
-                    <td>R$ {{ number_format($receita->valor, 2, ',', '.') }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+            <h2>Últimas Receitas</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($receitasRecentes as $receita)
+                    <tr>
+                        <td>{{ $receita->data }}</td>
+                        <td>{{ $receita->descricao }}</td>
+                        <td>{{ $receita->categoria->nome }}</td>
+                        <td>R$ {{ number_format($receita->valor, 2, ',', '.') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
     @include('layouts.footer')

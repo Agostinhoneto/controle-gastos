@@ -59,13 +59,7 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <form action="{{ route('relatorios.comparacao') }}" method="GET">
-                        <label for="periodo1">Período 1:</label>
-                        <input type="month" name="periodo1" required>
-                        <label for="periodo2">Período 2:</label>
-                        <input type="month" name="periodo2" required>
-                        <button type="submit">Comparar</button>
-                    </form>
+              
                     <tbody>
                         @foreach($despesas as $despesa)
                         <tr>
@@ -95,8 +89,10 @@
 </div>
 @include('layouts.footer')
 
-<script>
+<<script>
     $(function() {
+        var table = $('#example1').DataTable();
+        table.destroy();
         $("#example1").DataTable({
             "responsive": true,
             "lengthChange": false,
