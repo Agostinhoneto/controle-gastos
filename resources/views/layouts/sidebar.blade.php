@@ -202,7 +202,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a href="{{route('financas.index')}}" class="nav-link custom-active-fin">
+                  <a href="{{route('financas.index')}}" class="nav-link custom-active-green">
                     <i class="fas fa-chart-line"></i>
                     <p>
                       Minhas Finanças
@@ -218,17 +218,7 @@
                     <span class="right badge badge-danger"></span>
                   </a>
                 </li>
-
-                <li class="nav-item">
-                  <a href="{{route('financial.index')}}" class="nav-link custom-active-green">
-                    <i class="nav-icon fas fa-bullseye"></i>
-                    <p>
-                      Metas
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-
+               
                 <li class="nav-item">
                   <a href="{{route('categorias.index')}}" class="nav-link custom-active-gray">
                     <i class="nav-icon fas fa-tags"></i>
@@ -243,6 +233,15 @@
                     <i class="fas fa-chart-pie"></i>
                     <p>
                       Relatórios
+                      <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('calendario.index')}}" class="nav-link custom-active-blue">
+                    <i class="nav-icon fas fa-address-book"></i>
+                    <p>
+                      Calendário Financeiro
                       <span class="right badge badge-danger"></span>
                     </p>
                   </a>

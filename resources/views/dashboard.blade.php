@@ -267,14 +267,14 @@
                   @if ($totalMetas)
                   <h3>{{$totalMetas}}<sup style="font-size: 20px">%</sup></h3>
                   @else
-                  <p>Não há Usuários registradas.</p>
+                  <p>Não há Finanças registradas.</p>
                   @endif
-                  <p>Metas</p>
+                  <p>Minhas Finanças</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="{{route('financial.index')}}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('financas.index')}}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
 

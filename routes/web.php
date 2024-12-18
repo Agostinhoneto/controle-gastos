@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\DespesasController;
+use App\Http\Controllers\EventoFinanceirosController;
 use App\Http\Controllers\FinancasController;
 use App\Http\Controllers\FinancialGoalController;
 use App\Http\Controllers\ReceitasController;
@@ -97,6 +98,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/contatos', [ContatoController::class, 'index'])->name('contatos.index');
     Route::post('/contatos/store', [ContatoController::class, 'store'])->name('contatos.store');
 });
+Route::middleware('auth')->group(function () {
+    Route::get('/calendario', [EventoFinanceirosController::class, 'index'])->name('calendario.index');
+    Route::post('/calendario', [EventoFinanceirosController::class, 'store'])->name('calendario.store');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/relatorios/exportar/pdf', [RelatorioController::class, 'exportarPDF'])->name('relatorios.exportar.pdf');
@@ -107,7 +112,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports', [RelatorioController::class, 'gerarPDF'])->name('report.despesas');
 
     Route::get('/relatorios/comparacao', [RelatorioController::class, 'comparar'])->name('relatorios.comparacao');
-
 });
 
 
@@ -122,7 +126,6 @@ Route::middleware('auth')->group(function () {
 });
 
 /*
-
 Route::middleware('auth')->group(function () {
     Route::get('/metascategorias/index', [MetasCategorias::class, 'index'])->name('metascategorias.index');
     Route::get('/metascategorias/show/{id}', [MetasCategorias::class, 'show'])->name('metascategorias.show');
