@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Eventos_financeiros;
+use App\Models\EventosFinanceiro;
+use App\Notifications\NovoEventoFinanceiro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventoFinanceirosController extends Controller
 {
@@ -11,7 +14,7 @@ class EventoFinanceirosController extends Controller
     public function index()
     {
         // Recupera eventos do banco de dados
-        $events = Eventos_financeiros::all()->map(function ($event) {
+        $events = EventosFinanceiro::all()->map(function ($event) {
             return [
                 'title' => $event->title,
                 'start' => $event->start_date,
@@ -25,15 +28,32 @@ class EventoFinanceirosController extends Controller
     // Salva novos eventos
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'start_date' => 'required|date',
-            'type' => 'required|in:receita,despesa',
-            'amount' => 'nullable|numeric',
+        // Validação dos dados
+        $validatedData = $request->validate([
+            'titulo' => 'required|string|max:255',
+            'data_inicio' => 'required|date',
+            'valor' => 'required|numeric',
         ]);
 
-        Eventos_financeiros::create($request->all());
+        // Criar o evento financeiro
+        $evento = EventosFinanceiro::create($validatedData);
 
-        return redirect()->back()->with('success', 'Evento criado com sucesso!');
+        // Verificar se o evento foi criado com sucesso
+        if ($evento) {
+            // Obter o usuário (por exemplo, o usuário autenticado)
+            $user = auth()->user();
+
+            // Enviar a notificação
+            if ($user) {
+                $user->notify(new NovoEventoFinanceiro($evento));
+            } else {
+                return response()->json(['message' => 'Usuário não autenticado'], 401);
+            }
+
+            // Retornar resposta após sucesso
+            return redirect()->route('eventos.index')->with('success', 'Evento financeiro criado e notificação enviada.');
+        } else {
+            return redirect()->back()->with('error', 'Falha ao criar evento financeiro.');
+        }
     }
 }
