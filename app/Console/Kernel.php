@@ -20,6 +20,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('reminders:send')->daily();
+        $schedule->command('recorrencias:processar')->daily();
+
     }
     /**
      * Register the commands for the application.
