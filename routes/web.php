@@ -13,7 +13,6 @@ use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
 use App\Models\Despesas;
 use App\Models\FinancialGoal;
-use App\Models\MetasCategorias;
 use App\Models\Receitas;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -108,12 +107,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/relatorios/exportar/excel', [RelatorioController::class, 'exportarExcel'])->name('relatorios.exportar.excel');
     Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorios.index');
     Route::get('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
-    // routes/web.php
     Route::get('/reports', [RelatorioController::class, 'gerarPDF'])->name('report.despesas');
-
     Route::get('/relatorios/comparacao', [RelatorioController::class, 'comparar'])->name('relatorios.comparacao');
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/financial/index', [FinancialGoalController::class, 'index'])->name('financial.index');
@@ -124,15 +120,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/financial/update/{id}', [FinancialGoalController::class, 'update'])->name('financial.update');
     Route::delete('/financial/destroy/{financial}', [FinancialGoalController::class, 'destroy'])->name('financial.destroy');
 });
-
-/*
-Route::middleware('auth')->group(function () {
-    Route::get('/metascategorias/index', [MetasCategorias::class, 'index'])->name('metascategorias.index');
-    Route::get('/metascategorias/show/{id}', [MetasCategorias::class, 'show'])->name('metascategorias.show');
-    Route::get('/metascategorias/create', [MetasCategorias::class, 'create'])->name('metascategorias.create');
-    Route::post('/metascategorias/store', [MetasCategorias::class, 'store'])->name('metascategorias.store');
-    Route::get('/metascategorias/edit/{id}', [MetasCategorias::class, 'edit'])->name('metascategorias.edit');
-    Route::post('/metascategorias/update/{id}', [MetasCategorias::class, 'update'])->name('metascategorias.update');
-    Route::delete('/metascategorias/destroy/{financial}', [MetasCategorias::class, 'destroy'])->name('metascategorias.destroy');
-});
-*/
