@@ -8,6 +8,7 @@ use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\EventoFinanceirosController;
 use App\Http\Controllers\FinancasController;
 use App\Http\Controllers\FinancialGoalController;
+use App\Http\Controllers\LembretesPagamentoController;
 use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
@@ -120,3 +121,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/financial/update/{id}', [FinancialGoalController::class, 'update'])->name('financial.update');
     Route::delete('/financial/destroy/{financial}', [FinancialGoalController::class, 'destroy'])->name('financial.destroy');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/lembretes/index', [LembretesPagamentoController::class, 'index'])->name('lembretes.index');
+    Route::get('/lembretes/show/{id}', [LembretesPagamentoController::class, 'show'])->name('lembretes.show');
+    Route::get('/lembretes/create', [LembretesPagamentoController::class, 'create'])->name('lembretes.create');
+    Route::post('/lembretes/store', [LembretesPagamentoController::class, 'store'])->name('lembretes.store');
+    Route::get('/lembretes/edit/{id}', [LembretesPagamentoController::class, 'edit'])->name('lembretes.edit');
+    Route::post('/lembretes/update/{id}', [LembretesPagamentoController::class, 'update'])->name('lembretes.update');
+    Route::delete('/lembretes/destroy/{lembretes}', [LembretesPagamentoController::class, 'destroy'])->name('lembretes.destroy');
+});
+

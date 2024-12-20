@@ -247,6 +247,15 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a href="{{route('lembretes.index')}}" class="nav-link custom-active-blue">
+                    <i class="nav-icon fas fa-address-book"></i>
+                    <p>
+                      Lembretes
+                      <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="{{route('contatos.index')}}" class="nav-link custom-active-blue">
                     <i class="nav-icon fas fa-address-book"></i>
                     <p>
