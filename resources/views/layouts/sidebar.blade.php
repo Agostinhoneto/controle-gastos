@@ -89,6 +89,44 @@
       /* Texto branco */
     }
 
+    .nav-link.custom-active-gra {
+      background-color:rgb(96, 99, 102);
+      /* Azul padrão */
+      color: #ffffff;
+      /* Texto branco */
+    }
+    .nav-link.custom-active-gra:hover {
+      background-color:rgb(82, 85, 88);
+      /* Azul mais escuro no hover */
+      color: #ffffff;
+      /* Texto branco */
+    }
+
+    .nav-link.custom-active-lembrete {
+      background-color:rgb(238, 122, 142);
+      /* Azul padrão */
+      color: #ffffff;
+      /* Texto branco */
+    }
+    .nav-link.custom-active-lembrete:hover {
+      background-color:rgb(4, 65, 27);
+      /* Azul mais escuro no hover */
+      color: #ffffff;
+      /* Texto branco */
+    }
+    .nav-link.custom-active-calendar {
+      background-color:rgb(4, 56, 26);
+      /* Azul padrão */
+      color: #ffffff;
+      /* Texto branco */
+    }
+    .nav-link.custom-active-lembrete:hover {
+      background-color:rgb(34, 218, 65);
+      /* Azul mais escuro no hover */
+      color: #ffffff;
+      /* Texto branco */
+    }
+
     .nav-link.custom-active-fin {
       color: #000;
       /* Texto preto para contraste */
@@ -109,8 +147,7 @@
     .nav-link.custom-active-rel {
       color: #fff;
       /* Texto branco para contraste */
-      background-color: #6F42C1;
-      /* Roxo elegante */
+      background-color: #6F42C1;/* Roxo elegante */
       border-radius: 5px;
       padding: 8px 16px;
       font-weight: bold;
@@ -118,8 +155,7 @@
     }
 
     .nav-link.custom-active-fin:hover {
-      background-color: #59389A;
-      /* Roxo mais escuro no hover */
+      background-color: #59389A; /* Roxo mais escuro no hover */
     }
   </style>
 </head>
@@ -220,7 +256,7 @@
                     <span class="right badge badge-danger"></span>
                   </a>
                 </li>
-
+               
                 <li class="nav-item">
                   <a href="{{route('categorias.index')}}" class="nav-link custom-active-gray">
                     <i class="nav-icon fas fa-tags"></i>
@@ -240,8 +276,8 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('calendario.index')}}" class="nav-link custom-active-blue">
-                    <i class="nav-icon fas fa-address-book"></i>
+                  <a href="{{route('calendario.index')}}" class="nav-link custom-active-calendar">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
                     <p>
                       Calendário Financeiro
                       <span class="right badge badge-danger"></span>
@@ -249,8 +285,8 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('lembretes.index')}}" class="nav-link custom-active-blue">
-                    <i class="nav-icon fas fa-address-book"></i>
+                  <a href="{{route('lembretes.index')}}" class="nav-link custom-active-lembrete">
+                    <i class="nav-icon fas fa-clock"></i>
                     <p>
                       Lembretes
                       <span class="right badge badge-danger"></span>
@@ -258,9 +294,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('charts.index')}}" class="nav-link custom-active-blue">
-                    <i class="nav-icon fas fa-chart-line"></i>
-                    <p>
+                  <a href="{{route('charts.index')}}" class="nav-link custom-active-gra">
+                  <i class="nav-icon fas fa-chart-line"></i>
+                  <p>
                       Gráficos
                       <span class="right badge badge-danger"></span>
                     </p>

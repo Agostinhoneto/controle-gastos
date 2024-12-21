@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('layouts.topo')
+@extends('layout')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gráficos com Chart.js</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+@include('layouts.sidebar')
+
 <body>
     <div style="width: 80%; margin: auto;">
         <canvas id="despesasReceitasChart"></canvas>
