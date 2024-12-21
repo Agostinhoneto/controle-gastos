@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\EventoFinanceirosController;
@@ -98,6 +99,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/contatos', [ContatoController::class, 'index'])->name('contatos.index');
     Route::post('/contatos/store', [ContatoController::class, 'store'])->name('contatos.store');
 });
+
 Route::middleware('auth')->group(function () {
     Route::get('/calendario', [EventoFinanceirosController::class, 'index'])->name('calendario.index');
     Route::post('/calendario', [EventoFinanceirosController::class, 'store'])->name('calendario.store');
@@ -132,3 +134,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/lembretes/destroy/{lembretes}', [LembretesPagamentoController::class, 'destroy'])->name('lembretes.destroy');
 });
 
+Route::get('/charts', [ChartController::class, 'index'])->name('charts.index');

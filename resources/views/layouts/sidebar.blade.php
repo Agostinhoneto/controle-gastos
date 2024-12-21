@@ -109,7 +109,8 @@
     .nav-link.custom-active-rel {
       color: #fff;
       /* Texto branco para contraste */
-      background-color: #6F42C1;/* Roxo elegante */
+      background-color: #6F42C1;
+      /* Roxo elegante */
       border-radius: 5px;
       padding: 8px 16px;
       font-weight: bold;
@@ -117,7 +118,8 @@
     }
 
     .nav-link.custom-active-fin:hover {
-      background-color: #59389A; /* Roxo mais escuro no hover */
+      background-color: #59389A;
+      /* Roxo mais escuro no hover */
     }
   </style>
 </head>
@@ -218,7 +220,7 @@
                     <span class="right badge badge-danger"></span>
                   </a>
                 </li>
-               
+
                 <li class="nav-item">
                   <a href="{{route('categorias.index')}}" class="nav-link custom-active-gray">
                     <i class="nav-icon fas fa-tags"></i>
@@ -251,6 +253,15 @@
                     <i class="nav-icon fas fa-address-book"></i>
                     <p>
                       Lembretes
+                      <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('charts.index')}}" class="nav-link custom-active-blue">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <p>
+                      Gráficos
                       <span class="right badge badge-danger"></span>
                     </p>
                   </a>
