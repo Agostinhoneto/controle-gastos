@@ -24,7 +24,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Adicionar Lembrete</h3>
                     </div>
-
+                    @include('lembretes.create')
                     <table class="table table-bordered">
                         <thead>
                             <tr>

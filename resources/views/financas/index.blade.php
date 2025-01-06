@@ -21,7 +21,9 @@
         <br>
         <h1>Minhas Finanças</h1>
         <hr>
-
+        
+        <h2>{{ ucfirst($mesAtual)}}</h2>
+        <br>
         <div class="row">
             <div class="col-md-4">
                 <div class="card text-white bg-danger mb-3">

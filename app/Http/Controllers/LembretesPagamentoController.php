@@ -15,14 +15,12 @@ class LembretesPagamentoController extends Controller
         return view('lembretes.index', compact('reminders'));
     }
 
-    // Exibe o formulário para criar um novo lembrete
     public function create()
     {
         $expenses = Despesas::where('user_id', Auth::id())->get();
         return view('reminders.create', compact('expenses'));
     }
 
-    // Salva o lembrete no banco de dados
     public function store(Request $request)
     {
         $request->validate([
@@ -44,7 +42,6 @@ class LembretesPagamentoController extends Controller
         return redirect()->route('reminders.index')->with('success', 'Lembrete criado com sucesso!');
     }
 
-    // Exibe o formulário para editar um lembrete
     public function edit($id)
     {
         $reminder = LembretePagamento::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
@@ -53,7 +50,6 @@ class LembretesPagamentoController extends Controller
         return view('reminders.edit', compact('reminder', 'expenses'));
     }
 
-    // Atualiza o lembrete no banco de dados
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -69,12 +65,10 @@ class LembretesPagamentoController extends Controller
         return redirect()->route('reminders.index')->with('success', 'Lembrete atualizado com sucesso!');
     }
 
-    // Exclui um lembrete
     public function destroy($id)
     {
         $reminder = LembretePagamento::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         $reminder->delete();
-
         return redirect()->route('reminders.index')->with('success', 'Lembrete excluído com sucesso!');
     }
 }

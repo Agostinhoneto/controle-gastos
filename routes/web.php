@@ -82,7 +82,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/despesas/gerar-pdf-despesas', [DespesasController::class, 'gerarPdf'])->name('despesas.gerar-pdf');
 });
 
-Route::get('/minhas-financas', [FinancasController::class, 'index'])->name('financas.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/minhas-financas', [FinancasController::class, 'index'])->name('financas.index');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
