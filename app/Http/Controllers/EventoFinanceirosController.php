@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class EventoFinanceirosController extends Controller
 {
-    // Exibe o calendário com eventos
     public function index()
     {
-        // Recupera eventos do banco de dados
         $events = EventosFinanceiro::all()->map(function ($event) {
             return [
                 'title' => $event->title,
@@ -25,17 +23,14 @@ class EventoFinanceirosController extends Controller
         return view('eventos.index', ['events' => $events]);
     }
 
-    // Salva novos eventos
     public function store(Request $request)
     {
-        // Validação dos dados
         $validatedData = $request->validate([
             'titulo' => 'required|string|max:255',
             'data_inicio' => 'required|date',
             'valor' => 'required|numeric',
         ]);
 
-        // Criar o evento financeiro
         $evento = EventosFinanceiro::create($validatedData);
 
         // Verificar se o evento foi criado com sucesso

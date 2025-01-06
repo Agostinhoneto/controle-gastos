@@ -18,51 +18,43 @@
                     <div class="card-header">
                         <h3 class="card-title">Categorias</h3>
                     </div>
+                    <!-- Modal para Criar Categorias -->
                     <div class="modal fade" id="myModal">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <!-- Cabeçalho do Modal -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Criar Categorias</h4>
+                                <div class="modal-header bg-primary text-white">
+                                    <h4 class="modal-title">Criar Categoria</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <!-- Corpo do Modal -->
                                 <div class="modal-body">
-                                    <div class="row">
-                                        <!-- left column -->
-                                        <div class="col-md-12">
-                                            <!-- general form elements -->
-                                            <div class="card card-primary">
-                                                <br>
-                                                <form class="form" method="POST" action="{{route('categorias.store')}}">
-                                                    @csrf
-                                                    <div class="col col-8">
-                                                        <label for="descricao">Descrição:</label>
-                                                        <input type="text" class="form-control" name="descricao" id="descricao" required placeholder="Descrição">
-                                                    </div>
-                                                    <div class="col col-2">
-                                                        <button class="btn btn-primary mt-2">Salvar</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                    <form method="POST" action="{{ route('categorias.store') }}">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="descricao" class="form-label">Descrição da Categoria</label>
+                                            <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite a descrição" required>
                                         </div>
-                                    </div>
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <!-- Rodapé do Modal -->
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                    <!-- /.card-header -->
+
+                    <!-- Tabela de Categorias -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
-                            <thead>
+                            <thead class="thead-light">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Descrição da categoria</th>
+                                    <th scope="col">Descrição</th>
                                     <th scope="col">Editar</th>
                                     <th scope="col">Excluir</th>
                                 </tr>
@@ -73,38 +65,28 @@
                                     <th scope="row">{{ $categoria->id }}</th>
                                     <td>{{ $categoria->descricao }}</td>
                                     <td>
-                                        <span class="d-flex">
-                                            <form action="{{ route('categorias.destroy',$categoria->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($categoria->descricao) }}?')">
-                                                <a href="{{route('categorias.edit',$categoria->id)}}" class="btn btn-info btn-sm mr-1">
-                                                    <i class="fas fa-external-link-alt"></i>
-                                                </a>
+                                        <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-info btn-sm">
+                                            <i class="fas fa-pencil-alt"></i> Editar
+                                        </a>
                                     </td>
-                                    <a href="{{ route('categorias.show', $categoria->id) }}" class="list-group-item list-group-item-action">
-                                        <h5>{{ $categoria->descricao }}</h5>
-                                        @if($categoria->categoriasmetas)
-                                        <p class="mb-0">Metas Ativas: {{ $categoria->categoriasmetas->count() }}</p>
-                                        @else
-                                        <p class="mb-0 text-muted">Sem metas definidas.</p>
-                                        @endif
-                                    </a>
                                     <td>
-                                        <form action="route('categorias.destroy',$categoria->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($categoria->descricao) }}?')">
+                                        <form action="{{ route('categorias.destroy', $categoria->id) }}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($categoria->descricao) }}?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="far fa-trash-alt"></i>
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="far fa-trash-alt"></i> Excluir
                                             </button>
                                         </form>
-                                        </span>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                Adcionar
-                            </button>
                         </table>
+                        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-plus"></i> Adicionar Categoria
+                        </button>
+                    </div>
+
         </ul>
     </div>
 </div>
