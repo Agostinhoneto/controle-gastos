@@ -136,4 +136,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/lembretes/destroy/{lembretes}', [LembretesPagamentoController::class, 'destroy'])->name('lembretes.destroy');
 });
 
-Route::get('/charts', [ChartController::class, 'index'])->name('charts.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/charts', [ChartController::class, 'index'])->name('charts.index');
+});
