@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('despesa_id');
             $table->string('titulo');
             $table->text('descricao')->nullable();
-            $table->dateTime('data_aviso');
-            $table->boolean('data_notificacao')->default(false);
+            $table->date('data_aviso');
+            $table->date('data_notificacao');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

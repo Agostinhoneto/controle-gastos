@@ -26,15 +26,15 @@ class LembretesPagamentoController extends Controller
 
     public function store(Request $request)
     {
-        LembretePagamento::create([
-            'user_id' => Auth::id(),
-            'expense_id' => $request->expense_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'reminder_date' => $request->reminder_date,
-            'is_notified' => false,
-        ]);
 
+        $lembretes = new LembretePagamento();
+        $lembretes->despesa_id = $request->input('despesa_id');
+        $lembretes->titulo = $request->input('titulo');
+        $lembretes->descricao = $request->input('descricao');
+        $lembretes->data_aviso = $request->input('data_aviso');
+        $lembretes->data_notificacao = $request->input('data_notificacao');
+        $lembretes->user_id = auth()->id();
+        $lembretes->save();
         return redirect()->route('lembretes.index')->with('success', 'Lembrete criado com sucesso!');
     }
 
@@ -48,17 +48,9 @@ class LembretesPagamentoController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'reminder_date' => 'required|date|after_or_equal:now',
-            'description' => 'nullable|string',
-            'expense_id' => 'nullable|exists:expenses,id',
-        ]);
-
-        $reminder = LembretePagamento::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-        $reminder->update($request->only('title', 'description', 'reminder_date', 'expense_id'));
-
-        return redirect()->route('lembretes.index')->with('success', 'Lembrete atualizado com sucesso!');
+        $lembretes = LembretePagamento::findOrFail($id);
+        $lembretes->update($request->all());
+        return redirect()->route('lembretes.index')->with('success', 'lembretes atualizada com sucesso!');     
     }
 
     public function destroy($id)
