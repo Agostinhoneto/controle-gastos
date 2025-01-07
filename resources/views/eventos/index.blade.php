@@ -1,6 +1,5 @@
 @include('layouts.topo')
 @extends('layout')
-
 <style>
     #status {
         padding: 5px;
@@ -35,14 +34,13 @@
         font-weight: bold;
     }
 </style>
-
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="card-body">
         <ul class="list-group">
             <div class="table-responsive">
                 <div class="card shadow">
-                  
+
                     @include('eventos.create')
                     @include('components.flash-message')
 
@@ -91,7 +89,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                       
+
                     </div>
                 </div>
             </div>
