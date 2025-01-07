@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorias;
 use App\Models\Eventos_financeiros;
 use App\Models\EventosFinanceiro;
 use App\Notifications\NovoEventoFinanceiro;
@@ -10,19 +11,29 @@ use Illuminate\Support\Facades\Auth;
 
 class EventoFinanceirosController extends Controller
 {
+
+    public function index() {
+        $eventos = EventosFinanceiro::with('categoria')->orderBy('data_inicio', 'asc')->get();
+        $categorias = Categorias::all();
+    
+        return view('eventos.index', compact('eventos', 'categorias'));
+    }
+    /*
     public function index()
     {
-        $events = EventosFinanceiro::all()->map(function ($event) {
+        $eventos = EventosFinanceiro::all()->map(function ($event) {
             return [
-                'title' => $event->title,
-                'start' => $event->start_date,
+                'titulo' => $event->titulo,
+                'data_inicio' => $event->data_inicio,
+                'tipo' => $event->tipo,
+                'valor' => $event->valor,
                 'color' => $event->type == 'receita' ? '#28a745' : '#dc3545', // Verde para receita, vermelho para despesa
             ];
         });
 
-        return view('eventos.index', ['events' => $events]);
+        return view('eventos.index', ['eventos' => $eventos]);
     }
-
+    */
     public function store(Request $request)
     {
         $validatedData = $request->validate([

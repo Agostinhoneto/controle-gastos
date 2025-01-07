@@ -1,87 +1,102 @@
 @include('layouts.topo')
 @extends('layout')
+
 <style>
     #status {
         padding: 5px;
+        border-radius: 5px;
+        text-align: center;
     }
 
     .ativo {
         background-color: green;
         color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
     }
 
     .inativo {
         background-color: red;
         color: white;
-    }
-
-    #calendar {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        border-radius: 8px;
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-    }
-
-    .fc-event {
+        padding: 5px 10px;
         border-radius: 5px;
-        transition: background-color 0.3s ease;
     }
 
-    .fc-event:hover {
-        background-color: #007bff !important;
-        color: white !important;
+    .card-title {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .total-despesas {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-weight: bold;
     }
 </style>
+
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="card-body">
         <ul class="list-group">
             <div class="table-responsive">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Eventos Financeiros</h3>
+                <div class="card shadow">
+                  
+                    @include('eventos.create')
+                    @include('components.flash-message')
+
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Descrição do Evento</th>
+                                    <th scope="col">Data do Pagamento</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Categoria</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($eventos as $evento)
+                                <tr>
+                                    <th scope="row">{{ $evento->id }}</th>
+                                    <td>{{ $evento->descricao }}</td>
+                                    <td>{{ Carbon\Carbon::parse($evento->data_pagamento)->format('d/m/Y') }}</td>
+                                    <td>R$ {{ number_format($evento->valor, 2, ',', '.') }}</td>
+                                    <td>
+                                        <span class="{{ $despesa->status == 1 ? 'ativo' : 'inativo' }}">
+                                            {{ $evento->status == 1 ? 'Pago' : 'Não Pago' }}
+                                        </span>
+                                    </td>
+                                    <td>{{ $evento->categoria?->descricao }}</td>
+                                    <td>
+                                        <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-info btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('eventos.destroy', $evento->id) }}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($evento->descricao) }}?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                       
                     </div>
-
-                    <!-- Formulário para Criar Evento -->
-                    <div class="card shadow mb-4">
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('calendario.store') }}">
-                                @csrf
-                                <div class="row">
-                                    <!-- Título do Evento -->
-                                    <div class="col-md-4 mb-3">
-                                        <label for="title" class="form-label">
-                                            <i class="fas fa-calendar-alt"></i> Título do Evento
-                                        </label>
-                                        <input type="text" class="form-control" id="title" name="titulo" required>
-                                    </div>
-                                    <!-- Data de Início -->
-                                    <div class="col-md-4 mb-3">
-                                        <label for="start_date" class="form-label">
-                                            <i class="fas fa-calendar-day"></i> Data
-                                        </label>
-                                        <input type="date" class="form-control" id="data_inicio" name="start_date" required>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="categoria_id">Tipo:</label>
-                                        <select name="categoria_id" id="categoria_id" required class="form-control">
-                                            <option>Selecione...</option>
-
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100 mt-3">
-                                    <i class="fas fa-plus-circle"></i> Adicionar Evento
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-
-                    <!-- Calendário -->
-                    <div id="calendar" class="bg-white shadow p-3 rounded"></div>
                 </div>
-                @include('layouts.footer')
+            </div>
+        </ul>
+    </div>
+</div>
+
+@include('layouts.footer')

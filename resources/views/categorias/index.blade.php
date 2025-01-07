@@ -53,7 +53,6 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Descrição</th>
                                     <th scope="col">Editar</th>
                                     <th scope="col">Excluir</th>
@@ -62,7 +61,6 @@
                             <tbody>
                                 @foreach($categorias as $categoria)
                                 <tr>
-                                    <th scope="row">{{ $categoria->id }}</th>
                                     <td>{{ $categoria->descricao }}</td>
                                     <td>
                                         <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-info btn-sm">

@@ -25,4 +25,9 @@ class Categorias extends Model
     {
         return $this->hasMany(CategoriasMetas::class,'categoria_id');
     }
+
+    public function eventos()
+    {
+        return $this->hasMany(EventosFinanceiro::class);
+    }
 }

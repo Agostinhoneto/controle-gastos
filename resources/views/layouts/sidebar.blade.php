@@ -289,10 +289,10 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('calendario.index')}}" class="nav-link custom-active-calendar">
+                  <a href="{{route('eventos.index')}}" class="nav-link custom-active-calendar">
                     <i class="nav-icon fas fa-calendar-alt"></i>
                     <p>
-                      Calendário Financeiro
+                      Eventos Financeiro
                       <span class="right badge badge-danger"></span>
                     </p>
                   </a>

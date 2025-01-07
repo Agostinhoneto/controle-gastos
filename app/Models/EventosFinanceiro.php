@@ -10,4 +10,9 @@ class EventosFinanceiro extends Model
     use HasFactory;
     protected $fillable = ['titulo', 'data_inicio', 'tipo', 'valor'];
 
+    public function categoria()
+    {
+        return $this->belongsTo(Categorias::class);
+    }
+
 }
