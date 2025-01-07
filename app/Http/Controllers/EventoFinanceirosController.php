@@ -36,22 +36,20 @@ class EventoFinanceirosController extends Controller
     */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'data_inicio' => 'required|date',
-            'valor' => 'required|numeric',
-        ]);
+        $eventos = new EventosFinanceiro();
+        $eventos->titulo = $request->input('titulo');
+        $eventos->data_inicio = $request->input('data_inicio');
+        $eventos->tipo = $request->input('tipo');
+        $eventos->valor = $request->input('valor');
+        $eventos->categoria_id = $request->input('categoria_id');
+        $eventos->save();
 
-        $evento = EventosFinanceiro::create($validatedData);
-
-        // Verificar se o evento foi criado com sucesso
-        if ($evento) {
-            // Obter o usuário (por exemplo, o usuário autenticado)
+        if ($eventos) {
             $user = auth()->user();
 
             // Enviar a notificação
             if ($user) {
-                $user->notify(new NovoEventoFinanceiro($evento));
+                $user->notify(new NovoEventoFinanceiro($eventos));
             } else {
                 return response()->json(['message' => 'Usuário não autenticado'], 401);
             }

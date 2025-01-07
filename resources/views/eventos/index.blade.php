@@ -50,10 +50,9 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Descrição do Evento</th>
-                                    <th scope="col">Data do Pagamento</th>
+                                    <th scope="col">Data do inicio</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Categoria</th>
                                     <th scope="col">Editar</th>
                                     <th scope="col">Excluir</th>
                                 </tr>
@@ -62,15 +61,10 @@
                                 @foreach($eventos as $evento)
                                 <tr>
                                     <th scope="row">{{ $evento->id }}</th>
-                                    <td>{{ $evento->descricao }}</td>
-                                    <td>{{ Carbon\Carbon::parse($evento->data_pagamento)->format('d/m/Y') }}</td>
+                                    <td>{{ $evento->titulo }}</td>
+                                    <td>{{ Carbon\Carbon::parse($evento->data_inicio)->format('d/m/Y') }}</td>
                                     <td>R$ {{ number_format($evento->valor, 2, ',', '.') }}</td>
-                                    <td>
-                                        <span class="{{ $despesa->status == 1 ? 'ativo' : 'inativo' }}">
-                                            {{ $evento->status == 1 ? 'Pago' : 'Não Pago' }}
-                                        </span>
-                                    </td>
-                                    <td>{{ $evento->categoria?->descricao }}</td>
+                                  
                                     <td>
                                         <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-info btn-sm">
                                             <i class="fas fa-edit"></i>

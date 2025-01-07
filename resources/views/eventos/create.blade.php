@@ -14,16 +14,33 @@
                         <input type="text" class="form-control" id="title" name="titulo" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="start_date" class="form-label">
+                        <label for="data_inicio" class="form-label">
                             <i class="fas fa-calendar-day"></i> Data
                         </label>
-                        <input type="date" class="form-control" id="data_inicio" name="start_date" required>
+                        <input type="date" class="form-control" id="data_inicio" name="data_inicio" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="categoria_id">Tipo:</label>
+                        <label for="tipo">Tipo:</label>
+                        <select name="tipo" id="tipo" required class="form-control">
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="0">Despesa</option>
+                            <option value="1">Receita</option>
+                        </select>
+                    </div>
+                    <div class="col col-6">
+                        <label for="categoria_id">Categoria:</label>
                         <select name="categoria_id" id="categoria_id" required class="form-control">
                             <option>Selecione...</option>
+                            @foreach($categorias as $c)
+                            <option value="{{ $c->id }}" required>{{ $c->descricao }}</option>
+                            @endforeach
                         </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="data_inicio" class="form-label">
+                            <i class="fas fa-calendar-day"></i> Valor
+                        </label>
+                        <input type="valor" class="form-control" id="valor" name="valor" required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary w-100 mt-3">

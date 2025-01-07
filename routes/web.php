@@ -93,7 +93,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/contatos/store', [ContatoController::class, 'store'])->name('contatos.store');
     //Eventos
     Route::get('/eventos', [EventoFinanceirosController::class, 'index'])->name('eventos.index');
-    Route::post('/eventos', [EventoFinanceirosController::class, 'store'])->name('eventos.store');
+    Route::post('/eventos/store', [EventoFinanceirosController::class, 'store'])->name('eventos.store');
+    Route::post('/eventos/edit', [EventoFinanceirosController::class, 'edit'])->name('eventos.edit');
+    Route::get('/eventos/destroy', [EventoFinanceirosController::class, 'destroy'])->name('eventos.destroy');
 
     Route::get('/relatorios/exportar/pdf', [RelatorioController::class, 'exportarPDF'])->name('relatorios.exportar.pdf');
     Route::get('/relatorios/exportar/excel', [RelatorioController::class, 'exportarExcel'])->name('relatorios.exportar.excel');
