@@ -12,28 +12,13 @@ use Illuminate\Support\Facades\Auth;
 class EventoFinanceirosController extends Controller
 {
 
-    public function index() {
-        $eventos = EventosFinanceiro::with('categoria')->orderBy('data_inicio', 'asc')->get();
-        $categorias = Categorias::all();
-    
-        return view('eventos.index', compact('eventos', 'categorias'));
-    }
-    /*
     public function index()
     {
-        $eventos = EventosFinanceiro::all()->map(function ($event) {
-            return [
-                'titulo' => $event->titulo,
-                'data_inicio' => $event->data_inicio,
-                'tipo' => $event->tipo,
-                'valor' => $event->valor,
-                'color' => $event->type == 'receita' ? '#28a745' : '#dc3545', // Verde para receita, vermelho para despesa
-            ];
-        });
-
-        return view('eventos.index', ['eventos' => $eventos]);
+        $eventos = EventosFinanceiro::with('categoria')->orderBy('data_inicio', 'asc')->get();
+        $categorias = Categorias::all();
+        return view('eventos.index', compact('eventos', 'categorias'));
     }
-    */
+ 
     public function store(Request $request)
     {
         $eventos = new EventosFinanceiro();

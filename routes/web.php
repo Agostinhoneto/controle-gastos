@@ -103,15 +103,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
     Route::get('/reports', [RelatorioController::class, 'gerarPDF'])->name('report.despesas');
     Route::get('/relatorios/comparacao', [RelatorioController::class, 'comparar'])->name('relatorios.comparacao');
-
-    Route::get('/financial/index', [FinancialGoalController::class, 'index'])->name('financial.index');
-    Route::get('/financial/show/{id}', [FinancialGoalController::class, 'show'])->name('financial.show');
-    Route::get('/financial/create', [FinancialGoalController::class, 'create'])->name('financial.create');
-    Route::post('/financial/store', [FinancialGoalController::class, 'store'])->name('financial.store');
-    Route::get('/financial/edit/{id}', [FinancialGoalController::class, 'edit'])->name('financial.edit');
-    Route::post('/financial/update/{id}', [FinancialGoalController::class, 'update'])->name('financial.update');
-    Route::delete('/financial/destroy/{financial}', [FinancialGoalController::class, 'destroy'])->name('financial.destroy');
-
+ 
+    
     Route::get('/lembretes/index', [LembretesPagamentoController::class, 'index'])->name('lembretes.index');
     Route::get('/lembretes/show/{id}', [LembretesPagamentoController::class, 'show'])->name('lembretes.show');
     Route::get('/lembretes/create', [LembretesPagamentoController::class, 'create'])->name('lembretes.create');
