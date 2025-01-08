@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->date('data_inicio');
-            $table->enum('tipo', ['despesa', 'receita']); // Define se é despesa ou receita
+            $table->enum('tipo', ['despesa', 'receita']); 
             $table->decimal('valor', 10, 2)->nullable();
-            $table->unsignedBigInteger('categoria_id'); // FK para categorias
+            $table->boolean('status')->default(0); 
+            $table->unsignedBigInteger('categoria_id'); 
             $table->timestamps();
-
-            // Definindo a relação com categorias
+                       
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }

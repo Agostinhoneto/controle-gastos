@@ -62,7 +62,7 @@ class NovoEventoFinanceiro extends Notification
             ->greeting('Olá, ' . $notifiable->name . '!')
             ->line('Um novo evento financeiro foi cadastrado:')
             ->line('Título: ' . $this->evento->titulo)
-            ->line('Data Início: ' . $data_inicio->format('d/m/Y'))  // Formatação de data usando Carbon
+            ->line('Data Início: ' . $data_inicio->format('d/m/Y'))  
             ->line('Tipo: ' . $this->evento->tipo)
             ->line('Valor: R$' . number_format($this->evento->valor, 2, ',', '.'))
             ->action('Visualizar no Sistema', url('/eventos'))
