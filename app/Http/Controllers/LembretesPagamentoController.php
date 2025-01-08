@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorias;
 use App\Models\Despesas;
 use App\Models\LembretePagamento;
 use App\Models\User;
+use App\Notifications\NovoLembretePagamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,17 +27,19 @@ class LembretesPagamentoController extends Controller
     }
 
     public function store(Request $request)
-    {
-
+    {  
         $lembretes = new LembretePagamento();
         $lembretes->despesa_id = $request->input('despesa_id');
+        $lembretes->user_id = $request->input('user_id');
         $lembretes->titulo = $request->input('titulo');
         $lembretes->descricao = $request->input('descricao');
-        $lembretes->data_aviso = $request->input('data_aviso');
+        $lembretes->data_aviso = $request->input('data_aviso');       
         $lembretes->data_notificacao = $request->input('data_notificacao');
-        $lembretes->user_id = auth()->id();
         $lembretes->save();
-        return redirect()->route('lembretes.index')->with('success', 'Lembrete criado com sucesso!');
+  
+        auth()->user()->notify(new NovoLembretePagamento($lembretes));
+        
+        return redirect()->route('lembretes.index')->with('success', 'Evento financeiro criado e notificado com sucesso!');
     }
 
     public function edit($id)
