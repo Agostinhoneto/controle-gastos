@@ -64,7 +64,12 @@
                                     <td>{{ $evento->titulo }}</td>
                                     <td>{{ Carbon\Carbon::parse($evento->data_inicio)->format('d/m/Y') }}</td>
                                     <td>R$ {{ number_format($evento->valor, 2, ',', '.') }}</td>
-                                  
+                                    <td>
+                                        <span class="{{ $evento->status == 1 ? 'ativo' : 'inativo' }}">
+                                            {{ $evento->status == 1 ? 'Pago' : 'Não Pago' }}
+                                        </span>
+                                    </td>
+
                                     <td>
                                         <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-info btn-sm">
                                             <i class="fas fa-edit"></i>

@@ -43,31 +43,18 @@ class NovoEventoFinanceiro extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
 
-    public function toMail($notifiable)
-    {
-        if ($this->evento) {
-            // Certifique-se de que os dados estão presentes antes de usá-los
-            $titulo = $this->evento->titulo;
-
-            // Converta data_inicio para Carbon, se necessário
-            $data_inicio = Carbon::parse($this->evento->data_inicio);
-        } else {
-            // Caso o evento seja null
-            $titulo = "Evento não encontrado";
-            $data_inicio = "Data não disponível";
-        }
-
-        return (new MailMessage)
-            ->subject('Novo Evento Financeiro Adicionado')
-            ->greeting('Olá, ' . $notifiable->name . '!')
-            ->line('Um novo evento financeiro foi cadastrado:')
-            ->line('Título: ' . $this->evento->titulo)
-            ->line('Data Início: ' . $data_inicio->format('d/m/Y'))  
-            ->line('Tipo: ' . $this->evento->tipo)
-            ->line('Valor: R$' . number_format($this->evento->valor, 2, ',', '.'))
-            ->action('Visualizar no Sistema', url('/eventos'))
-            ->line('Obrigado por usar nosso sistema!');
-    }
+     public function toMail($notifiable)
+     {
+         return (new \Illuminate\Notifications\Messages\MailMessage)
+             ->subject('Novo Evento Financeiro Criado')
+             ->line('Um novo evento financeiro foi registrado.')
+             ->line('Descrição: ' . $this->evento->titulo)
+             ->line('Valor: R$ ' . number_format($this->evento->valor, 2, ',', '.'))
+             ->line('Data: ' . \Carbon\Carbon::parse($this->evento->data_inicio)->format('d/m/Y'))
+             ->line('Status: ' . ($this->evento->status ? 'Pago' : 'Não Pago'))
+             ->action('Visualizar', url('/eventos'))
+             ->line('Obrigado por usar nosso sistema!');
+     }
     /**
      * Get the array representation of the notification.
      *

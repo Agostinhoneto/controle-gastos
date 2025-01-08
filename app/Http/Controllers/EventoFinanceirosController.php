@@ -21,6 +21,7 @@ class EventoFinanceirosController extends Controller
  
     public function store(Request $request)
     {
+
         $eventos = new EventosFinanceiro();
         $eventos->titulo = $request->input('titulo');
         $eventos->data_inicio = $request->input('data_inicio');
@@ -29,20 +30,7 @@ class EventoFinanceirosController extends Controller
         $eventos->categoria_id = $request->input('categoria_id');
         $eventos->save();
 
-        if ($eventos) {
-            $user = auth()->user();
-
-            // Enviar a notificação
-            if ($user) {
-                $user->notify(new NovoEventoFinanceiro($eventos));
-            } else {
-                return response()->json(['message' => 'Usuário não autenticado'], 401);
-            }
-
-            // Retornar resposta após sucesso
-            return redirect()->route('eventos.index')->with('success', 'Evento financeiro criado e notificação enviada.');
-        } else {
-            return redirect()->back()->with('error', 'Falha ao criar evento financeiro.');
-        }
+        auth()->user()->notify(new NovoEventoFinanceiro($eventos));
+        return redirect()->route('eventos.index')->with('success', 'Evento financeiro criado e notificado com sucesso!');
     }
 }
