@@ -90,6 +90,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categorias/edit/{id}', [CategoriasController::class, 'edit'])->name('categorias.edit');
     Route::post('/categorias/update/{id}', [CategoriasController::class, 'update'])->name('categorias.update');
     Route::delete('/categorias/destroy/{categorias}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
+    //contatos
     Route::get('/contatos', [ContatoController::class, 'index'])->name('contatos.index');
     Route::post('/contatos/store', [ContatoController::class, 'store'])->name('contatos.store');
    
