@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Despesas as MailDespesas;
 use App\Mail\MailDespesas as MailMailDespesas;
 use App\Mail\SendWelcomeEmail;
 use App\Models\Categorias;
@@ -11,6 +10,7 @@ use App\Models\User;
 use App\Notifications\DespesaAlertaNotification;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class DespesasController extends Controller
@@ -18,11 +18,20 @@ class DespesasController extends Controller
 
     public function index(Request $request)
     {
-        $categorias = Categorias::query()->orderBy('descricao')->get();
-        $total = Despesas::sum('valor');
-        $despesas = Despesas::query()->with('categoria')->orderBy('descricao')->paginate(10);
-        $mensagem = $request->session()->get('mensagem');
-        return view('despesas.index', compact('despesas', 'mensagem', 'total', 'categorias'));
+        try {
+            if (!Auth::check()) {
+                return abort(403, 'Acesso não autorizado.');
+            }
+
+            $categorias = Categorias::query()->orderBy('descricao')->get();
+            $total = Despesas::sum('valor');
+            $despesas = Despesas::query()->with('categoria')->orderBy('descricao')->paginate(10);
+            $mensagem = $request->session()->get('mensagem');
+            return view('despesas.index', compact('despesas', 'mensagem', 'total', 'categorias'));
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Erro ao carregar as despesas: ' . $e->getMessage());
+        }
     }
 
     public function create()
@@ -32,28 +41,37 @@ class DespesasController extends Controller
 
     public function store(Request $request)
     {
-        $despesas = new Despesas();
-        $despesas->descricao = $request->input('descricao');
-        $despesas->valor = $request->input('valor');
-        $despesas->data_pagamento = $request->input('data_pagamento');
-        $despesas->categoria_id = $request->input('categoria_id');
-        $despesas->status = $request->input('status', 1);
-        $despesas->user_id = auth()->id();
-        $despesas->save();
+        try {
+            $despesas = new Despesas();
+            $despesas->descricao = $request->input('descricao');
+            $despesas->valor = $request->input('valor');
+            $despesas->data_pagamento = $request->input('data_pagamento');
+            $despesas->categoria_id = $request->input('categoria_id');
+            $despesas->status = $request->input('status', 1);
+            $despesas->user_id = auth()->id();
+            $despesas->save();
+    
+            Mail::to('agostneto6@gmail.com')->send(new MailMailDespesas($despesas));
+    
+            return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso');
 
-        // Enviar e-mail
-        Mail::to('agostneto6@gmail.com')->send(new MailMailDespesas($despesas));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao salvar a despesa: ' . $e->getMessage());
+        }
 
-        return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso');
     }
 
     public function edit(Request $request, Despesas $despesas, $id)
     {
-        $despesas = Despesas::find($id);
-        $mensagem = $request->session()->get('mensagem');
+        try {
+            $despesas = Despesas::find($id);
+            $mensagem = $request->session()->get('mensagem');
 
-        $categorias = Categorias::query()->orderBy('descricao')->get();
-        return view('despesas.edit', compact('despesas', 'categorias', 'mensagem'));
+            $categorias = Categorias::query()->orderBy('descricao')->get();
+            return view('despesas.edit', compact('despesas', 'categorias', 'mensagem'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao carregar o formulário de criação: ' . $e->getMessage());
+        }
     }
 
     public function update(Request $request, Despesas $despesas, $id)

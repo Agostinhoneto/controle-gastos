@@ -60,7 +60,7 @@ class ReceitasController extends Controller
     {
         try {
             $data = $request->only(['descricao', 'valor', 'data_recebimento', 'categoria_id']);
-            $data['status'] = $request->input('status', 1); // Valor padrão para status.
+            $data['status'] = $request->input('status', 1); 
 
             Receitas::create($data);
 
