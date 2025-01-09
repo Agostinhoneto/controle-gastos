@@ -51,7 +51,6 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
-    
     //Usuários
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');

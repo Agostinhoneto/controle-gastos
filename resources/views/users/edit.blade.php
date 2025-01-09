@@ -30,7 +30,7 @@
         </div>
 
         <!-- Formulário -->
-        <form method="post" action="{{ route('users.update', $users) }}" class="bg-white p-6 rounded shadow-md">
+        <form method="post" action="{{ route('users.update', $users->id) }}" class="bg-white p-6 rounded shadow-md">
             @csrf
             @method('POST')
 

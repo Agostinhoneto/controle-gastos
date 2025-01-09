@@ -2,72 +2,144 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
-use App\Models\Permission;
 use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Exception;
 
 class UserController extends Controller
 {
-
+    /**
+     * Display a listing of users.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
-        if (!Auth::check()) {
-            echo "Não autenticado";
-            exit();
-        }
-        $users = User::all();
-        $permissions = Permission::all();
+        try {
+            if (!Auth::check()) {
+                return abort(403, 'Acesso não autorizado.');
+            }
 
-        $mensagem = $request->session()->get('mensagem');
-        return view('users.index', compact('mensagem', 'users','permissions'));
+            $users = User::all();
+            $permissions = Permission::all();
+            $mensagem = $request->session()->get('mensagem');
+
+            return view('users.index', compact('mensagem', 'users', 'permissions'));
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors('Erro ao carregar a lista de usuários: ' . $e->getMessage());
+        }
     }
 
+    /**
+     * Show the form for creating a new user.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
-        return view('auth.register');
+        try {
+            $permissions = Permission::all();
+            return view('users.create', compact('permissions'));
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors('Erro ao carregar o formulário de criação: ' . $e->getMessage());
+        }
     }
 
+    /**
+     * Store a newly created user in storage.
+     *
+     * @param StoreUserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreUserRequest $request)
     {
-        $users = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'is_admin' =>  $request->input('is_admin'),
-            'password' => Hash::make($request->input('password')),
-        ]);
-        
-        if ($request->has('permissions')) {
-            $users->syncPermissions($request->permissions);
+        try {
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'is_admin' => $request->boolean('is_admin'),
+                'password' => Hash::make($request->input('password')),
+            ]);
+
+            if ($request->has('permissions')) {
+                $user->syncPermissions($request->permissions);
+            }
+
+            return redirect()->route('users.index')->with('success', 'Usuário cadastrado com sucesso!');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors('Erro ao criar o usuário: ' . $e->getMessage());
         }
-
-        return redirect()->route('users.index')->with('success', 'Usuário cadastro com sucesso!');
     }
 
-    public function edit(User $users, $id)
+    /**
+     * Show the form for editing the specified user.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
     {
-        $users = User::findOrFail($id);
-        return view('users.edit', ['users' => $users]);
+        try {
+            $users = User::findOrFail($id);
+            $permissions = Permission::all();
+
+            return view('users.edit', compact('users', 'permissions'));
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('users.index')->withErrors('Usuário não encontrado.');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors('Erro ao carregar o formulário de edição: ' . $e->getMessage());
+        }
     }
 
+    /**
+     * Update the specified user in storage.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
-        $users = User::findOrFail($id);
-        if ($id == null) {
-            dd('erro');
+        try {
+            $user = User::findOrFail($id);
+
+            $user->update($request->only(['name', 'email', 'is_admin']));
+
+            if ($request->has('permissions')) {
+                $user->syncPermissions($request->permissions);
+            }
+
+            return redirect()->route('users.index')->with('success', 'Usuário atualizado com sucesso!');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('users.index')->withErrors('Usuário não encontrado.');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors('Erro ao atualizar o usuário: ' . $e->getMessage());
         }
-        $users->update($request->all());
-        return redirect()->route('users.index')->with('success', 'Usuários atualizada com sucesso!');
     }
 
-    public function destroy(User $users)
+    /**
+     * Remove the specified user from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
     {
-        $users->delete();
-        $mensagem = session()->get('mensagem');
-        return redirect()->route('users.index')->with('success', 'Usuário excluida com sucesso!');
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+
+            return redirect()->route('users.index')->with('success', 'Usuário excluído com sucesso!');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('users.index')->withErrors('Usuário não encontrado.');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors('Erro ao excluir o usuário: ' . $e->getMessage());
+        }
     }
 }
