@@ -99,14 +99,10 @@ class DespesasController extends Controller
 
     public function enviarAlertaDespesa($userId, $gastoAtual, $limiteGastos)
     {
-        // Encontrar o usuário pelo ID
         $user = User::find($userId);
 
-        // Verificar se o usuário existe
         if ($user) {
-            // Enviar a notificação
             $user->notify(new DespesaAlertaNotification($gastoAtual, $limiteGastos));
-
             return response()->json(['message' => 'Notificação enviada com sucesso!']);
         }
 
