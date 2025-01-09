@@ -61,12 +61,7 @@ class RelatorioController extends Controller
         $pdf = FacadePdf::loadView('relatorios.pdf', compact('dados'));
         return $pdf->download('relatorio-financeiro.pdf');
     }
-    /*
-    public function exportarExcel()
-    {
-        return exportarExcel::download(new RelatoriosExport, 'relatorio-financeiro.xlsx');
-    }
-*/
+
     public function comparar(Request $request)
     {
         $periodo1 = $request->input('periodo1');
