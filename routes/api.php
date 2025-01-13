@@ -28,9 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //testando api
 Route::get('/', function () {
-    return response()->json([
-        'sucess' => true
-    ]);
+    return view('info');
 });
 
 
