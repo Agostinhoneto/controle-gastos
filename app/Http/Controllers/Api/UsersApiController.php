@@ -11,7 +11,7 @@ use App\Services\UsersService;
 use Exception;
 use Illuminate\Http\Request;
 
-class ApiUsersController extends Controller
+class UsersApiController extends Controller
 {
     protected $userService;
 

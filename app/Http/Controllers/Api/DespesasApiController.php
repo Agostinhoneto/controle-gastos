@@ -9,7 +9,7 @@ use App\Services\DespesaService;
 use Exception;
 use Illuminate\Support\Facades\Request;
 
-class ApiDespesasController extends Controller
+class DespesasApiController extends Controller
 { 
     
     protected $despesasService;
@@ -42,7 +42,7 @@ class ApiDespesasController extends Controller
             return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
         }
     }
-
+    /*
     public function store(Request $request)
     {
         $result['data'] = $this->despesasService->createUser(
@@ -75,4 +75,6 @@ class ApiDespesasController extends Controller
             return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
         }
     }
+
+    */
 }
