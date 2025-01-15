@@ -21,14 +21,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-/*
-Route::middleware('auth:sanctum')->get('/auth-check', function (Request $request) {
-    return response()->json([
-        'authenticated' => true,
-        'user' => $request->user(),
-    ]);
-});
-*/
+
 //testando api
 Route::get('/', function () {
     return view('info');
@@ -36,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/users/login', [UsersApiController::class, 'login'])->name('users.login');
 
-Route::middleware('api')->group(function () {
+//Route::middleware('api')->group(function () {
     //Users.
     Route::post('/users/register', [UsersApiController::class, 'register'])->name('users.register');
     Route::get('/users/index', [UsersApiController::class, 'index'])->name('users.index');
@@ -58,4 +51,4 @@ Route::middleware('api')->group(function () {
     Route::get('/despesas/show/{id}', [DespesasApiController::class, 'show'])->name('despesas.show');
     Route::put('/despesas/update/{id}', [DespesasApiController::class, 'update'])->name('despesas.update');
     Route::delete('/despesas/destroy/{id}', [DespesasApiController::class, 'destroy'])->name('despesas.destroy');
-});
+//});
