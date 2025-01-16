@@ -11,55 +11,125 @@ use Illuminate\Support\Facades\DB;
 
 class ReceitasController extends Controller
 {
+    /**
+     * Display a listing of receitas.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function index(Request $request)
     {
-        if (!Auth::check()) {
-            echo "Não autenticado";
-            exit();
+        try {
+            if (!Auth::check()) {
+                return abort(403, 'Acesso não autorizado.');
+            }
+
+            $receitas = Receitas::with('categoria')->get();
+            $total = $receitas->sum('valor');
+            $categorias = Categorias::orderBy('descricao')->get();
+            $mensagem = $request->session()->get('mensagem');
+
+            return view('receitas.index', compact('receitas', 'mensagem', 'categorias', 'total'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao carregar as receitas: ' . $e->getMessage());
         }
-        $receitas = Receitas::query()->with('categoria')->get();
-        $total = $receitas->sum('valor');
-        $categorias = Categorias::query()->orderBy('descricao')->get();
-        $mensagem = $request->session()->get('mensagem');
-        return view('receitas.index', compact('receitas', 'mensagem', 'categorias', 'total'));
     }
 
+    /**
+     * Show the form for creating a new receita.
+     *
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function create()
     {
-        return view('receitas.create');
+        try {
+            $categorias = Categorias::orderBy('descricao')->get();
+            return view('receitas.create', compact('categorias'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao carregar o formulário de criação: ' . $e->getMessage());
+        }
     }
 
+    /**
+     * Store a newly created receita in storage.
+     *
+     * @param StoreReceitasRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreReceitasRequest $request)
     {
+        try {
+            $data = $request->only(['descricao', 'valor', 'data_recebimento', 'categoria_id']);
+            $data['status'] = $request->input('status', 1); 
 
-        $receitas = new Receitas();
-        $receitas->descricao = $request->input('descricao');
-        $receitas->valor = $request->input('valor');
-        $receitas->data_recebimento = $request->input('data_recebimento');
-        $receitas->categoria_id = $request->input('categoria_id');
-        $receitas->status = $request->input('status', 1);
-        $receitas->save();
-        return redirect()->route('receitas.index')->with('sucesso','Receita cadastrada com sucesso');
+            Receitas::create($data);
+
+            return redirect()->route('receitas.index')->with('success', 'Receita cadastrada com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao cadastrar a receita: ' . $e->getMessage());
+        }
     }
 
-    public function edit(Request $request,$id)
+    /**
+     * Show the form for editing the specified receita.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function edit(Request $request, $id)
     {
-        $receitas = Receitas::findOrFail($id);
-        $mensagem = $request->session()->get('mensagem');
-        $categorias = Categorias::query()->orderBy('descricao')->get();
-        return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));
+        try {
+            $receitas = Receitas::findOrFail($id);
+            $mensagem = $request->session()->get('mensagem');
+            $categorias = Categorias::orderBy('descricao')->get();
+
+            return view('receitas.edit', compact('receitas', 'categorias', 'mensagem'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->route('receitas.index')->withErrors('Receita não encontrada.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao carregar o formulário de edição: ' . $e->getMessage());
+        }
     }
 
-    public function update(Request $request,$id)
+    /**
+     * Update the specified receita in storage.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
     {
-        $receitas = Receitas::findOrFail($id)->first()->fill($request->all())->save();
-        return redirect()->route('receitas.index')->with('success', 'Receita atualizada com sucesso!');
+        try {
+            $receitas = Receitas::findOrFail($id);
+            $receitas->update($request->only(['descricao', 'valor', 'data_recebimento', 'categoria_id', 'status']));
+
+            return redirect()->route('receitas.index')->with('success', 'Receita atualizada com sucesso!');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->route('receitas.index')->withErrors('Receita não encontrada.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao atualizar a receita: ' . $e->getMessage());
+        }
     }
 
-    public function destroy(Receitas $receitas)
+    /**
+     * Remove the specified receita from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
     {
-        $receitas->delete();
-        $mensagem = session()->get('mensagem');
-        return redirect()->route('receitas.index')->with('success', 'Receita excluida com sucesso!');
+        try {
+            $receitas = Receitas::findOrFail($id);
+            $receitas->delete();
+
+            return redirect()->route('receitas.index')->with('success', 'Receita excluída com sucesso!');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->route('receitas.index')->withErrors('Receita não encontrada.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao excluir a receita: ' . $e->getMessage());
+        }
     }
 }

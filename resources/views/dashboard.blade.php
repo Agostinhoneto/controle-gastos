@@ -47,7 +47,7 @@
           <a href="index3.html" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
+          <a href="#" class="nav-link">Contatos</a>
         </li>
       </ul>
 
@@ -140,24 +140,23 @@
             <span class="badge badge-warning navbar-badge">15</span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">15 Notifications</span>
+            <span class="dropdown-item dropdown-header"></span>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
+              <i class="fas fa-envelope mr-2"></i>
+              <span class="float-right text-muted text-sm"></span>
             </a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
+              <i class="fas fa-users mr-2"></i> <span class="float-right text-muted text-sm"></span>
             </a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
+              <i class="fas fa-file mr-2"></i>
+              <span class="float-right text-muted text-sm"></span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            <a href="#" class="dropdown-item dropdown-footer"></a>
           </div>
         </li>
         <li class="nav-item">
@@ -175,379 +174,9 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Controle de Gastos</span>
-      </a>
+    <!--<aside class="main-sidebar sidebar-dark-primary elevation-4"></aside> -->
 
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
-          </div>
-        </div>
-
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-          <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-sidebar">
-                <i class="fas fa-search fa-fw"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a href="{{route('receitas.index')}}" class="nav-link active">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Receitas
-                  <span class="right badge badge-danger"></span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('despesas.index')}}" class="nav-link active">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Despesas
-                  <span class="right badge badge-danger"></span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Usuários
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('users.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Criar</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Metas
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('financial.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Criar</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-header">EXAMPLES</li>
-            <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Calendar
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/gallery.html" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
-                <p>
-                  Gallery
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/kanban.html" class="nav-link">
-                <i class="nav-icon fas fa-columns"></i>
-                <p>
-                  Kanban Board
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-envelope"></i>
-                <p>
-                  Mailbox
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/mailbox/mailbox.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Inbox</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/mailbox/compose.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Compose</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/mailbox/read-mail.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Read</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Users
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/examples/invoice.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Invoice</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/profile.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Profile</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/e-commerce.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>E-commerce</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/projects.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Usuários</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/project-add.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Project Add</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/project-edit.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Project Edit</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/project-detail.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Project Detail</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/contacts.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Contacts</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/faq.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>FAQ</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/contact-us.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Contact us</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-plus-square"></i>
-                <p>
-                  Extras
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>
-                      Login & Register v1
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="pages/examples/login.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Login v1</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="pages/examples/register.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Register v1</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="pages/examples/forgot-password.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Forgot Password v1</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="pages/examples/recover-password.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Recover Password v1</p>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>
-                      Login & Register v2
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="pages/examples/login-v2.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Login v2</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="pages/examples/register-v2.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Register v2</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="pages/examples/forgot-password-v2.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Forgot Password v2</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="pages/examples/recover-password-v2.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Recover Password v2</p>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/lockscreen.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Lockscreen</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/legacy-user-menu.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Legacy User Menu</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/language-menu.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Language Menu</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/404.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Error 404</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/500.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Error 500</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/pace.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pace</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/blank.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Blank Page</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="starter.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Starter Page</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-search"></i>
-                <p>
-                  Search
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/search/simple.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Simple Search</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/search/enhanced.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Enhanced</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+    @include('layouts.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -560,8 +189,10 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard v1</li>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button type="submit" class="btn btn-danger">Sair</button>
+                </form>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -578,44 +209,18 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150</h3>
+                  @if ($totalReceitas)
+                  <h3>{{$totalReceitas}}</h3>
+                  @else
+                  <p>Não há receitas registradas.</p>
+                  @endif
+                  <p>Receitas</p>
 
-                  <p>New Orders</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                  <p>Bounce Rate</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>44</h3>
-
-                  <p>User Registrations</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('receitas.index')}}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -623,17 +228,56 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65</h3>
-
-                  <p>Unique Visitors</p>
+                  @if ($totalDespesas)
+                  <h3>{{$totalDespesas}}</h3>
+                  @else
+                  <p>Não há despesas registradas.</p>
+                  @endif
+                  <p>Despesas</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('despesas.index')}}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  @if ($totalUsuarios)
+                  <h3>{{$totalUsuarios}}</h3>
+                  @else
+                  <p>Não há Usuários registradas.</p>
+                  @endif
+                  <p>Usuários</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a href="{{route('users.index')}}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  @if ($totalMetas)
+                  <h3>{{$totalMetas}}<sup style="font-size: 20px">%</sup></h3>
+                  @else
+                  <p>Não há Finanças registradas.</p>
+                  @endif
+                  <p>Minhas Finanças</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="{{route('financas.index')}}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
           </div>
           <!-- /.row -->
           <!-- Main row -->
@@ -645,15 +289,15 @@
                 <div class="card-header">
                   <h3 class="card-title">
                     <i class="fas fa-chart-pie mr-1"></i>
-                    Sales
+                    Balanços
                   </h3>
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Área</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                        <a class="nav-link" href="#sales-chart" data-toggle="tab">Pizza</a>
                       </li>
                     </ul>
                   </div>
@@ -672,18 +316,18 @@
                 </div><!-- /.card-body -->
               </div>
               <!-- /.card -->
-    
+
             </section>
             <!-- /.Left col -->
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
-             <section class="col-lg-5 connectedSortable">
+            <section class="col-lg-5 connectedSortable">
 
               <!-- Map card -->
               <div class="card bg-gradient-primary">
                 <div class="card-header border-0">
                   <h3 class="card-title">
                     <i class="fas fa-map-marker-alt mr-1"></i>
-                    Visitors
+                    Visitantes
                   </h3>
                   <!-- card tools -->
                   <div class="card-tools">

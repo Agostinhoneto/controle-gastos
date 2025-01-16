@@ -26,6 +26,7 @@ Um sistema de gerenciamento financeiro pessoal que permite controlar categorias 
 
 ### Clonar o Repositório
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/Agostinhoneto/controle-gastos.git
 cd controle-gastos
 ----------------------------------------------------------------------------------------
@@ -53,3 +54,7 @@ php artisan migrate
 
 
 php artisan db:seed
+=======
+git clone https://github.com/seu-usuario/controle-gastos.git
+cd controle-gastos
+>>>>>>> develop

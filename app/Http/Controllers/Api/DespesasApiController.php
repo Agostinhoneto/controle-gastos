@@ -5,26 +5,26 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\HttpStatusCodes;
 use App\Helpers\Messages;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use App\Models\User;
-use App\Services\UsersService;
+use App\Services\DespesaService;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
-class ApiUsersController extends Controller
-{
-    protected $userService;
+class DespesasApiController extends Controller
+{ 
+    
+    protected $despesasService;
 
-    public function __construct(UsersService $userService)
+    public function __construct(DespesaService $despesasService)
     {
-        $this->userService = $userService;
+        $this->despesasService = $despesasService;
     }
 
+   
     public function index()
     {
         $limit = 10;
         try {
-            $result['data'] = $this->userService->getAll($limit);
+            $result['data'] = $this->despesasService->getAll($limit);
             return response()->json([Messages::SUCCESS_MESSAGE, HttpStatusCodes::OK, $result]);
         } catch (Exception $e) {
             return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
@@ -35,17 +35,17 @@ class ApiUsersController extends Controller
     {
         try {
             if (!empty($id)) {
-                $result['data'] = $this->userService->getById($id);
+                $result['data'] = $this->despesasService->getById($id);
                 return response()->json([Messages::SUCCESS_MESSAGE, HttpStatusCodes::OK, $result]);
             }
         } catch (Exception $e) {
             return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
         }
     }
-
+    /*
     public function store(Request $request)
     {
-        $result['data'] = $this->userService->createUser(
+        $result['data'] = $this->despesasService->createUser(
             $request->id,
             $request->name,
             $request->email,
@@ -56,7 +56,7 @@ class ApiUsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $result['data'] = $this->userService->updateUser(
+        $result['data'] = $this->despesasService->updateUser(
             $request->id,
             $request->name,
             $request->email,
@@ -69,10 +69,12 @@ class ApiUsersController extends Controller
     {
         $result = ['status' => 200];
         try {
-            $result['data'] = $this->userService->destroyUser($id);
+            $result['data'] = $this->despesasService->destroyUser($id);
             return response()->json([Messages::DELETE_MESSAGE, HttpStatusCodes::OK, $result]);
         } catch (Exception $e) {
             return response()->json([Messages::ERROR_MESSAGE, HttpStatusCodes::INTERNAL_SERVER_ERROR]);
         }
     }
+
+    */
 }

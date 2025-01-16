@@ -1,0 +1,59 @@
+.nav-link.custom-active {
+    background-color: #cc0000;
+    /* Fundo vermelho escuro */
+    color: #ffffff;
+    /* Texto branco */
+  }
+
+  .nav-link.custom-active-orange {
+    background-color: #e0a800;
+    /* Fundo laranja claro */
+    color: #000000;
+    /* Texto branco */
+  }
+
+  .nav-link.custom-active:hover {
+    background-color: #ff4d4d;
+    /* Fundo vermelho claro ao passar o mouse */
+    color: #ffffff;
+    /* Texto branco */
+  }
+
+  .nav-link.custom-active-green {
+    background-color: #28a745;
+    /* Verde padrão */
+    color: #ffffff;
+    /* Texto branco */
+  }
+
+  .nav-link.custom-active:hover {
+    background-color: #218838;
+    /* Verde mais escuro no hover */
+    color: #ffffff;
+  }
+
+  .nav-link.custom-active-gray {
+    background-color: #6C757D      ;
+    /* Verde padrão */
+    color: #ffffff;
+    /* Texto branco */
+  }
+
+  .nav-link.custom-active:hover {
+    background-color: #218838;
+    /* Verde mais escuro no hover */
+    color: #ffffff;
+  }
+  
+  .nav-link.custom-active-blue {
+    background-color: #2975b8      ;
+    /* Verde padrão */
+    color: #ffffff;
+    /* Texto branco */
+  }
+  
+  .nav-link.custom-active:hover {
+    background-color: #2975b8;
+    /* Verde mais escuro no hover */
+    color: #ffffff;
+  }

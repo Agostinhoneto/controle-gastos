@@ -1,54 +1,47 @@
 <head>
     <!-- Google Font: Source Sans Pro -->
-    <link href="{{ URL::asset('assets/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    <!-- Scripts DataTables -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables  & Plugins -->
-    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="../../plugins/jszip/jszip.min.js"></script>
-    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
-    <!-- Page specific script -->
-    <!-- Google Font: Source Sans Pro -->
+    <link href="{{ asset('assets/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 </head>
+
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.topo')
     @include('layouts.sidebar')
-    <div class="card-body">
-        <ul class="list-group">
-            <div class="table-responsive">
-                <div class="card-header">
-                    <h3 class="card-title">Relatórios</h3>
-                </div>
-                <div class="mb-5">
-                    <form method="GET" action="{{ url('/reports') }}">
-                        <label for="created_at">Data Inicial:</label>
-                        <input type="date" name="created_at" id="created_at">
 
-                        <label for="data_pagamento">Data Final:</label>
-                        <input type="date" name="data_pagamento" id="data_pagamento">
-                        <button type="submit" class="btn btn-success">Filtrar</button>
-                    </form>
-                </div>
+    <div class="container mt-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="card-title">Relatórios</h3>
+                <button class="btn btn-sm btn-light" onclick="window.print()">
+                    <i class="fas fa-print"></i> Imprimir
+                </button>
+            </div>
+            <div class="card-body">
+                <!-- Filtros -->
+                <form method="GET" action="{{ url('/reports') }}" class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label for="created_at" class="form-label">Data Inicial:</label>
+                        <input type="date" name="created_at" id="created_at" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="data_pagamento" class="form-label">Data Final:</label>
+                        <input type="date" name="data_pagamento" id="data_pagamento" class="form-control" required>
+                    </div>
+                    <div class="col-md-12 text-end">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Tabela -->
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -64,37 +57,51 @@
                         <tr>
                             <td>{{ $despesa->id }}</td>
                             <td>{{ $despesa->descricao }}</td>
-                            <td>{{Carbon\Carbon::parse( $despesa->data_recebimento)->format('d/m/Y')}}</td>
-                            <td>{{ $despesa->valor}}</td>
+                            <td>{{ \Carbon\Carbon::parse($despesa->data_recebimento)->format('d/m/Y') }}</td>
+                            <td>R$ {{ number_format($despesa->valor, 2, ',', '.') }}</td>
                             <td>
                                 @if($despesa->status == 1)
-                                <p style="color: green">Pago</p>
+                                <span class="badge bg-success">Pago</span>
                                 @else
-                                <p style="color: red">Não Pago</p>
+                                <span class="badge bg-danger">Não Pago</span>
                                 @endif
                             </td>
                         </tr>
                         @endforeach
-
+                    </tbody>
                 </table>
-                <td>{{$total}}</td>
 
+                <!-- Total -->
+                <div class="mt-3 text-end">
+                    <h5><strong>Total:</strong> R$ {{ number_format($total, 2, ',', '.') }}</h5>
+                </div>
             </div>
-            <!-- /.card-body -->
+        </div>
     </div>
 </div>
-</ul>
-</div>
-</div>
+
 @include('layouts.footer')
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $(document).ready(function() {
+        if (!$.fn.DataTable.isDataTable('#example1')) {
+            $('#example1').DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        }
     });
 </script>

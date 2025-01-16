@@ -9,11 +9,11 @@ class Despesas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['descricao', 'valor', 'data_pagamento','status','receita_id'];
+    protected $fillable = ['categoria_id','descricao', 'valor', 'data_pagamento','status','receita_id'];
 
     public function categoria()
     {
-        return $this->belongsTo(Categorias::class);
+        return $this->belongsTo(Categorias::class,'categoria_id');
     }
 
 }

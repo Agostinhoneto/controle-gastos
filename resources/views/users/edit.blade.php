@@ -10,9 +10,11 @@
 @extends('layout')
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
-    <div class="container" style="margin-top:40px;">
+
+    <div class="container mx-auto p-6">
+        <!-- Alertas de erro -->
         @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger shadow-sm mb-4">
             <ul>
                 @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -20,33 +22,51 @@
             </ul>
         </div>
         @endif
-        <div class="container mt-5">
-            <h2>Editar Usuários</h2>
-            <form method="post" action="{{route('users.update',$users)}}">
-                @csrf
-                @method('POST')
-                <div class="form-group">
-                    <label for="name">Nome:</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $users->name }}">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ $users->email }}">
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Repetir Senha:</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                </div>
-                <div class="form-group">
-                <br>
-                <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Atualizar</button>
-            </form>
+
+        <!-- Título -->
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-gray-700">Editar Usuário</h2>
+            <p class="text-sm text-gray-500">Atualize as informações do usuário nos campos abaixo.</p>
         </div>
 
+        <!-- Formulário -->
+        <form method="post" action="{{ route('users.update', $users->id) }}" class="bg-white p-6 rounded shadow-md">
+            @csrf
+            @method('POST')
+
+            <!-- Nome -->
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-700">Nome:</label>
+                <input type="text" id="name" name="name" value="{{ $users->name }}" class="form-control mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+                <input type="email" id="email" name="email" value="{{ $users->email }}" class="form-control mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+            </div>
+
+            <!-- Senha -->
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Senha:</label>
+                <input type="password" id="password" name="password" class="form-control mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+            </div>
+
+            <!-- Confirmar Senha -->
+            <div class="mb-4">
+                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Repetir Senha:</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+            </div>
+
+            <!-- Botões -->
+            <div class="flex justify-between items-center mt-6">
+                <a href="{{ route('users.index') }}" class="btn btn-secondary px-4 py-2 text-gray-600 bg-gray-200 hover:bg-gray-300 rounded shadow-sm">
+                    Cancelar
+                </a>
+                <button type="submit" class="btn btn-primary px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm">
+                    Atualizar
+                </button>
+            </div>
+        </form>
     </div>
 </div>
