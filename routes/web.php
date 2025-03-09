@@ -52,13 +52,16 @@ require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     //Usuários
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
-    Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/users/destroy/{users}', [UserController::class, 'destroy'])->name('users.destroy');
 
+    Route::middleware('can:create,App\Models\User')->group(function () {
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+        Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/destroy/{users}', [UserController::class, 'destroy'])->name('users.destroy');    
+    });
+ 
     //receitas
     Route::get('/receitas', [ReceitasController::class, 'index'])->name('receitas.index');
     Route::get('/receitas/create', [ReceitasController::class, 'create'])->name('receitas.create');

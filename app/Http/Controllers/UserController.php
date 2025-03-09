@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class UserController extends Controller
 {
@@ -44,6 +45,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (!auth()->user()->can('create', User::class)) {
+            throw new AuthorizationException('Você não tem permissão para criar usuários.');
+        }
+        
         try {
             $permissions = Permission::all();
             return view('users.create', compact('permissions'));
@@ -62,6 +67,10 @@ class UserController extends Controller
     {
         try {
     
+            if (!auth()->user()->can('create', User::class)) {
+                throw new AuthorizationException('Você não tem permissão para criar usuários.');
+            }
+            
             if ($request->input('password') !== $request->input('password_confirmation')) {
                 throw ValidationException::withMessages([
                     'password' => ['As senhas não coincidem.'],
