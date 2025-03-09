@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use App\Models\Permission;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -60,19 +61,30 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         try {
+    
+            if ($request->input('password') !== $request->input('password_confirmation')) {
+                throw ValidationException::withMessages([
+                    'password' => ['As senhas não coincidem.'],
+                ]);
+            }
+    
             $user = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'is_admin' => $request->boolean('is_admin'),
                 'password' => Hash::make($request->input('password')),
+                'password_confirmation' => Hash::make($request->input('password_confirmation')),
+               
             ]);
-
+            /*
             if ($request->has('permissions')) {
                 $user->syncPermissions($request->permissions);
             }
-
+            */
             return redirect()->route('users.index')->with('success', 'Usuário cadastrado com sucesso!');
+
         } catch (Exception $e) {
+            dd($e);
             return redirect()->back()->withErrors('Erro ao criar o usuário: ' . $e->getMessage());
         }
     }

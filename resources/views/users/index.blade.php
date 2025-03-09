@@ -12,7 +12,8 @@
         margin-right: 5px;
     }
 
-    .table th, .table td {
+    .table th,
+    .table td {
         text-align: center;
         vertical-align: middle;
     }
@@ -22,26 +23,22 @@
     @include('layouts.sidebar')
 
     <div class="container my-4">
-        <!-- Formulário de Adicionar Novo Usuário -->
         <div class="card mb-4">
-            <div class="card-header bg-primary text-white">Adicionar Novo Usuário</div>
+            <div class="card-header" style="background-color: #e0a800; color: white;">Adicionar Novo Usuário</div>
             <div class="card-body">
                 <form action="{{ route('users.store') }}" method="POST">
                     @csrf
                     <div class="row">
-                        <!-- Nome -->
                         <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Nome</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+                            <label for="name" class="form-label">Nome *</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
                             @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
-                        <!-- E-mail -->
                         <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+                            <label for="email" class="form-label">E-mail *</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
                             @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -49,44 +46,73 @@
                     </div>
 
                     <div class="row">
-                        <!-- Senha -->
                         <div class="col-md-6 mb-3">
-                            <label for="password" class="form-label">Senha</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+                            <label for="password" class="form-label">Senha *</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
                             @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <!-- Administrador -->
+                        <script>
+                            function togglePasswordVisibility() {
+                                var passwordField = document.getElementById('password');
+                                var passwordFieldType = passwordField.getAttribute('type');
+                                if (passwordFieldType === 'password') {
+                                    passwordField.setAttribute('type', 'text');
+                                } else {
+                                    passwordField.setAttribute('type', 'password');
+                                }
+                            }
+                        </script>
+                        <div class="col-md-6 mb-3">
+                            <label for="password_confirmation" class="form-label">Repetir Senha *</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" required>
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordConfirmationVisibility()">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            @error('password_confirmation')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <script>
+                            function togglePasswordConfirmationVisibility() {
+                                var passwordField = document.getElementById('password_confirmation');
+                                var passwordFieldType = passwordField.getAttribute('type');
+                                if (passwordFieldType === 'password') {
+                                    passwordField.setAttribute('type', 'text');
+                                } else {
+                                    passwordField.setAttribute('type', 'password');
+                                }
+                            }
+                        </script>
+
+
                         <div class="col-md-6 mb-3">
                             <label for="is_admin">Administrador?</label>
-                            <select name="is_admin" id="is_admin" class="form-control">
+                            <select name="is_admin" id="is_admin" class="form-control" required>
                                 <option value="0" {{ old('is_admin') == 0 ? 'selected' : '' }}>Não</option>
                                 <option value="1" {{ old('is_admin') == 1 ? 'selected' : '' }}>Sim</option>
                             </select>
                         </div>
                     </div>
-
-                    <!-- Permissões -->
-                    <div class="mb-3">
-                        <label for="permissions" class="form-label">Permissões:</label>
-                        <select name="permissions[]" id="permissions" class="form-select" multiple>
-                            @foreach($permissions as $permission)
-                            <option value="{{ $permission->id }}" {{ in_array($permission->id, old('permissions', [])) ? 'selected' : '' }}>
-                                {{ $permission->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <!-- Botão Salvar -->
+                    <div class="text-danger mb-3">* Campos obrigatórios</div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
             </div>
         </div>
-
-        <!-- Lista de Usuários -->
         <div class="card">
             <div class="card-header bg-secondary text-white">Lista de Usuários</div>
             <div class="card-body">
@@ -96,6 +122,7 @@
                             <th>#</th>
                             <th>Nome</th>
                             <th>E-mail</th>
+                            <th>Administrador</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -105,6 +132,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ $user->is_admin ? 'Sim' : 'Não' }}</td>
                             <td>
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i> Editar
@@ -126,7 +154,6 @@
     </div>
 </div>
 
-<!-- Select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
