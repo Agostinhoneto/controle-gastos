@@ -107,6 +107,16 @@
                                 <option value="1" {{ old('is_admin') == 1 ? 'selected' : '' }}>Sim</option>
                             </select>
                         </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="cargo_id" class="form-label fw-bold">Cargo *</label>
+                            <select name="cargo_id" id="cargo_id" class="form-control" required>
+                                <option value="" selected disabled>Selecione um cargo</option>
+                                @foreach($cargos as $cargo)
+                                <option value="{{ $cargo->id }}">{{ $cargo->nome }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="text-danger mb-3">* Campos obrigatórios</div>
                     <button type="submit" class="btn btn-primary">Salvar</button>

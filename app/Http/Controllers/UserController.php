@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Cargo;
 use App\Models\User;
 use App\Models\Permission;
 use Dotenv\Exception\ValidationException;
@@ -27,12 +28,12 @@ class UserController extends Controller
             if (!Auth::check()) {
                 return abort(403, 'Acesso não autorizado.');
             }
-
+            $cargos = Cargo::all();
             $users = User::all();
             $permissions = Permission::all();
             $mensagem = $request->session()->get('mensagem');
 
-            return view('users.index', compact('mensagem', 'users', 'permissions'));
+            return view('users.index', compact('mensagem', 'users', 'permissions','cargos'));
         } catch (Exception $e) {
             return redirect()->back()->withErrors('Erro ao carregar a lista de usuários: ' . $e->getMessage());
         }
@@ -83,7 +84,7 @@ class UserController extends Controller
                 'is_admin' => $request->boolean('is_admin'),
                 'password' => Hash::make($request->input('password')),
                 'password_confirmation' => Hash::make($request->input('password_confirmation')),
-               
+                'cargo_id' => $request->input('cargo_id'),
             ]);
             /*
             if ($request->has('permissions')) {
