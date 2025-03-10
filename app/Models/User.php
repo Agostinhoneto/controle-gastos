@@ -81,4 +81,9 @@ class  User extends Authenticatable implements JWTSubject
     {
         return $this->despesas()->sum('valor');
     }
+
+    public function cargo()
+    {
+        return $this->belongsTo(Cargo::class);
+    }
 }

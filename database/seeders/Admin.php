@@ -21,7 +21,8 @@ class Admin extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('password'), 
             'password_confirmation' => bcrypt('password'), 
-            'is_admin' => 1
+            'is_admin' => 1,
+            'cargo_id' => 1
         ]);
     }
 }
