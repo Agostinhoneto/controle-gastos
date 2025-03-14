@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CalendarioFinanceiroController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ContatoController;
@@ -121,4 +122,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/lembretes/destroy/{lembretes}', [LembretesPagamentoController::class, 'destroy'])->name('lembretes.destroy');
 
     Route::get('/charts', [ChartController::class, 'index'])->name('charts.index');
+
+    //Calendarios
+    Route::get('/calendario/index',[CalendarioFinanceiroController::class,'index'])->name('calendario.index');
+    Route::get('/calendario/eventos', [CalendarioFinanceiroController::class, 'eventos'])->name('calendario.eventos');;
 });

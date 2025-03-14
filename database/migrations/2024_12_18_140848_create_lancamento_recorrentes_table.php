@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('recorrencias', function (Blueprint $table) {
+        Schema::create('lancamento_recorrentes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('usuario_id');
             $table->enum('tipo', ['despesa', 'receita']);
             $table->decimal('valor', 15, 2);
-            $table->unsignedBigInteger('categoria_id');
             $table->string('descricao')->nullable();
             $table->enum('frequencia', ['diaria', 'semanal', 'mensal', 'anual']);
             $table->date('data_inicio');
             $table->date('data_fim')->nullable();
-            $table->unsignedBigInteger('usuario_id');
             $table->boolean('ativo')->default(true);
             $table->timestamps();
 
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recorrencias');
+        Schema::dropIfExists('lancamento_recorrentes');
     }
 };

@@ -28,21 +28,14 @@ class EventoFinanceirosController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'data_inicio' => 'required|date',
-            'tipo' => 'required|string|in:despesa,receita', 
-            'valor' => 'required|numeric|min:0',
-            'categoria_id' => 'required|exists:categorias,id',
-        ]);
-
         try {
+            
             $evento = new EventosFinanceiro();
-            $evento->titulo = $validatedData['titulo'];
-            $evento->data_inicio = $validatedData['data_inicio'];
-            $evento->tipo = $validatedData['tipo'];
-            $evento->valor = $validatedData['valor'];
-            $evento->categoria_id = $validatedData['categoria_id'];
+            $evento->titulo = $request->input('titulo');
+            $evento->data_inicio = $request->input('data_inicio');
+            $evento->tipo = $request->input('tipo');
+            $evento->valor = $request->input('valor');
+            $evento->categoria_id = $request->input('categoria_id');        
             $evento->save();
 
             auth()->user()->notify(new NovoEventoFinanceiro($evento));

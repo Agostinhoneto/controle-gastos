@@ -226,6 +226,15 @@
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-item">
+                  <a href="{{route('calendario.index')}}" class="nav-link active">
+                    <i class="nav-icon fas fa-dollar-sign"></i>
+                    <p>
+                      Calendario Financeiro
+                      <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
                 <li class="nav-item">
                   <a href="{{route('receitas.index')}}" class="nav-link active">
                     <i class="nav-icon fas fa-dollar-sign"></i>
