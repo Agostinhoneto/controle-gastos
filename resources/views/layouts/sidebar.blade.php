@@ -163,6 +163,20 @@
       background-color: #59389A;
       /* Roxo mais escuro no hover */
     }
+
+    .nav-link.custom-active-cal:hover {
+      background-color: rgb(60, 59, 63);
+      color: #fff;
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link.custom-active-fin:hover {
+      background-color: #59389A;
+      /* Roxo mais escuro no hover */
+    }
   </style>
 </head>
 
@@ -224,17 +238,7 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <li class="nav-item">
-                  <a href="{{route('calendario.index')}}" class="nav-link active">
-                    <i class="nav-icon fas fa-dollar-sign"></i>
-                    <p>
-                      Calendario Financeiro
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
+
                 <li class="nav-item">
                   <a href="{{route('receitas.index')}}" class="nav-link active">
                     <i class="nav-icon fas fa-dollar-sign"></i>
@@ -303,6 +307,15 @@
                     <p>
                       Eventos Financeiro
                       <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('calendario.index') }}" class="nav-link custom-active-cal">
+                    <i class="nav-icon fas fa-calendar-alt"></i>
+                    <p>
+                      Calendário 
+                      <span class="right badge badge-info"></span>
                     </p>
                   </a>
                 </li>
