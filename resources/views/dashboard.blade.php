@@ -189,25 +189,7 @@
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  @if ($totalReceitas)
-                  <h3>{{$totalReceitas}}</h3>
-                  @else
-                  <p>Não há receitas registradas.</p>
-                  @endif
-                  <p>Calendario</p>
-
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-                <a href="{{route('calendario.index')}}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            
+         
             <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-info">

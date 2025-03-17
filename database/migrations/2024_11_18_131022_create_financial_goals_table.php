@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('financial_goals', function (Blueprint $table) {
+        Schema::create('financas_metas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('nome'); 
+            $table->string('titulo');
+            $table->text('descricao')->nullable(); 
             $table->decimal('valor', 10, 2);
-            $table->date('start_date'); 
-            $table->date('end_date'); 
+            $table->decimal('valor_corrente', 10, 2)->default(0);
+            $table->date('data_inicio'); 
+            $table->date('data_fim'); 
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

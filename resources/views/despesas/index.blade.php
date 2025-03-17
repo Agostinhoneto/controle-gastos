@@ -43,7 +43,7 @@
         <ul class="list-group">
             <div class="table-responsive">
                 <div class="card shadow">
-                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
                         <h3 class="card-title">Despesas</h3>
                         <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#myModal">
                             <i class="fa fa-plus" aria-hidden="true"></i> Adicionar

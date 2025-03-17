@@ -13,7 +13,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <!-- Cabeçalho do Modal -->
-            <div class="modal-header bg-blue-600 text-white">
+            <div class="modal-header bg-red-600 text-white">
                 <h5 class="modal-title" id="myModalLabel">Criar Despesas</h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
                     <span aria-hidden="true">&times;</span>
