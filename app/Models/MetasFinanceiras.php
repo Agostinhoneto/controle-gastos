@@ -9,6 +9,8 @@ class MetasFinanceiras extends Model
 {
     use HasFactory;
 
+    protected $table = 'financas_metas';
+
     protected $fillable = [
         'user_id',
         'titulo',

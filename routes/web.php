@@ -16,6 +16,7 @@ use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
 use App\Models\Despesas;
 use App\Models\FinancialGoal;
+use App\Models\MetasFinanceiras;
 use App\Models\Receitas;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,7 @@ Route::get('/dashboard', function () {
     $totalReceitas = Receitas::count('id');
     $totalDespesas = Despesas::count('id');
     $totalUsuarios = User::count('id');
-    $totalMetas = FinancialGoal::count('id');
+    $totalMetas = MetasFinanceiras::count('id');
     return view('dashboard', compact('totalReceitas', 'totalDespesas', 'totalUsuarios', 'totalMetas'));
 })->middleware(['auth'])->name('dashboard');
 

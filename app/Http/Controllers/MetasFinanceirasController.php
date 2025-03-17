@@ -46,7 +46,6 @@ class MetasFinanceirasController extends Controller
         return redirect()->route('goals.index')->with('success', 'Meta atualizada com sucesso!');
     }
 
-    // Excluir uma meta
     public function destroy(MetasFinanceiras $goal)
     {
         $goal->delete();
