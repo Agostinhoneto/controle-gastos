@@ -10,6 +10,7 @@ use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\EventoFinanceirosController;
 use App\Http\Controllers\FinancasController;
 use App\Http\Controllers\LembretesPagamentoController;
+use App\Http\Controllers\MetasFinanceirasController;
 use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
@@ -126,4 +127,14 @@ Route::middleware('auth')->group(function () {
     //Calendarios
     Route::get('/calendario/index',[CalendarioFinanceiroController::class,'index'])->name('calendario.index');
     Route::get('/calendario/eventos', [CalendarioFinanceiroController::class, 'eventos'])->name('calendario.eventos');;
+
+    //Metas Financeiras
+
+    Route::get('/metas/index', [MetasFinanceirasController::class, 'index'])->name('metas.index');
+    Route::get('/metas/show/{id}', [MetasFinanceirasController::class, 'show'])->name('metas.show');
+    Route::get('/metas/create', [MetasFinanceirasController::class, 'create'])->name('metas.create');
+    Route::post('/metas/store', [MetasFinanceirasController::class, 'store'])->name('metas.store');
+    Route::get('/metas/edit/{id}', [MetasFinanceirasController::class, 'edit'])->name('metas.edit');
+    Route::post('/metas/update/{id}', [MetasFinanceirasController::class, 'update'])->name('metas.update');
+    Route::delete('/metas/destroy/{lembretes}', [MetasFinanceirasController::class, 'destroy'])->name('metas.destroy');
 });
