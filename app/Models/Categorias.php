@@ -9,7 +9,7 @@ class Categorias extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['descricao'];
+    protected $fillable = ['descricao','usuario_cadastrante_id'];
 
     public function despesas()
     {

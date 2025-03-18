@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class ReceitasController extends Controller
 {
-    /**
-     * Display a listing of receitas.
-     *
-     * @param Request $request
-     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
-     */
+    protected $receitas;
+
+    public function __construct(Receitas $receitas)
+    {
+        $this->receitas = $receitas;
+    }
+
     public function index(Request $request)
     {
         try {
@@ -35,11 +36,6 @@ class ReceitasController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new receita.
-     *
-     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
-     */
     public function create()
     {
         try {
@@ -50,19 +46,21 @@ class ReceitasController extends Controller
         }
     }
 
-    /**
-     * Store a newly created receita in storage.
-     *
-     * @param StoreReceitasRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(StoreReceitasRequest $request)
     {
         try {
-            $data = $request->only(['descricao', 'valor', 'data_recebimento', 'categoria_id']);
-            $data['status'] = $request->input('status', 1); 
+            $this->receitas->create([
+                'descricao' => $request->descricao,
+                'valor' => $request->valor,
+                'data_recebimento' => $request->data_recebimento,
+                'categoria_id' => $request->categoria_id,
+                'usuario_cadastrante_id' => auth()->id(),
+            ]);
+            
+            //  $data = $request->only(['descricao', 'valor', 'data_recebimento', 'categoria_id', 'categoria_id' => auth()->id()]);
+            // $data['status'] = $request->input('status', 1);
 
-            Receitas::create($data);
+            // Receitas::create($data);
 
             return redirect()->route('receitas.index')->with('success', 'Receita cadastrada com sucesso!');
         } catch (\Exception $e) {
@@ -70,13 +68,6 @@ class ReceitasController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified receita.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
-     */
     public function edit(Request $request, $id)
     {
         try {
@@ -92,13 +83,6 @@ class ReceitasController extends Controller
         }
     }
 
-    /**
-     * Update the specified receita in storage.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(Request $request, $id)
     {
         try {
@@ -113,12 +97,6 @@ class ReceitasController extends Controller
         }
     }
 
-    /**
-     * Remove the specified receita from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function destroy($id)
     {
         try {
