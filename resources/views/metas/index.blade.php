@@ -64,19 +64,16 @@
                                 @foreach ($metas as $meta)
                                 <tr>
                                     <td>{{ $meta->titulo }}</td>
-                                    <td>R$ {{ number_format($meta->valor_alvo, 2, ',', '.') }}</td>
-                                    <td>R$ {{ number_format($meta->valor_atual, 2, ',', '.') }}</td>
+                                    <td>R$ {{ number_format($meta->valor, 2, ',', '.') }}</td>
+                                    <td>R$ {{ number_format($meta->valor, 2, ',', '.') }}</td>
                                     <td>
                                         <div class="progress">
-                                            @php
-                                            $progresso = ($meta->valor_atual / $meta->valor_alvo) * 100;
-                                            @endphp
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ $progresso }}" aria-valuemin="0" aria-valuemax="100">
-                                                {{ number_format($progresso, 2) }}%
+                                           
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ $meta->data_limite->format('d/m/Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($meta->data_inicio)->format('d/m/Y') }}</td>
                                     <td>
                                         <a href="{{ route('metas.show', $meta) }}" class="btn btn-info btn-sm">Ver</a>
                                         <a href="{{ route('metas.edit', $meta) }}" class="btn btn-warning btn-sm">Editar</a>

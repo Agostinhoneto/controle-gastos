@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('financas_metas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('usuario_cadastrante_id');
             $table->string('titulo');
             $table->text('descricao')->nullable(); 
             $table->decimal('valor', 10, 2);
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('data_fim'); 
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('usuario_cadastrante_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('financial_goals');
+        Schema::dropIfExists('financas_metas');
     }
 };

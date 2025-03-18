@@ -10,7 +10,7 @@ class MetasFinanceirasController extends Controller
 {
     public function index()
     {
-        $metas = auth()->user()->metas;
+        $metas = MetasFinanceiras::all();
         return view('metas.index', compact('metas'));
     }
 

@@ -12,7 +12,7 @@ class MetasFinanceiras extends Model
     protected $table = 'financas_metas';
 
     protected $fillable = [
-        'user_id',
+        'usuario_cadastrante_id',
         'titulo',
         'descricao',
         'valor',
