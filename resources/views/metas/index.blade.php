@@ -41,13 +41,16 @@
         <ul class="list-group">
             <div class="table-responsive">
                 <div class="card shadow">
-                    <a href="{{ route('metas.create') }}" class="btn btn-primary mb-3">Criar Nova Meta</a>
+
+                    @include('metas.create')
+                    @include('components.flash-message')
 
                     @if ($metas->isEmpty())
                     <div class="alert alert-info">
                         Você ainda não tem metas financeiras cadastradas.
                     </div>
                     @else
+                    
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -68,7 +71,7 @@
                                     <td>R$ {{ number_format($meta->valor, 2, ',', '.') }}</td>
                                     <td>
                                         <div class="progress">
-                                           
+
                                             <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
                                             </div>
                                         </div>

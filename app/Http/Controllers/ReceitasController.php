@@ -56,12 +56,6 @@ class ReceitasController extends Controller
                 'categoria_id' => $request->categoria_id,
                 'usuario_cadastrante_id' => auth()->id(),
             ]);
-            
-            //  $data = $request->only(['descricao', 'valor', 'data_recebimento', 'categoria_id', 'categoria_id' => auth()->id()]);
-            // $data['status'] = $request->input('status', 1);
-
-            // Receitas::create($data);
-
             return redirect()->route('receitas.index')->with('success', 'Receita cadastrada com sucesso!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors('Erro ao cadastrar a receita: ' . $e->getMessage());

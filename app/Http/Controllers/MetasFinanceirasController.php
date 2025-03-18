@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class MetasFinanceirasController extends Controller
 {
+
+    protected $metas;
+
+    public function __construct(MetasFinanceiras $metas)
+    {
+        $this->metas = $metas;
+    }
+
     public function index()
     {
         $metas = MetasFinanceiras::all();
@@ -21,17 +29,20 @@ class MetasFinanceirasController extends Controller
 
     public function store(Request $request)
     {
-        $user = User::find(1); 
-
-        $user->metas()->create([
-            'titulo' => 'Economizar para viagem',
-            'descricao' => 'Economizar R$ 5.000 para uma viagem no final do ano.',
-            'valor_alvo' => 5000,
-            'valor_atual' => 0,
-            'data_limite' => '2023-12-31',
-        ]);
-
-        return redirect()->route('metas.index')->with('success', 'Meta criada com sucesso!');
+        try {
+            $this->metas->create([
+                'usuario_cadastrante_id' => auth()->id(),
+                'titulo' => $request->titulo,
+                'descricao' => $request->descricao,
+                'valor' => $request->valor,
+                'valor_corrente' =>$request->valor_corrente,
+                'data_inicio' => $request->data_inicio,
+                'data_fim' => $request->data_fim,
+            ]);
+            return redirect()->route('metas.index')->with('success', 'Receita cadastrada com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao cadastrar a receita: ' . $e->getMessage());
+        }
     }
 
     public function show(MetasFinanceiras $goal)
