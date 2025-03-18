@@ -11,12 +11,12 @@ class MetasFinanceirasController extends Controller
     public function index()
     {
         $metas = auth()->user()->metas;
-        return view('metas.index', compact('metas'));
+        return view('metas_financas.index', compact('metas'));
     }
 
     public function create()
     {
-        return view('metas.create');
+        return view('metas_financas.create');
     }
 
     public function store(Request $request)
@@ -31,24 +31,24 @@ class MetasFinanceirasController extends Controller
             'data_limite' => '2023-12-31',
         ]);
 
-        return redirect()->route('metas.index')->with('success', 'Meta criada com sucesso!');
+        return redirect()->route('metas_financas.index')->with('success', 'Meta criada com sucesso!');
     }
 
     public function show(MetasFinanceiras $goal)
     {
-        return view('metas.show', compact('goal'));
+        return view('metas_financas.show', compact('goal'));
     }
 
     public function update(Request $request, MetasFinanceiras $goal)
     {
         $goal->update($request->all());
 
-        return redirect()->route('goals.index')->with('success', 'Meta atualizada com sucesso!');
+        return redirect()->route('metas_financas.index')->with('success', 'Meta atualizada com sucesso!');
     }
 
     public function destroy(MetasFinanceiras $goal)
     {
         $goal->delete();
-        return redirect()->route('goals.index')->with('success', 'Meta excluída com sucesso!');
+        return redirect()->route('metas_financas.index')->with('success', 'Meta excluída com sucesso!');
     }
 }
