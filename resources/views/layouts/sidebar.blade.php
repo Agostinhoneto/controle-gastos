@@ -177,6 +177,21 @@
       background-color: #59389A;
       /* Roxo mais escuro no hover */
     }
+
+    .nav-link.custom-active-metas {
+      background-color: #E67E22 !important;
+      /* Laranja fixo */
+      color: #fff !important;
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link.custom-active-metas:hover {
+      background-color: #D35400 !important;
+      /* Um tom mais escuro no hover */
+    }
   </style>
 </head>
 
@@ -267,6 +282,15 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a href="{{ route('metas.index') }}" class="nav-link custom-active-metas">
+                    <i class="fas fa-bullseye"></i>
+                    <p>
+                      Metas Financeiras
+                      <span class="right badge badge-info"></span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="{{route('lembretes.index')}}" class="nav-link custom-active-lembrete">
                     <i class="nav-icon fas fa-clock"></i>
                     <p>
@@ -310,11 +334,12 @@
                     </p>
                   </a>
                 </li>
+
                 <li class="nav-item">
                   <a href="{{ route('calendario.index') }}" class="nav-link custom-active-cal">
                     <i class="nav-icon fas fa-calendar-alt"></i>
                     <p>
-                      Calendário 
+                      Calendário
                       <span class="right badge badge-info"></span>
                     </p>
                   </a>
