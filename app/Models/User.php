@@ -92,4 +92,9 @@ class  User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(MetasFinanceiras::class);
     }
+
+    public function endereco()
+    {
+        return $this->hasOne(Endereco::class);
+    }
 }

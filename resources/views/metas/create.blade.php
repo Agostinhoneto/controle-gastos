@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Metas Financeiros</h3>
+        <h3 class="card-title">Metas Financeiras</h3>
     </div>
     <div class="card shadow mb-4">
         <div class="card-body">
