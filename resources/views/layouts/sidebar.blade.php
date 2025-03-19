@@ -363,85 +363,8 @@
                     </p>
                   </a>
                 </li>
-
-                <li class="nav-header">OUTRAS FUNCIONALIDADES</li>
-                <li class="nav-item">
-                  <a href="pages/calendar.html" class="nav-link">
-                    <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>
-                      Calendário
-                      <span class="badge badge-info right">2</span>
-                    </p>
-                  </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                      Outros
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon far fa-plus-square"></i>
-                    <p>
-                      Extras
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>
-                          Login & Register v1
-                          <i class="fas fa-angle-left right"></i>
-                        </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                          <a href="pages/examples/login.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Login v1</p>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="pages/examples/register.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Register v1</p>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="pages/examples/forgot-password.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Forgot Password v1</p>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-search"></i>
-                    <p>
-                      Pesquisar
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="pages/search/simple.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Simple Search</p>
-                      </a>
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </nav>
