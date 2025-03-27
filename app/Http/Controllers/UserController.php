@@ -89,9 +89,7 @@ class UserController extends Controller
                 'password_confirmation' => Hash::make($request->input('password_confirmation')),
                 'cargo_id' => $request->input('cargo_id'),
             ]);
-
-            dd($user);
-            
+                       
             Endereco::create([
                 'user_id' => $user->id, 
                 'endereco' => $request->input('endereco'),
