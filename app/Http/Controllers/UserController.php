@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Cargo;
+use App\Models\Endereco;
 use App\Models\User;
 use App\Models\Permission;
 use Dotenv\Exception\ValidationException;
@@ -77,15 +78,29 @@ class UserController extends Controller
                     'password' => ['As senhas não coincidem.'],
                 ]);
             }
-    
-            $user = User::create([
+           
+            $user =  User::create([
                 'name' => $request->input('name'),
+                'cpf' => $request->input('cpf'),
+                'rg' => $request->input('rg'),
                 'email' => $request->input('email'),
                 'is_admin' => $request->boolean('is_admin'),
                 'password' => Hash::make($request->input('password')),
                 'password_confirmation' => Hash::make($request->input('password_confirmation')),
                 'cargo_id' => $request->input('cargo_id'),
             ]);
+        
+            Endereco::create([
+                'user_id' => $user->id, 
+                'endereco' => $request->input('endereco'),
+                'numero' => $request->input('numero'),
+                'complemento' => $request->input('complemento'),
+                'bairro' => $request->input('bairro'),
+                'cidade' => $request->input('cidade'),
+                'estado' => $request->input('estado'),
+                'cep' => $request->input('cep'),
+            ]);
+            
             /*
             if ($request->has('permissions')) {
                 $user->syncPermissions($request->permissions);
