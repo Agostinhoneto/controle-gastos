@@ -40,11 +40,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new user.
-     *
-     * @return \Illuminate\View\View
-     */
     public function create()
     {
         if (!auth()->user()->can('create', User::class)) {
@@ -58,13 +53,7 @@ class UserController extends Controller
             return redirect()->back()->withErrors('Erro ao carregar o formulário de criação: ' . $e->getMessage());
         }
     }
-
-    /**
-     * Store a newly created user in storage.
-     *
-     * @param StoreUserRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+       
     public function store(StoreUserRequest $request)
     {
         try {
@@ -114,12 +103,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified user.
-     *
-     * @param int $id
-     * @return \Illuminate\View\View
-     */
     public function edit($id)
     {
         try {
@@ -134,13 +117,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Update the specified user in storage.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(Request $request, $id)
     {
         try {
@@ -160,12 +136,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified user from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function destroy($id)
     {
         try {
