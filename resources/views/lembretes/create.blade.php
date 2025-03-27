@@ -30,6 +30,15 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="despesa_id">Categorias:</label>
+                        <select name="categoria_id" id="categoria_id" required class="form-control">
+                            <option value="">Selecione...</option>
+                            @foreach($categorias as $c)
+                            <option value="{{ $c->id }}">{{ $c->descricao }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="user_id">Usuários:</label>
                         <select name="user_id" id="user_id" required class="form-control">
                             <option value="">Selecione...</option>
@@ -48,10 +57,10 @@
                         <label for="descricao">Descrição:</label>
                         <textarea class="form-control" name="descricao" id="descricao" required placeholder="Digite a descrição"></textarea>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label for="descricao">Valor:</label>
-                        <input type="integer" class="form-control" name="valor" id="valor" required placeholder="Digite o Valor"></textarea>
+                        <label for="valor">Valor:</label>
+                        <input type="text" class="form-control" name="valor" id="valor" required placeholder="Digite o Valor">
                     </div>
 
                     <div class="form-group">
@@ -75,3 +84,21 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script><script>
+    $(document).ready(function(){
+        $('#valor').maskMoney({
+            prefix: 'R$ ', 
+            allowNegative: false, 
+            thousands: '.', 
+            decimal: ',', 
+            affixesStay: false
+        });
+
+        $('#form').submit(function(){
+            let valor = $('#valor').maskMoney('unmasked')[0]; 
+            $('#valor').val(valor); 
+         });
+    });
+</script>

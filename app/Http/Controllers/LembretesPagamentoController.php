@@ -12,14 +12,24 @@ use Illuminate\Support\Facades\Auth;
 
 class LembretesPagamentoController extends Controller
 {
+
+    protected $lembretes;
+
+    public function __construct(LembretePagamento $lembretes)
+    {
+        $this->lembretes = $lembretes;
+    }
+
+
     public function index()
     {
         try {
             $despesas = Despesas::all();
+            $categorias = Categorias::all();
             $users = User::all();
             $lembretes = LembretePagamento::where('user_id', Auth::id())->get();
 
-            return view('lembretes.index', compact('lembretes', 'despesas', 'users'));
+            return view('lembretes.index', compact('lembretes', 'despesas', 'users','categorias'));
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Erro ao carregar lembretes de pagamento: ' . $e->getMessage());
             return back()->withErrors('Erro ao carregar os lembretes. Tente novamente mais tarde.');
@@ -33,28 +43,25 @@ class LembretesPagamentoController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'despesa_id' => 'required|exists:despesas,id',
-            'user_id' => 'required|exists:users,id',
-            'titulo' => 'required|string|max:255',
-            'valor' => 'required|numeric',
-            'descricao' => 'nullable|string',
-            'data_aviso' => 'required|date',
-            'data_notificacao' => 'nullable|date|after_or_equal:data_aviso',
-        ]);
+        $valorConvertido = floatval(str_replace(',', '.', str_replace('.', '', $request->valor)));
+        $request->merge(['valor' => $valorConvertido]);
 
         try {
-            $lembrete = new LembretePagamento();
-            $lembrete->despesa_id = $validatedData['despesa_id'];
-            $lembrete->user_id = $validatedData['user_id'];
-            $lembrete->titulo = $validatedData['titulo'];
-            $lembrete->valor = $validatedData['valor'];
-            $lembrete->descricao = $validatedData['descricao'];
-            $lembrete->data_aviso = $validatedData['data_aviso'];
-            $lembrete->data_notificacao = $validatedData['data_notificacao'];
-            $lembrete->save();
+            $this->lembretes->create([
+                'despesa_id' => $request->despesa_id,
+                'categoria_id'  => $request->categoria_id,
+                'user_id' => $request->user_id,
+                'titulo' => $request->titulo,
+                'valor'   => $valorConvertido,
+                'descricao' => $request->descricao,
+                'data_aviso' => $request->data_aviso,
+                'data_notificacao' => $request->data_notificacao,
+            ]);
+            return redirect()->route('lembretes.index')->with('success', 'Receita cadastrada com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao cadastrar a receita: ' . $e->getMessage());
 
-            auth()->user()->notify(new NovoLembretePagamento($lembrete));
+            auth()->user()->notify(new NovoLembretePagamento($lembretes));
 
             return redirect()->route('lembretes.index')->with('success', 'Lembrete criado e notificado com sucesso!');
         } catch (\Exception $e) {

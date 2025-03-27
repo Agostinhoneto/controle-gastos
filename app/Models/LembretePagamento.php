@@ -12,6 +12,7 @@ class LembretePagamento extends Model
     protected $fillable = [
         'user_id',
         'despesa_id',
+        'categoria_id',
         'titulo',
         'valor',
         'descricao',
