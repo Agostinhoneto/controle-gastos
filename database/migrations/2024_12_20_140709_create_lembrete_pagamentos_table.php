@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('despesa_id');
             $table->string('titulo');
+            $table->integer('valor');
             $table->text('descricao')->nullable();
             $table->date('data_aviso');
             $table->date('data_notificacao');

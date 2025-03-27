@@ -37,6 +37,7 @@ class LembretesPagamentoController extends Controller
             'despesa_id' => 'required|exists:despesas,id',
             'user_id' => 'required|exists:users,id',
             'titulo' => 'required|string|max:255',
+            'valor' => 'required|numeric',
             'descricao' => 'nullable|string',
             'data_aviso' => 'required|date',
             'data_notificacao' => 'nullable|date|after_or_equal:data_aviso',
@@ -47,6 +48,7 @@ class LembretesPagamentoController extends Controller
             $lembrete->despesa_id = $validatedData['despesa_id'];
             $lembrete->user_id = $validatedData['user_id'];
             $lembrete->titulo = $validatedData['titulo'];
+            $lembrete->valor = $validatedData['valor'];
             $lembrete->descricao = $validatedData['descricao'];
             $lembrete->data_aviso = $validatedData['data_aviso'];
             $lembrete->data_notificacao = $validatedData['data_notificacao'];

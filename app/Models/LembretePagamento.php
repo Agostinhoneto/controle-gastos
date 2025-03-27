@@ -13,6 +13,7 @@ class LembretePagamento extends Model
         'user_id',
         'despesa_id',
         'titulo',
+        'valor',
         'descricao',
         'data_aviso',
         'data_notificacao',

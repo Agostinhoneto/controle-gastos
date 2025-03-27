@@ -48,6 +48,11 @@
                         <label for="descricao">Descrição:</label>
                         <textarea class="form-control" name="descricao" id="descricao" required placeholder="Digite a descrição"></textarea>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="descricao">Valor:</label>
+                        <input type="integer" class="form-control" name="valor" id="valor" required placeholder="Digite o Valor"></textarea>
+                    </div>
 
                     <div class="form-group">
                         <label for="data_aviso">Data de Aviso:</label>
