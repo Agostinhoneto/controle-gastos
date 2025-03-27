@@ -28,4 +28,9 @@ class LembretePagamento extends Model
     {
         return $this->belongsTo(Despesas::class);
     }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categorias::class);
+    }
 }

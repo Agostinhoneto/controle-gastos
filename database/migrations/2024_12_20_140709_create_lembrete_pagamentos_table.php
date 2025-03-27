@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('lembrete_pagamentos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('categoria_id');
             $table->unsignedBigInteger('despesa_id');
             $table->string('titulo');
             $table->integer('valor');
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->foreign('despesa_id')->references('id')->on('despesas')->onDelete('cascade');
         });
     }
