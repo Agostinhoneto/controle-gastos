@@ -9,7 +9,7 @@ class Endereco extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'cpf', 'rg', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'cep'];
+    protected $fillable = ['user_id', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'cep'];
 
     public function user()
     {

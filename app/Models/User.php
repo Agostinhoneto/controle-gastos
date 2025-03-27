@@ -21,6 +21,8 @@ class  User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'name',
+        'cpf', 
+        'rg',
         'email',
         'is_admin',
         'password',
@@ -95,6 +97,6 @@ class  User extends Authenticatable implements JWTSubject
 
     public function endereco()
     {
-        return $this->hasOne(Endereco::class);
+        return $this->hasMany(Endereco::class);
     }
 }

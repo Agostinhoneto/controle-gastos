@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('enderecos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); 
-            $table->string('cpf', 14)->unique(); 
-            $table->string('rg', 20)->unique(); 
             $table->string('endereco'); 
             $table->string('numero', 10); 
             $table->string('complemento')->nullable(); 

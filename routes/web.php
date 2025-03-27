@@ -61,9 +61,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
         Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
         Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
-        Route::delete('/users/destroy/{users}', [UserController::class, 'destroy'])->name('users.destroy');    
+        Route::delete('/users/destroy/{users}', [UserController::class, 'destroy'])->name('users.destroy');
     });
- 
+
     //receitas
     Route::get('/receitas', [ReceitasController::class, 'index'])->name('receitas.index');
     Route::get('/receitas/create', [ReceitasController::class, 'create'])->name('receitas.create');
@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/receitas/edit/{id}', [ReceitasController::class, 'edit'])->name('receitas.edit');
     Route::post('/receitas/update/{id}', [ReceitasController::class, 'update'])->name('receitas.update');
     Route::delete('/receitas/destroy/{receitas}', [ReceitasController::class, 'destroy'])->name('receitas.destroy');
-    
+
     //despesas       
     Route::get('/despesas', [DespesasController::class, 'index'])->name('despesas.index');
     Route::get('/despesas/create', [DespesasController::class, 'create'])->name('despesas.create');
@@ -81,12 +81,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/despesas/destroy/{despesas}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
     Route::get('/enviar-alerta/{userId}/{gastoAtual}/{limiteGastos}', [DespesasController::class, 'enviarAlertaDespesa'])->name('enviar.alerta');
     Route::get('/enviar-email', [DespesasController::class, 'enviarEmail']);
-   
+
     //relatorios
     Route::get('/despesas/gerar-pdf-despesas', [DespesasController::class, 'gerarPdf'])->name('despesas.gerar-pdf');
     Route::get('/minhas-financas', [FinancasController::class, 'index'])->name('financas.index');
 
-    
+
     // categorias
     Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
     Route::get('/categorias/show/{id}', [CategoriasController::class, 'show'])->name('categorias.show');
@@ -98,13 +98,13 @@ Route::middleware('auth')->group(function () {
     //contatos
     Route::get('/contatos', [ContatoController::class, 'index'])->name('contatos.index');
     Route::post('/contatos/store', [ContatoController::class, 'store'])->name('contatos.store');
-   
+
     //Eventos
     Route::get('/eventos', [EventoFinanceirosController::class, 'index'])->name('eventos.index');
     Route::post('/eventos/store', [EventoFinanceirosController::class, 'store'])->name('eventos.store');
     Route::post('/eventos/edit', [EventoFinanceirosController::class, 'edit'])->name('eventos.edit');
     Route::get('/eventos/destroy', [EventoFinanceirosController::class, 'destroy'])->name('eventos.destroy');
-  
+
     //relatorios
     Route::get('/relatorios/exportar/pdf', [RelatorioController::class, 'exportarPDF'])->name('relatorios.exportar.pdf');
     Route::get('/relatorios/exportar/excel', [RelatorioController::class, 'exportarExcel'])->name('relatorios.exportar.excel');
@@ -112,7 +112,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/relatorio/gerar', [RelatorioController::class, 'gerarPDF'])->name('relatorios.despesas');
     Route::get('/reports', [RelatorioController::class, 'gerarPDF'])->name('report.despesas');
     Route::get('/relatorios/comparacao', [RelatorioController::class, 'comparar'])->name('relatorios.comparacao');
-  
+
     //lembrete de pagamento
     Route::get('/lembretes/index', [LembretesPagamentoController::class, 'index'])->name('lembretes.index');
     Route::get('/lembretes/show/{id}', [LembretesPagamentoController::class, 'show'])->name('lembretes.show');
@@ -125,7 +125,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/charts', [ChartController::class, 'index'])->name('charts.index');
 
     //Calendarios
-    Route::get('/calendario/index',[CalendarioFinanceiroController::class,'index'])->name('calendario.index');
+    Route::get('/calendario/index', [CalendarioFinanceiroController::class, 'index'])->name('calendario.index');
     Route::get('/calendario/eventos', [CalendarioFinanceiroController::class, 'eventos'])->name('calendario.eventos');;
 
     //Metas Financeiras
