@@ -43,25 +43,24 @@ class LembretesPagamentoController extends Controller
 
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'despesa_id' => 'nullable|exists:despesas,id',
             'categoria_id' => 'required|exists:categorias,id',
             'titulo' => 'required|string|max:255',
-            'valor' => 'required|string', 
+            'valor' => 'required|string',
             'descricao' => 'nullable|string',
             'data_aviso' => 'required|date',
             'data_notificacao' => 'nullable|date|after_or_equal:data_aviso',
         ]);
 
         $valorConvertido = $this->convertCurrencyToDecimal($validated['valor']);
-        
+
         try {
-           
+
             $lembrete = $this->lembretes->create([
                 'despesa_id' => $validated['despesa_id'],
                 'categoria_id' => $validated['categoria_id'],
-                'user_id' => auth()->id(), 
+                'user_id' => $validated['user_id'],
                 'titulo' => $validated['titulo'],
                 'valor' => $valorConvertido,
                 'descricao' => $validated['descricao'],
@@ -69,7 +68,6 @@ class LembretesPagamentoController extends Controller
                 'data_notificacao' => $validated['data_notificacao'],
                 'status' => $request->status ?? 1,
             ]);
-            
             auth()->user()->notify(new NovoLembretePagamento($lembrete));
 
             return redirect()->route('lembretes.index')
@@ -82,7 +80,18 @@ class LembretesPagamentoController extends Controller
 
     protected function convertCurrencyToDecimal($value)
     {
-        return floatval(str_replace(',', '.', str_replace('.', '', $value)));
+        $cleaned = preg_replace('/[^\d.,]/', '', $value);
+
+        if (preg_match('/^[\d]+([.,][\d]+)?$/', $cleaned)) {
+            if (substr_count($cleaned, ',') == 1) {
+                return (float) str_replace(',', '.', str_replace('.', '', $cleaned));
+            }
+            return (float) str_replace(',', '', $cleaned);
+        }
+        if (preg_match('/^\d{1,3}(?:\.\d{3})*(?:,\d{2})$/', $cleaned)) {
+            return (float) str_replace(',', '.', str_replace('.', '', $cleaned));
+        }
+        return 0; 
     }
 
     public function edit($id)
@@ -127,7 +136,7 @@ class LembretesPagamentoController extends Controller
     public function ativarStatus(LembretePagamento $lembrete)
     {
         try {
-            $novoStatus = !$lembrete->status; 
+            $novoStatus = !$lembrete->status;
             $lembrete->update(['status' => $novoStatus]);
 
             return back()->with([
