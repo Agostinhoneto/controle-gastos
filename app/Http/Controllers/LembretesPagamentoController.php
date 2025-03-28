@@ -55,6 +55,7 @@ class LembretesPagamentoController extends Controller
         ]);
 
         $valorConvertido = $this->convertCurrencyToDecimal($validated['valor']);
+        
         try {
            
             $lembrete = $this->lembretes->create([
@@ -126,7 +127,7 @@ class LembretesPagamentoController extends Controller
     public function ativarStatus(LembretePagamento $lembrete)
     {
         try {
-            $novoStatus = !$lembrete->status; // Inverte o status atual
+            $novoStatus = !$lembrete->status; 
             $lembrete->update(['status' => $novoStatus]);
 
             return back()->with([

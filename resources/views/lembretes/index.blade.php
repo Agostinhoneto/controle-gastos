@@ -70,7 +70,7 @@
                                             @csrf
                                             @method('PATCH')
                                             <button type="submit" class="btn btn-sm {{ $lembrete->status ? 'btn-danger' : 'btn-success' }}">
-                                                {{ $lembrete->status ? 'Desativar' : 'Ativar' }}
+                                                {{ $lembrete->status ? 'Não Pago' : 'Pago' }}
                                             </button>
                                         </form>
                                     </td>
@@ -101,22 +101,17 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 <script>
     $(document).ready(function() {
-        $(".ativar-status").click(function() {
-            let button = $(this);
-            let itemId = button.data("id");
-
-            $.ajax({
-                url: "/lembretes/" + itemId + "/ativar-status",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function(response) {
-                    button.text(response.status === "ativo" ? "Desativar" : "Ativar");
-                }
-            });
-        });
+        setTimeout(function() {
+            $('#valor').maskMoney({
+                prefix: 'R$ ',
+                allowNegative: false,
+                thousands: '.',
+                decimal: ',',
+                affixesStay: true
+            }).maskMoney('mask'); 
+        }, 100);
     });
 </script>
