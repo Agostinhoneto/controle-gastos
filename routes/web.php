@@ -86,7 +86,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/despesas/gerar-pdf-despesas', [DespesasController::class, 'gerarPdf'])->name('despesas.gerar-pdf');
     Route::get('/minhas-financas', [FinancasController::class, 'index'])->name('financas.index');
 
-
     // categorias
     Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
     Route::get('/categorias/show/{id}', [CategoriasController::class, 'show'])->name('categorias.show');
@@ -121,11 +120,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/lembretes/edit/{id}', [LembretesPagamentoController::class, 'edit'])->name('lembretes.edit');
     Route::post('/lembretes/update/{id}', [LembretesPagamentoController::class, 'update'])->name('lembretes.update');
     Route::delete('/lembretes/destroy/{lembretes}', [LembretesPagamentoController::class, 'destroy'])->name('lembretes.destroy');
-    //Route::post('/lembretes/{lembrete}/ativar-status', [LembretesPagamentoController::class, 'ativarStatus'])->name('lembretes.ativar-status');
-
-
     Route::patch('/lembretes/{lembrete}/ativar-status', [LembretesPagamentoController::class, 'ativarStatus'])->name('lembretes.ativar-status');
 
+    //Gráficos
     Route::get('/charts', [ChartController::class, 'index'])->name('charts.index');
 
     //Calendarios
