@@ -339,7 +339,7 @@
                   <a href="{{ route('calendario.index') }}" class="nav-link custom-active-cal">
                     <i class="nav-icon fas fa-calendar-alt"></i>
                     <p>
-                      Calendário
+                      Calendário Financeiro
                       <span class="right badge badge-info"></span>
                     </p>
                   </a>
