@@ -86,19 +86,20 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script><script>
-    $(document).ready(function(){
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+<script>
+    $(document).ready(function() {
         $('#valor').maskMoney({
-            prefix: 'R$ ', 
-            allowNegative: false, 
-            thousands: '.', 
-            decimal: ',', 
+            prefix: 'R$ ',
+            allowNegative: false,
+            thousands: '.',
+            decimal: ',',
             affixesStay: false
         });
 
-        $('#form').submit(function(){
-            let valor = $('#valor').maskMoney('unmasked')[0]; 
-            $('#valor').val(valor); 
-         });
+        $('#form').submit(function() {
+            let valor = $('#valor').maskMoney('unmasked')[0];
+            $('#valor').val(valor);
+        });
     });
 </script>

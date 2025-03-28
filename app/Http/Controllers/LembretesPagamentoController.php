@@ -29,7 +29,7 @@ class LembretesPagamentoController extends Controller
             $users = User::all();
             $lembretes = LembretePagamento::where('user_id', Auth::id())->get();
 
-            return view('lembretes.index', compact('lembretes', 'despesas', 'users','categorias'));
+            return view('lembretes.index', compact('lembretes', 'despesas', 'users', 'categorias'));
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Erro ao carregar lembretes de pagamento: ' . $e->getMessage());
             return back()->withErrors('Erro ao carregar os lembretes. Tente novamente mais tarde.');
@@ -43,31 +43,45 @@ class LembretesPagamentoController extends Controller
 
     public function store(Request $request)
     {
-        $valorConvertido = floatval(str_replace(',', '.', str_replace('.', '', $request->valor)));
-        $request->merge(['valor' => $valorConvertido]);
 
+        $validated = $request->validate([
+            'despesa_id' => 'nullable|exists:despesas,id',
+            'categoria_id' => 'required|exists:categorias,id',
+            'titulo' => 'required|string|max:255',
+            'valor' => 'required|string', 
+            'descricao' => 'nullable|string',
+            'data_aviso' => 'required|date',
+            'data_notificacao' => 'nullable|date|after_or_equal:data_aviso',
+        ]);
+
+        $valorConvertido = $this->convertCurrencyToDecimal($validated['valor']);
         try {
-            $this->lembretes->create([
-                'despesa_id' => $request->despesa_id,
-                'categoria_id'  => $request->categoria_id,
-                'user_id' => $request->user_id,
-                'titulo' => $request->titulo,
-                'valor'   => $valorConvertido,
-                'descricao' => $request->descricao,
-                'data_aviso' => $request->data_aviso,
-                'data_notificacao' => $request->data_notificacao,
+           
+            $lembrete = $this->lembretes->create([
+                'despesa_id' => $validated['despesa_id'],
+                'categoria_id' => $validated['categoria_id'],
+                'user_id' => auth()->id(), 
+                'titulo' => $validated['titulo'],
+                'valor' => $valorConvertido,
+                'descricao' => $validated['descricao'],
+                'data_aviso' => $validated['data_aviso'],
+                'data_notificacao' => $validated['data_notificacao'],
+                'status' => $request->status ?? 1,
             ]);
-            return redirect()->route('lembretes.index')->with('success', 'Receita cadastrada com sucesso!');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Erro ao cadastrar a receita: ' . $e->getMessage());
+            
+            auth()->user()->notify(new NovoLembretePagamento($lembrete));
 
-            auth()->user()->notify(new NovoLembretePagamento($lembretes));
-
-            return redirect()->route('lembretes.index')->with('success', 'Lembrete criado e notificado com sucesso!');
+            return redirect()->route('lembretes.index')
+                ->with('success', 'Lembrete cadastrado com sucesso!');
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error('Erro ao criar lembrete: ' . $e->getMessage());
-            return back()->withErrors('Erro ao criar o lembrete. Tente novamente mais tarde.');
+            return back()->withInput()
+                ->with('error', 'Erro ao cadastrar lembrete: ' . $e->getMessage());
         }
+    }
+
+    protected function convertCurrencyToDecimal($value)
+    {
+        return floatval(str_replace(',', '.', str_replace('.', '', $value)));
     }
 
     public function edit($id)
@@ -105,6 +119,22 @@ class LembretesPagamentoController extends Controller
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Erro ao atualizar lembrete: ' . $e->getMessage());
             return back()->withErrors('Erro ao atualizar o lembrete. Tente novamente mais tarde.');
+        }
+    }
+
+
+    public function ativarStatus(LembretePagamento $lembrete)
+    {
+        try {
+            $novoStatus = !$lembrete->status; // Inverte o status atual
+            $lembrete->update(['status' => $novoStatus]);
+
+            return back()->with([
+                'success' => 'Status alterado com sucesso!',
+                'novo_status' => $novoStatus
+            ]);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erro ao alterar status: ' . $e->getMessage());
         }
     }
 

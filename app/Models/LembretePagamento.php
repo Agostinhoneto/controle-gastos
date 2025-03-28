@@ -18,6 +18,7 @@ class LembretePagamento extends Model
         'descricao',
         'data_aviso',
         'data_notificacao',
+        'status',
     ];
 
     public function user()
