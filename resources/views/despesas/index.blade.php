@@ -1,7 +1,5 @@
 @include('layouts.topo')
-@extends('layout')
 @include('mensagem', ['mensagem' => $mensagem])
-
 <style>
     #status {
         padding: 5px;
@@ -36,6 +34,9 @@
         font-weight: bold;
     }
 </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
@@ -54,7 +55,7 @@
                     @include('components.flash-message')
 
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-hover">
+                        <table id="example2" class="table table-bordered table-hover">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
