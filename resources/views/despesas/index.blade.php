@@ -48,7 +48,7 @@
                         <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
                     </button>
                 </div>
-                @include('receitas.create')
+                @include('despesas.create')
                 @include('components.flash-message')
                 <div class="container mt-4">
                     <div class="card">
