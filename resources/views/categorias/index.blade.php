@@ -1,92 +1,119 @@
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="referrer" content="always">
-    <title>Admin</title>
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-</head>
-@extends('layout')
+@include('layouts.topo')
 @include('mensagem', ['mensagem' => $mensagem])
+<style>
+    #status {
+        padding: 5px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .ativo {
+        background-color: green;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .inativo {
+        background-color: red;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .card-title {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .total-receitas {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+</style>
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="card-body">
-        <ul class="list-group">
-            <div class="table-responsive">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Categorias</h3>
-                    </div>
-                    <!-- Modal para Criar Categorias -->
-                    <div class="modal fade" id="myModal">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <!-- Cabeçalho do Modal -->
-                                <div class="modal-header bg-primary text-white">
-                                    <h4 class="modal-title">Criar Categoria</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <!-- Corpo do Modal -->
-                                <div class="modal-body">
-                                    <form method="POST" action="{{ route('categorias.store') }}">
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label for="descricao" class="form-label">Descrição da Categoria</label>
-                                            <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite a descrição" required>
-                                        </div>
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- Rodapé do Modal -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                </div>
-                            </div>
+        <div class="table-responsive">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h3 class="card-title">Categorias</h3>
+                    <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+                    </button>
+                </div>
+                @include('categorias.create')
+                @include('components.flash-message')
+                <div class="container mt-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"></h3>
                         </div>
+                        <div class="card-body">
+                            <table id="categorias" class="table table-bordered table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Descrição</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Excluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($categorias as $categoria)
+                                    <tr>
+                                        <td>{{ $categoria->descricao }}</td>
+                                        <td>
+                                            <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-info btn-sm">
+                                                <i class="fas fa-pencil-alt"></i> Editar
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('categorias.destroy', $categoria->id) }}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($categoria->descricao) }}?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="far fa-trash-alt"></i> Excluir
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        </ul>
                     </div>
-
-                    <!-- Tabela de Categorias -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Descrição</th>
-                                    <th scope="col">Editar</th>
-                                    <th scope="col">Excluir</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($categorias as $categoria)
-                                <tr>
-                                    <td>{{ $categoria->descricao }}</td>
-                                    <td>
-                                        <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-info btn-sm">
-                                            <i class="fas fa-pencil-alt"></i> Editar
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('categorias.destroy', $categoria->id) }}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($categoria->descricao) }}?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="far fa-trash-alt"></i> Excluir
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#myModal">
-                            <i class="fa fa-plus"></i> Adicionar Categoria
-                        </button>
-                    </div>
-
-        </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables JS (apenas o básico) -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<!-- Script de Inicialização Simplificado -->
+<script>
+    $(document).ready(function() {
+        $('#categorias').DataTable({
+            responsive: true,
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
+            },
+            paging: true,
+            searching: true,
+            ordering: true,
+            info: true,
+            autoWidth: false,
+            pageLength: 10
+        });
+    });
+</script>
 @include('layouts.footer')
