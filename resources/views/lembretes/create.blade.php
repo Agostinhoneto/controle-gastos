@@ -62,7 +62,7 @@
                         <label for="valor">Valor:</label>
                         <input type="text" class="form-control" name="valor" id="valor" required placeholder="Digite o Valor">
                     </div>
-                   
+
                     <div class="form-group">
                         <label for="data_aviso">Data de Aviso:</label>
                         <input type="date" class="form-control" name="data_aviso" id="data_aviso" required placeholder="Data">
@@ -84,6 +84,7 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -94,11 +95,6 @@
             decimal: ',',
             affixesStay: true
         });
-        $('#valor').maskMoney('mask');        
-        $('#valor').trigger('focus');
-        $('#lembreteForm').on('submit', function(e) {
-            $('#valor').val($('#valor').maskMoney('unmasked')[0]);
-            return true;
-        });
+        $('#valor').maskMoney('mask');
     });
 </script>
