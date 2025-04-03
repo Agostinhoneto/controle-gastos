@@ -7,6 +7,7 @@
     </ul>
 </div>
 @endif
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -16,7 +17,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="modal-body">
                 <form class="form" method="POST" action="{{ route('lembretes.store') }}">
                     @csrf

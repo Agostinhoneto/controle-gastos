@@ -27,7 +27,22 @@
         font-size: 1.25rem;
     }
 </style>
-
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- Include the jQuery Mask Money plugin AFTER jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#valor').maskMoney({ // Now it should work!
+                prefix: 'R$ ',
+                allowNegative: false,
+                thousands: '.',
+                decimal: ',',
+                affixesStay: true
+            }).maskMoney('mask');
+        }, 100);
+    });
+</script>
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="card-body">
@@ -104,9 +119,7 @@
     </div>
 </div>
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables JS (apenas o básico) -->
@@ -127,16 +140,5 @@
             pageLength: 10
         });
     });
-
-    $(document).ready(function() {
-        setTimeout(function() {
-            $('#valor').maskMoney({
-                prefix: 'R$ ',
-                allowNegative: false,
-                thousands: '.',
-                decimal: ',',
-                affixesStay: true
-            }).maskMoney('mask');
-        }, 100);
-    });
+   
 </script>
