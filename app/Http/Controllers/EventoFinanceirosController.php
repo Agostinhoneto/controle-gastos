@@ -11,15 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class EventoFinanceirosController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
             $eventos = EventosFinanceiro::with('categoria')
                 ->orderBy('data_inicio', 'asc')
                 ->get();
             $categorias = Categorias::all();
+            $mensagem = $request->session()->get('mensagem');
 
-            return view('eventos.index', compact('eventos', 'categorias'));
+            return view('eventos.index', compact('eventos', 'categorias', 'mensagem'));
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Erro ao carregar eventos financeiros: ' . $e->getMessage());
             return back()->withErrors('Erro ao carregar os eventos financeiros. Tente novamente mais tarde.');
