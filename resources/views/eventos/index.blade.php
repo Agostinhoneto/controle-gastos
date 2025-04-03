@@ -25,7 +25,6 @@
         font-weight: bold;
         font-size: 1.5rem;
     }
-    /* Adicionado para melhor espaçamento */
     .main-content {
         padding: 20px;
         width: 100%;
@@ -40,12 +39,12 @@
     <div class="main-content">
         <div class="card shadow">
             <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
-                <h3 class="card-title">Despesas</h3>
+                <h3 class="card-title">Eventos</h3>
                 <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
                 </button>
             </div>
-            @include('despesas.create')
+            @include('eventos.create')
             @include('components.flash-message')
             <div class="card-body">
                 <div class="table-responsive">
@@ -96,7 +95,6 @@
         </div>
     </div>
 </div>
-@include('layouts.footer')
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
