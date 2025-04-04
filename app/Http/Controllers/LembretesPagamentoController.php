@@ -21,15 +21,15 @@ class LembretesPagamentoController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
         try {
             $despesas = Despesas::all();
             $categorias = Categorias::all();
             $users = User::all();
             $lembretes = LembretePagamento::where('user_id', Auth::id())->get();
-
-            return view('lembretes.index', compact('lembretes', 'despesas', 'users', 'categorias'));
+            $mensagem = $request->session()->get('mensagem');
+            return view('lembretes.index', compact('lembretes', 'despesas', 'users', 'categorias','mensagem'));
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Erro ao carregar lembretes de pagamento: ' . $e->getMessage());
             return back()->withErrors('Erro ao carregar os lembretes. Tente novamente mais tarde.');
@@ -97,13 +97,15 @@ class LembretesPagamentoController extends Controller
     public function edit($id)
     {
         try {
-            $lembrete = LembretePagamento::where('id', $id)
+            $lembretes = LembretePagamento::where('id', $id)
                 ->where('user_id', Auth::id())
                 ->firstOrFail();
             $despesas = Despesas::where('user_id', Auth::id())->get();
-
-            return view('lembretes.edit', compact('lembrete', 'despesas'));
+            $categorias = Categorias::query()->orderBy('descricao')->get();
+            $users = User::all();
+            return view('lembretes.edit', compact('lembretes', 'despesas', 'categorias','users'));
         } catch (\Exception $e) {
+            dd($e->getMessage());
             \Illuminate\Support\Facades\Log::error('Erro ao carregar lembrete para edição: ' . $e->getMessage());
             return back()->withErrors('Erro ao carregar o lembrete. Tente novamente mais tarde.');
         }
