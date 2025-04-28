@@ -65,6 +65,7 @@
                                         <th scope="col">Valor</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Categoria</th>
+                                        <th scope="col">Data de Cadastro</th>
                                         <th scope="col">Editar</th>
                                         <th scope="col">Excluir</th>
                                     </tr>
@@ -82,6 +83,7 @@
                                             </span>
                                         </td>
                                         <td>{{ $receita->categoria?->descricao }}</td>
+                                        <td>{{ Carbon\Carbon::parse($receita->created_at)->format('d/m/Y') }}</td>
                                         <td>
                                             <a href="{{ route('receitas.edit', $receita->id) }}" class="btn btn-info btn-sm">
                                                 <i class="fas fa-edit"></i>
