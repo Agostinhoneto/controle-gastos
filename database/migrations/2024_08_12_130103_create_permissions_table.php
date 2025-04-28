@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');  // Nome único da permissão, ex: "edit_posts"
-            $table->string('description')->nullable();  // Descrição da permissão, ex: "Permite editar posts"
+            $table->string('name');  
+            $table->string('description')->nullable(); 
             $table->timestamps();
         });
     }

@@ -19,7 +19,6 @@ class ReceitasTableSeeder extends Seeder
             'data_recebimento' => '2024-01-01',
             'status' => true,
             'categoria_id' => 1,
-
         ]);
 
         Receitas::create([

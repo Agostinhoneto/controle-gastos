@@ -17,10 +17,14 @@ class Admin extends Seeder
     {
         User::create([
             'name' => 'Admin',
+            'cpf' => '12345678900',
+            'rg' => '123456789',
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('password'), //password
-            'is_admin' => 1
+            'password' => bcrypt('password'), 
+            'password_confirmation' => bcrypt('password'), 
+            'is_admin' => 1,
+            'cargo_id' => 1
         ]);
     }
 }

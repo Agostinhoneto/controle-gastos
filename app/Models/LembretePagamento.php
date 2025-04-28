@@ -12,10 +12,13 @@ class LembretePagamento extends Model
     protected $fillable = [
         'user_id',
         'despesa_id',
+        'categoria_id',
         'titulo',
+        'valor',
         'descricao',
         'data_aviso',
         'data_notificacao',
+        'status',
     ];
 
     public function user()
@@ -26,5 +29,10 @@ class LembretePagamento extends Model
     public function despesa()
     {
         return $this->belongsTo(Despesas::class);
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categorias::class);
     }
 }

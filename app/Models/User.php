@@ -21,9 +21,13 @@ class  User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'name',
+        'cpf', 
+        'rg',
         'email',
         'is_admin',
         'password',
+        'password_confirmation',
+        'cargo_id',
     ];
 
     /**
@@ -79,5 +83,20 @@ class  User extends Authenticatable implements JWTSubject
     public function gastosTotais()
     {
         return $this->despesas()->sum('valor');
+    }
+
+    public function cargo()
+    {
+        return $this->belongsTo(Cargo::class);
+    }
+
+    public function metas()
+    {
+        return $this->hasMany(MetasFinanceiras::class);
+    }
+
+    public function endereco()
+    {
+        return $this->hasMany(Endereco::class);
     }
 }

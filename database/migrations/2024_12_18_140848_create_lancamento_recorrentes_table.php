@@ -13,21 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('despesas_receitas', function (Blueprint $table) {
+        Schema::create('lancamento_recorrentes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('usuario_id');
             $table->enum('tipo', ['despesa', 'receita']);
             $table->decimal('valor', 15, 2);
-            $table->unsignedBigInteger('categoria_id');
             $table->string('descricao')->nullable();
-            $table->date('data');
-            $table->unsignedBigInteger('usuario_id');
-            $table->unsignedBigInteger('recorrencia_id')->nullable();
+            $table->enum('frequencia', ['diaria', 'semanal', 'mensal', 'anual']);
+            $table->date('data_inicio');
+            $table->date('data_fim')->nullable();
+            $table->boolean('ativo')->default(true);
             $table->timestamps();
 
             // Relacionamentos
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('recorrencia_id')->references('id')->on('recorrencias')->onDelete('cascade');
         });
     }
 
@@ -38,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('despesas_receitas');
+        Schema::dropIfExists('lancamento_recorrentes');
     }
 };

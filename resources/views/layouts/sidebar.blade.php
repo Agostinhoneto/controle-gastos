@@ -163,6 +163,35 @@
       background-color: #59389A;
       /* Roxo mais escuro no hover */
     }
+
+    .nav-link.custom-active-cal:hover {
+      background-color: rgb(60, 59, 63);
+      color: #fff;
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link.custom-active-fin:hover {
+      background-color: #59389A;
+      /* Roxo mais escuro no hover */
+    }
+
+    .nav-link.custom-active-metas {
+      background-color: #E67E22 !important;
+      /* Laranja fixo */
+      color: #fff !important;
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link.custom-active-metas:hover {
+      background-color: #D35400 !important;
+      /* Um tom mais escuro no hover */
+    }
   </style>
 </head>
 
@@ -224,8 +253,7 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+
                 <li class="nav-item">
                   <a href="{{route('receitas.index')}}" class="nav-link active">
                     <i class="nav-icon fas fa-dollar-sign"></i>
@@ -250,6 +278,15 @@
                     <p>
                       Minhas Finanças
                       <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('metas.index') }}" class="nav-link custom-active-metas">
+                    <i class="fas fa-bullseye"></i>
+                    <p>
+                      Metas Financeiras
+                      <span class="right badge badge-info"></span>
                     </p>
                   </a>
                 </li>
@@ -299,6 +336,16 @@
                 </li>
 
                 <li class="nav-item">
+                  <a href="{{ route('calendario.index') }}" class="nav-link custom-active-cal">
+                    <i class="nav-icon fas fa-calendar-alt"></i>
+                    <p>
+                      Calendário Financeiro
+                      <span class="right badge badge-info"></span>
+                    </p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
                   <a href="{{route('charts.index')}}" class="nav-link custom-active-gra">
                     <i class="nav-icon fas fa-chart-line"></i>
                     <p>
@@ -316,85 +363,8 @@
                     </p>
                   </a>
                 </li>
-
-                <li class="nav-header">OUTRAS FUNCIONALIDADES</li>
-                <li class="nav-item">
-                  <a href="pages/calendar.html" class="nav-link">
-                    <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>
-                      Calendário
-                      <span class="badge badge-info right">2</span>
-                    </p>
-                  </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                      Outros
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon far fa-plus-square"></i>
-                    <p>
-                      Extras
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>
-                          Login & Register v1
-                          <i class="fas fa-angle-left right"></i>
-                        </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                          <a href="pages/examples/login.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Login v1</p>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="pages/examples/register.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Register v1</p>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="pages/examples/forgot-password.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Forgot Password v1</p>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-search"></i>
-                    <p>
-                      Pesquisar
-                      <i class="fas fa-angle-left right"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="pages/search/simple.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Simple Search</p>
-                      </a>
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </nav>

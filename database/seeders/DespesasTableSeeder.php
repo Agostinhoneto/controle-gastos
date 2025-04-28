@@ -21,6 +21,7 @@ class DespesasTableSeeder extends Seeder
             'data_pagamento' => '2024-01-01',
             'status' => true,
             'categoria_id' => 1,
+            'usuario_cadastrante_id' => 1
         ]);
 
         Despesas::create([
@@ -30,6 +31,7 @@ class DespesasTableSeeder extends Seeder
             'data_pagamento' => '2024-01-01',
             'status' => true,
             'categoria_id' => 1,
+            'usuario_cadastrante_id' => 1,
         ]);
 
         Despesas::create([

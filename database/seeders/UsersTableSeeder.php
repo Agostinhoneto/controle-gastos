@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Agostinho',
             'email' => 'agostneto6@gmail.com',
             'password' => Hash::make('12345678'),
+            'password_confirmation' => bcrypt('password'),
         ]);
     }
 }
