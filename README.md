@@ -1,30 +1,45 @@
-# Controle de Gastos
+# Sistema de Controle de Gastos Pessoais
 
-Um sistema de gerenciamento financeiro pessoal que permite controlar categorias de gastos, metas financeiras, notificações de pagamentos e relatórios detalhados.
+![GitHub](https://img.shields.io/github/license/seu-usuario/controle-gastos)
 
-## 🚀 Recursos Principais
-- **Gerenciamento de Categorias**: Adicione, edite e organize suas categorias de gastos.
-- **Metas Financeiras**: Estabeleça metas para categorias específicas e acompanhe seu progresso.
-- **Lembretes de Pagamento**: Receba notificações por e-mail para pagamentos próximos do vencimento.
-- **Relatórios Financeiros**: Visualize gráficos e estatísticas sobre seus gastos.
-- **Autenticação Segura**: Controle de acesso para usuários.
+Sistema completo para gerenciamento financeiro pessoal com notificações por e-mail, lembretes e mensageria.
 
----
+## ✨ Funcionalidades
 
-## 🛠️ Requisitos
-- PHP 8.1 ou superior
-- Composer
-- MySQL ou outro banco de dados compatível
-- Node.js (para gerenciamento de dependências front-end)
-- Laravel 10.x
-- Extensão `BCMath` habilitada
-- XAMPP ou Docker (opcional, para ambiente local)
+- **Cadastro de Receitas e Despesas**
+  - Categorização de transações
+  - Controle por tags
+  - Anexo de comprovantes
 
----
+- **Notificações Automáticas**
+  - Envio de e-mail ao cadastrar nova receita/despesa
+  - Confirmação por e-mail das transações
 
-## 📦 Instalação
+- **Lembretes Inteligentes**
+  - Alertas para contas a vencer
+  - Notificações de metas financeiras
+  - Lembretes de recebimentos esperados
 
-### Clonar o Repositório
-```bash
-git clone https://github.com/seu-usuario/controle-gastos.git
-cd controle-gastos
+- **Sistema de Mensageria**
+  - Comunicação interna no sistema
+  - Alertas importantes
+  - Notificações personalizadas
+
+- **Relatórios Avançados**
+  - Gráficos e visualizações
+  - Exportação para PDF/Excel
+  - Análise por períodos
+
+## 🚀 Requisitos do Sistema
+
+- PHP 8.0+
+- Composer 2.0+
+- Node.js 14.x+
+- MySQL 5.7+ ou MariaDB 10.3+
+
+## 🛠️ Instalação
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Agostinhoneto/controle-gastos.git
+   cd controle-gastos
