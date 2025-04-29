@@ -8,6 +8,7 @@ use App\Models\Receitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ReceitasController extends Controller
 {
@@ -25,14 +26,35 @@ class ReceitasController extends Controller
                 return abort(403, 'Acesso não autorizado.');
             }
 
-            $receitas = Receitas::with('categoria')->get();
-            $total = $receitas->sum('valor');
-            $categorias = Categorias::orderBy('descricao')->get();
-            $mensagem = $request->session()->get('mensagem');
+            try {
+                $query = Receitas::with(['categoria:id,descricao']) 
+                    ->when($request->filled('descricao'), function ($query) use ($request) {
+                        $query->where('descricao', 'like', '%' . $request->descricao . '%');
+                    })->when($request->filled('valor'), function ($query) use ($request) {
+                        $query->where('valor', $request->valor);
+                    })->when($request->filled('data_recebimento'), function ($query) use ($request) {
+                        $query->where('data_recebimento', $request->data_recebimento);
+                    })->when($request->filled('status'), function ($query) use ($request) {
+                        $query->where('status', $request->status);
+                    });
 
-            return view('receitas.index', compact('receitas', 'mensagem', 'categorias', 'total'));
+                $receitas = $query->clone()->paginate(10);
+                $total = $query->sum('valor');
+
+                return view('receitas.index', [
+                    'receitas' => $receitas,
+                    'total' => $total,
+                    'categorias' => Categorias::orderBy('descricao')->get(),
+                    'mensagem' => $request->session()->get('mensagem'),
+                    'filters' => $request->only(['descricao', 'valor', 'status']) 
+                ]);
+            } catch (\Exception $e) {
+                Log::error('Erro ao carregar receitas: ' . $e->getMessage());
+                return redirect()->back()
+                    ->with('error', 'Erro ao carregar receitas. Detalhes: ' . $e->getMessage());
+            }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Erro ao carregar as receitas: ' . $e->getMessage());
+            return redirect()->back()->withErrors('Erro ao acessar a página: ' . $e->getMessage());
         }
     }
 

@@ -37,7 +37,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
     <div class="card-body">
@@ -53,6 +52,40 @@
                 @include('components.flash-message')
                 <div class="container mt-4">
                     <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Filtros de Busca</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="GET" action="{{ route('despesas.index') }}" class="row g-3">
+                                <div class="col-md-3">
+                                    <label for="descricao" class="form-label">Descrição</label>
+                                    <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição da despesa">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="data_pagamento" class="form-label">Data Pagamento</label>
+                                    <input type="date" class="form-control" id="data_pagamento" name="data_pagamento">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="valor" class="form-label">Valor</label>
+                                    <input type="number" step="0.01" class="form-control" id="valor" name="valor" placeholder="Valor da despesa">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" id="status" name="status">
+                                        <option value="">Selecione</option>
+                                        <option value="1">Pago</option>
+                                        <option value="0">Não Pago</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-search"></i> Buscar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card mt-4">
                         <div class="card-header">
                             <h3 class="card-title"></h3>
                         </div>
