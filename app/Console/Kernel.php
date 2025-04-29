@@ -21,7 +21,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('reminders:send')->daily();
         $schedule->command('recorrencias:processar')->daily();
-
+        $schedule->command('receitas:limpar-antigas')->monthly(); //monthly() para rodar 1x por mês
+        $schedule->command('despesas:limpar-antigas')->monthly(); //monthly() para rodar 1x por mês
     }
     /**
      * Register the commands for the application.
