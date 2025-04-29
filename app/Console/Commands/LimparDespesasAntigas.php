@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 
 class LimparDespesasAntigas extends Command
 {
-    protected $signature = 'receitas:limpar-antigas';
+    protected $signature = 'despesas:limpar-antigas';
     protected $description = 'Remove despesas com mais de 30 dias ou do mês anterior';
 
 
