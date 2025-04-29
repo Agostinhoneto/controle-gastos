@@ -53,7 +53,18 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="comprovante">Comprovante</label>
+                        <input type="file" class="form-control-file" id="comprovante" name="comprovante">
 
+                        @if(isset($receita->comprovante_path))
+                        <div class="mt-2">
+                            <a href="{{ $receita->comprovante_url }}" target="_blank" class="btn btn-sm btn-info">
+                                <i class="fas fa-eye"></i> Visualizar Comprovante
+                            </a>
+                        </div>
+                        @endif
+                    </div>
                     <div>
                         <label for="status" class="block text-sm font-medium text-gray-700">Status:</label>
                         <select name="status" id="status"

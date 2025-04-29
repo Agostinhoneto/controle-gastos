@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('receitas', function (Blueprint $table) {
+        Schema::table('despesas', function (Blueprint $table) {
             $table->string('comprovante_path')->nullable()->after('status');
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('receitas', function (Blueprint $table) {
+        Schema::table('despesas', function (Blueprint $table) {
             $table->dropColumn('comprovante_path');
         });
     }
