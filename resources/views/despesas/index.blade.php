@@ -59,28 +59,31 @@
                             <form method="GET" action="{{ route('despesas.index') }}" class="row g-3">
                                 <div class="col-md-3">
                                     <label for="descricao" class="form-label">Descrição</label>
-                                    <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição da despesa">
+                                    <input type="text" class="form-control" id="descricao" name="descricao" value="{{ request('descricao') }}" placeholder="Descrição da despesa">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="data_pagamento" class="form-label">Data Pagamento</label>
-                                    <input type="date" class="form-control" id="data_pagamento" name="data_pagamento">
+                                    <input type="date" class="form-control" id="data_pagamento" name="data_pagamento" value="{{ request('data_pagamento') }}">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="valor" class="form-label">Valor</label>
-                                    <input type="number" step="0.01" class="form-control" id="valor" name="valor" placeholder="Valor da despesa">
+                                    <input type="number" step="0.01" class="form-control" id="valor" name="valor" value="{{ request('valor') }}" placeholder="Valor da despesa">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select" id="status" name="status">
                                         <option value="">Selecione</option>
-                                        <option value="1">Pago</option>
-                                        <option value="0">Não Pago</option>
+                                        <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Pago</option>
+                                        <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Não Pago</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i> Buscar
                                     </button>
+                                    <a href="{{ route('despesas.index') }}" class="btn btn-secondary">
+                                        <i class="fa fa-eraser"></i> Limpar
+                                    </a>
                                 </div>
                             </form>
                         </div>

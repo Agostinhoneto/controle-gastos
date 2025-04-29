@@ -11,6 +11,7 @@ use App\Notifications\DespesaAlertaNotification;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class DespesasController extends Controller
@@ -18,19 +19,45 @@ class DespesasController extends Controller
 
     public function index(Request $request)
     {
+
         try {
+            // Verificação de autenticação
             if (!Auth::check()) {
                 return abort(403, 'Acesso não autorizado.');
             }
 
-            $categorias = Categorias::query()->orderBy('descricao')->get();
-            $total = Despesas::sum('valor');
-            $despesas = Despesas::query()->with('categoria')->orderBy('descricao')->paginate(10);
-            $mensagem = $request->session()->get('mensagem');
-            return view('despesas.index', compact('despesas', 'mensagem', 'total', 'categorias'));
-        } catch (\Exception $e) {
+            $query = Despesas::with(['categoria:id,descricao'])
+                ->when($request->filled('descricao'), function ($query) use ($request) {
+                    $query->where('descricao', 'like', '%' . $request->descricao . '%');
+                })
+                ->when($request->filled('valor'), function ($query) use ($request) {
+                    $query->where('valor', $request->valor);
+                })
+                ->when($request->filled('data_pagamento'), function ($query) use ($request) {
+                    $query->whereDate('data_pagamento', $request->data_pagamento);
+                })
+                ->when($request->filled('status'), function ($query) use ($request) {
+                    $query->where('status', $request->status);
+                })
+                ->orderBy('descricao'); 
+                
+            $despesas = $query->paginate(10);
+            $total = $query->clone()->sum('valor');
 
-            return redirect()->back()->withErrors('Erro ao carregar as despesas: ' . $e->getMessage());
+            $categorias = Categorias::orderBy('descricao')->get();
+            $mensagem = $request->session()->get('mensagem');
+
+            return view('despesas.index', [
+                'despesas' => $despesas,
+                'total' => $total,
+                'categorias' => $categorias,
+                'mensagem' => $mensagem,
+                'filters' => $request->only(['descricao', 'valor', 'data_pagamento', 'status'])
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Erro ao carregar despesas: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Erro ao carregar despesas. Por favor, tente novamente.');
         }
     }
 
@@ -50,15 +77,13 @@ class DespesasController extends Controller
             $despesas->status = $request->input('status', 1);
             $despesas->user_id = auth()->id();
             $despesas->save();
-    
-            Mail::to('agostneto6@gmail.com')->send(new MailMailDespesas($despesas));
-    
-            return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso');
 
+            Mail::to('agostneto6@gmail.com')->send(new MailMailDespesas($despesas));
+
+            return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors('Erro ao salvar a despesa: ' . $e->getMessage());
         }
-
     }
 
     public function edit(Request $request, Despesas $despesas, $id)
