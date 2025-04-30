@@ -9,7 +9,7 @@ class Receitas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['categoria_id','descricao', 'valor', 'data_recebimento','status','receita_id','usuario_cadastrante_id'];
+    protected $fillable = ['categoria_id','descricao', 'valor', 'data_recebimento','status','comprovante_path','receita_id','usuario_cadastrante_id'];
 
     public function categoria()
     {

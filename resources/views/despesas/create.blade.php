@@ -21,34 +21,27 @@
             </div>
             <!-- Corpo do Modal -->
             <div class="modal-body">
-                <form class="space-y-4" method="POST" action="{{ route('despesas.store') }}">
+                <form class="space-y-4" method="POST" action="{{ route('despesas.store') }}" enctype="multipart/form-data">
                     @csrf
 
-                    <!-- Descrição -->
                     <div>
                         <label for="descricao" class="block text-sm font-medium text-gray-700">Descrição:</label>
                         <input type="text" id="descricao" name="descricao"
                             class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Descrição" required>
                     </div>
-
-                    <!-- Valor -->
                     <div>
                         <label for="valor" class="block text-sm font-medium text-gray-700">Valor R$:</label>
                         <input type="number" id="valor" name="valor" step="0.01" min="0.01"
                             class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Valor" required>
                     </div>
-
-                    <!-- Data do Pagamento -->
                     <div>
                         <label for="data_pagamento" class="block text-sm font-medium text-gray-700">Data do Pagamento:</label>
                         <input type="date" id="data_pagamento" name="data_pagamento"
                             class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             required>
                     </div>
-
-                    <!-- Categoria -->
                     <div>
                         <label for="categoria_id" class="block text-sm font-medium text-gray-700">Categoria:</label>
                         <select id="categoria_id" name="categoria_id"
@@ -59,20 +52,15 @@
                             <option value="{{ $c->id }}">{{ $c->descricao }}</option>
                             @endforeach
                         </select>
-                    </div>        
+                    </div>
                     <div class="form-group">
                         <label for="comprovante">Comprovante</label>
-                        <input type="file" class="form-control-file" id="comprovante" name="comprovante">
+                        <input type="file" class="form-control-file" id="comprovante" name="comprovante" accept=".jpg,.jpeg,.png,.pdf">
 
-                        @if(isset($receita->comprovante_path))
-                        <div class="mt-2">
-                            <a href="{{ $receita->comprovante_url }}" target="_blank" class="btn btn-sm btn-info">
-                                <i class="fas fa-eye"></i> Visualizar Comprovante
-                            </a>
-                        </div>
-                        @endif
+                        @error('comprovante')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <!-- Status -->
                     <div>
                         <label for="status" class="block text-sm font-medium text-gray-700">Status:</label>
                         <select id="status" name="status"
@@ -83,7 +71,6 @@
                         </select>
                     </div>
 
-                    <!-- Botões -->
                     <div class="flex justify-end space-x-4">
                         <button type="button" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400" data-dismiss="modal">
                             Fechar

@@ -11,15 +11,16 @@ use App\Notifications\DespesaAlertaNotification;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class DespesasController extends Controller
 {
 
     public function index(Request $request)
     {
-
         try {
             // Verificação de autenticação
             if (!Auth::check()) {
@@ -39,8 +40,8 @@ class DespesasController extends Controller
                 ->when($request->filled('status'), function ($query) use ($request) {
                     $query->where('status', $request->status);
                 })
-                ->orderBy('descricao'); 
-                
+                ->orderBy('descricao');
+
             $despesas = $query->paginate(10);
             $total = $query->clone()->sum('valor');
 
@@ -65,10 +66,12 @@ class DespesasController extends Controller
     {
         return view('despesas.create');
     }
-
+   
     public function store(Request $request)
     {
         try {
+            DB::beginTransaction();
+
             $despesas = new Despesas();
             $despesas->descricao = $request->input('descricao');
             $despesas->valor = $request->input('valor');
@@ -76,13 +79,22 @@ class DespesasController extends Controller
             $despesas->categoria_id = $request->input('categoria_id');
             $despesas->status = $request->input('status', 1);
             $despesas->user_id = auth()->id();
+
+            if ($request->hasFile('comprovante')) {
+                $path = $request->file('comprovante')
+                    ->store('comprovantes/despesas', 'public');
+                $despesas->comprovante_path = $path;
+            }
             $despesas->save();
+            DB::commit();
 
-            Mail::to('agostneto6@gmail.com')->send(new MailMailDespesas($despesas));
-
-            return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso');
+            return redirect()->route('despesas.index')
+                ->with('sucesso', 'Despesa cadastrada com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Erro ao salvar a despesa: ' . $e->getMessage());
+            DB::rollBack();
+            return redirect()->back()
+                ->withInput()
+                ->with('erro', 'Erro ao salvar: ' . $e->getMessage());
         }
     }
 

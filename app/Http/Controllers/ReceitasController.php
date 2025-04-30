@@ -68,9 +68,11 @@ class ReceitasController extends Controller
         }
     }
 
-    public function store(StoreReceitasRequest $request)
+    public function store(StoreReceitasRequest $request,$receitas)
     {
         try {
+            DB::beginTransaction();
+
             $this->receitas->create([
                 'descricao' => $request->descricao,
                 'valor' => $request->valor,
@@ -78,9 +80,22 @@ class ReceitasController extends Controller
                 'categoria_id' => $request->categoria_id,
                 'usuario_cadastrante_id' => auth()->id(),
             ]);
-            return redirect()->route('receitas.index')->with('success', 'Receita cadastrada com sucesso!');
+
+            if ($request->hasFile('comprovante')) {
+                $path = $request->file('comprovante')
+                    ->store('comprovantes/despesas', 'public');
+                $receitas->comprovante_path = $path;
+            }
+            $receitas->save();
+            DB::commit();
+
+            return redirect()->route('despesas.index')
+                ->with('sucesso', 'Receitas cadastrada com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Erro ao cadastrar a receita: ' . $e->getMessage());
+            DB::rollBack();
+            return redirect()->back()
+                ->withInput()
+                ->with('erro', 'Erro ao salvar: ' . $e->getMessage());
         }
     }
 
