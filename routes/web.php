@@ -9,6 +9,7 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\EventoFinanceirosController;
 use App\Http\Controllers\FinancasController;
+use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\LembretesPagamentoController;
 use App\Http\Controllers\MetasFinanceirasController;
 use App\Http\Controllers\ReceitasController;
@@ -139,9 +140,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/metas/destroy/{lembretes}', [MetasFinanceirasController::class, 'destroy'])->name('metas.destroy');
 
     //Historico Financeiro
-    Route::get('/historico/index', [FinancasController::class, 'historico'])->name('historico.index');
-    Route::get('/historico/show/{id}', [FinancasController::class, 'show'])->name('historico.show');
-    Route::get('/historico/create', [FinancasController::class, 'create'])->name('historico.create');
-    Route::post('/historico/store', [FinancasController::class, 'store'])->name('historico.store');
-    Route::get('/historico/edit/{id}', [FinancasController::class, 'edit'])->name('historico.edit');
+    Route::get('/historico/index', [HistoricoController::class, 'index'])->name('historico.index');
+    Route::get('/historico/show/{id}', [HistoricoController::class, 'show'])->name('historico.show');
+    Route::get('/historico/create', [HistoricoController::class, 'create'])->name('historico.create');
+    Route::post('/historico/store', [HistoricoController::class, 'store'])->name('historico.store');
+    Route::get('/historico/edit/{id}', [HistoricoController::class, 'edit'])->name('historico.edit');
 });
