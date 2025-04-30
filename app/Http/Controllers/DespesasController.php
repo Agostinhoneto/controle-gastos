@@ -78,8 +78,12 @@ class DespesasController extends Controller
             $despesas->data_pagamento = $request->input('data_pagamento');
             $despesas->categoria_id = $request->input('categoria_id');
             $despesas->status = $request->input('status', 1);
-            $despesas->user_id = auth()->id();
-
+            if (auth()->check()) {
+                $despesas->usuario_cadastrante_id = auth()->id();
+            } else {
+                throw new \Exception('Usuário não autenticado');
+            }
+            
             if ($request->hasFile('comprovante')) {
                 $path = $request->file('comprovante')
                     ->store('comprovantes/despesas', 'public');

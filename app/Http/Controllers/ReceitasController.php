@@ -68,28 +68,35 @@ class ReceitasController extends Controller
         }
     }
 
-    public function store(StoreReceitasRequest $request,$receitas)
+    public function store(StoreReceitasRequest $request)
     {
         try {
             DB::beginTransaction();
 
-            $this->receitas->create([
-                'descricao' => $request->descricao,
-                'valor' => $request->valor,
-                'data_recebimento' => $request->data_recebimento,
-                'categoria_id' => $request->categoria_id,
-                'usuario_cadastrante_id' => auth()->id(),
-            ]);
-
+            $receitas = new Receitas();
+            $receitas->descricao = $request->input('descricao');
+            $receitas->valor = $request->input('valor');
+            $receitas->data_recebimento = $request->input('data_recebimento');
+            $receitas->categoria_id = $request->input('categoria_id');
+            $receitas->status = $request->input('status', 1);
+          
+            if (auth()->check()) {
+                $receitas->usuario_cadastrante_id = auth()->id();
+            } else {
+                throw new \Exception('Usuário não autenticado');
+            }
+            
             if ($request->hasFile('comprovante')) {
                 $path = $request->file('comprovante')
-                    ->store('comprovantes/despesas', 'public');
+                    ->store('comprovantes/receitas', 'public');
                 $receitas->comprovante_path = $path;
             }
+
             $receitas->save();
+           
             DB::commit();
 
-            return redirect()->route('despesas.index')
+            return redirect()->route('receitas.index')
                 ->with('sucesso', 'Receitas cadastrada com sucesso!');
         } catch (\Exception $e) {
             DB::rollBack();

@@ -21,7 +21,7 @@
             </div>
             <!-- Corpo do Modal -->
             <div class="modal-body">
-                <form method="POST" action="{{ route('receitas.store') }}" class="space-y-4">
+                <form method="POST" action="{{ route('receitas.store') }}" class="space-y-4" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <label for="descricao" class="block text-sm font-medium text-gray-700">Descrição:</label>
@@ -55,15 +55,11 @@
                     </div>
                     <div class="form-group">
                         <label for="comprovante">Comprovante</label>
-                        <input type="file" class="form-control-file" id="comprovante" name="comprovante">
+                        <input type="file" class="form-control-file" id="comprovante" name="comprovante" accept=".jpg,.jpeg,.png,.pdf">
 
-                        @if(isset($receita->comprovante_path))
-                        <div class="mt-2">
-                            <a href="{{ $receita->comprovante_url }}" target="_blank" class="btn btn-sm btn-info">
-                                <i class="fas fa-eye"></i> Visualizar Comprovante
-                            </a>
-                        </div>
-                        @endif
+                        @error('comprovante')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div>
                         <label for="status" class="block text-sm font-medium text-gray-700">Status:</label>
