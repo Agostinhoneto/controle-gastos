@@ -62,6 +62,17 @@
       color: #ffffff;
     }
 
+    .nav-link.custom-active-white {
+      background-color:rgb(253, 255, 253);
+      color: #ffffff;
+      /* Texto branco */
+    }
+
+    .nav-link.custom-active:hover {
+      background-color:rgb(246, 248, 247);
+      color: #ffffff;
+    }
+
     .nav-link.custom-active-gray {
       background-color: #6C757D;
       /* Verde padrão */
@@ -277,6 +288,15 @@
                     <i class="fas fa-chart-line"></i>
                     <p>
                       Minhas Finanças
+                      <span class="right badge badge-danger"></span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('historico.index')}}" class="nav-link custom-active-white">
+                    <i class="fas fa-chart-line"></i>
+                    <p>
+                      Histórico Financeiro
                       <span class="right badge badge-danger"></span>
                     </p>
                   </a>

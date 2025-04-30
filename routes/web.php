@@ -130,7 +130,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/calendario/eventos', [CalendarioFinanceiroController::class, 'eventos'])->name('calendario.eventos');;
 
     //Metas Financeiras
-
     Route::get('/metas/index', [MetasFinanceirasController::class, 'index'])->name('metas.index');
     Route::get('/metas/show/{id}', [MetasFinanceirasController::class, 'show'])->name('metas.show');
     Route::get('/metas/create', [MetasFinanceirasController::class, 'create'])->name('metas.create');
@@ -138,4 +137,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/metas/edit/{id}', [MetasFinanceirasController::class, 'edit'])->name('metas.edit');
     Route::post('/metas/update/{id}', [MetasFinanceirasController::class, 'update'])->name('metas.update');
     Route::delete('/metas/destroy/{lembretes}', [MetasFinanceirasController::class, 'destroy'])->name('metas.destroy');
+
+    //Historico Financeiro
+    Route::get('/historico/index', [FinancasController::class, 'historico'])->name('historico.index');
+    Route::get('/historico/show/{id}', [FinancasController::class, 'show'])->name('historico.show');
+    Route::get('/historico/create', [FinancasController::class, 'create'])->name('historico.create');
+    Route::post('/historico/store', [FinancasController::class, 'store'])->name('historico.store');
+    Route::get('/historico/edit/{id}', [FinancasController::class, 'edit'])->name('historico.edit');
 });
