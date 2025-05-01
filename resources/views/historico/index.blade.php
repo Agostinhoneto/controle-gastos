@@ -1,68 +1,61 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+@include('layouts.topo')
+@extends('layout')
+<style>
+    .card-header {
+        font-weight: bold;
+        background-color: #f8f9fa;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Histórico Financeiro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .card-header {
-            font-weight: bold;
-            background-color: #f8f9fa;
-        }
+    .saldo-positivo {
+        color: #28a745;
+        font-weight: bold;
+    }
 
-        .saldo-positivo {
-            color: #28a745;
-            font-weight: bold;
-        }
+    .saldo-negativo {
+        color: #dc3545;
+        font-weight: bold;
+    }
 
-        .saldo-negativo {
-            color: #dc3545;
-            font-weight: bold;
-        }
+    .receita-badge {
+        background-color: #28a745;
+    }
 
-        .receita-badge {
-            background-color: #28a745;
-        }
+    .despesa-badge {
+        background-color: #dc3545;
+    }
 
-        .despesa-badge {
-            background-color: #dc3545;
-        }
+    .filter-card {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
 
-        .filter-card {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
+    .summary-card {
+        border-left: 4px solid;
+        border-radius: 8px;
+    }
 
-        .summary-card {
-            border-left: 4px solid;
-            border-radius: 8px;
-        }
+    .summary-receita {
+        border-left-color: #28a745;
+    }
 
-        .summary-receita {
-            border-left-color: #28a745;
-        }
+    .summary-despesa {
+        border-left-color: #dc3545;
+    }
 
-        .summary-despesa {
-            border-left-color: #dc3545;
-        }
+    .summary-saldo {
+        border-left-color: #007bff;
+    }
 
-        .summary-saldo {
-            border-left-color: #007bff;
-        }
+    .chart-container {
+        height: 300px;
+        margin-bottom: 30px;
+    }
+</style>
+<div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
+    @include('layouts.sidebar')
 
-        .chart-container {
-            height: 300px;
-            margin-bottom: 30px;
-        }
-    </style>
-</head>
-
-<body>
     <div class="container-fluid py-4">
         <div class="row mb-4">
             <div class="col-md-12">

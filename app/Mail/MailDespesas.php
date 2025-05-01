@@ -13,6 +13,7 @@ class MailDespesas extends Mailable
 {
     use Queueable, SerializesModels;
 
+
     public $dados;
 
     public function __construct($dados)
@@ -20,13 +21,14 @@ class MailDespesas extends Mailable
         $this->dados = $dados;
     }
 
-
     public function build()
     {
-        return $this->from(config('mail.from.address'))
-                    ->subject('Assunto do E-mail')
-                    ->markdown('emails.despesas.nova-despesa');
+        return $this->from(config('mail.from.address'), config('mail.from.name'))
+            ->subject('Alerta de Gastos')
+            ->view('emails.despesas.alerta-despesa') 
+            ->with(['dados' => $this->dados]);
     }
+
     /**
      * Get the message envelope.
      *
@@ -47,7 +49,7 @@ class MailDespesas extends Mailable
     public function content()
     {
         return new Content(
-            view: 'despesa.nova-despesa',
+            view: 'emails.despesas.nova-despesa',
         );
     }
 

@@ -70,6 +70,17 @@
                             <option value="0">Inativo</option>
                         </select>
                     </div>
+                    <div>
+                        <label for="user_id" class="block text-sm font-medium text-gray-700">Usuário:</label>
+                        <select id="user_id" name="user_id"
+                            class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            required>
+                            <option>Selecione...</option>
+                            @foreach($users as $u)
+                            <option value="{{ $u->id }}">{{ $u->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="flex justify-end space-x-4">
                         <button type="button" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400" data-dismiss="modal">

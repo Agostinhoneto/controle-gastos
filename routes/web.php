@@ -16,7 +16,6 @@ use App\Http\Controllers\ReceitasController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
 use App\Models\Despesas;
-use App\Models\FinancialGoal;
 use App\Models\MetasFinanceiras;
 use App\Models\Receitas;
 use App\Models\User;

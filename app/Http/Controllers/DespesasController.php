@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\MailDespesas as MailMailDespesas;
+use App\Mail\MailDespesas;
 use App\Mail\SendWelcomeEmail;
 use App\Models\Categorias;
 use App\Models\Despesas;
@@ -46,6 +46,7 @@ class DespesasController extends Controller
             $total = $query->clone()->sum('valor');
 
             $categorias = Categorias::orderBy('descricao')->get();
+            $users = User::all();
             $mensagem = $request->session()->get('mensagem');
 
             return view('despesas.index', [
@@ -53,6 +54,7 @@ class DespesasController extends Controller
                 'total' => $total,
                 'categorias' => $categorias,
                 'mensagem' => $mensagem,
+                'users' => $users,
                 'filters' => $request->only(['descricao', 'valor', 'data_pagamento', 'status'])
             ]);
         } catch (\Exception $e) {
@@ -62,11 +64,7 @@ class DespesasController extends Controller
         }
     }
 
-    public function create()
-    {
-        return view('despesas.create');
-    }
-   
+
     public function store(Request $request)
     {
         try {
@@ -78,24 +76,30 @@ class DespesasController extends Controller
             $despesas->data_pagamento = $request->input('data_pagamento');
             $despesas->categoria_id = $request->input('categoria_id');
             $despesas->status = $request->input('status', 1);
+            $despesas->user_id = $request->input('user_id');
+
             if (auth()->check()) {
                 $despesas->usuario_cadastrante_id = auth()->id();
             } else {
                 throw new \Exception('Usuário não autenticado');
             }
-            
+
             if ($request->hasFile('comprovante')) {
                 $path = $request->file('comprovante')
                     ->store('comprovantes/despesas', 'public');
                 $despesas->comprovante_path = $path;
             }
+            Mail::to('agostneto6@gmail.com')->send(new MailDespesas($despesas));
             $despesas->save();
             DB::commit();
 
-            return redirect()->route('despesas.index')
-                ->with('sucesso', 'Despesa cadastrada com sucesso!');
+            return redirect()->route('despesas.index')->with('sucesso', 'Despesa cadastrada com sucesso!');
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Erro ao cadastrar despesa', [
+                'error' => $e->getMessage(),
+                'user_id' => auth()->id() ?? null
+            ]);
             return redirect()->back()
                 ->withInput()
                 ->with('erro', 'Erro ao salvar: ' . $e->getMessage());

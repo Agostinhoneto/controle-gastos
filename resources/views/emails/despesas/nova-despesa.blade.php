@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>Alerta de Gastos</h1>
-    <p>Olá, eu</p>
+    <p>Olá, {{ $dados->user->name ?? 'Usuário' }}</p>
 
-    <p>Seu gasto atual é de R$ ei</p>
-    <p>O limite de gastos que você definiu é de R$ 1000</p>
+    <p>Seu gasto atual é de R$ {{ number_format($dados->valor, 2, ',', '.') }}</p>
+    <p>O limite de gastos que você definiu é de R$ {{ number_format($dados->limite_gastos ?? 1000, 2, ',', '.') }}</p>
     <p>Considere revisar seus gastos para evitar despesas acima do seu limite.</p>
 
     <a href="{{ url('/despesas') }}">Verificar despesas</a>
