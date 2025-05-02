@@ -23,6 +23,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('recorrencias:processar')->daily();
         $schedule->command('receitas:limpar-antigas')->monthly(); //monthly() para rodar 1x por mês
         $schedule->command('despesas:limpar-antigas')->monthly(); //monthly() para rodar 1x por mês
+        $schedule->command('alertas:gastos-semanais')->weeklyOn(1, '08:00'); // Toda segunda-feira às 8h
     }
     /**
      * Register the commands for the application.

@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
-use App\Notifications\DespesaAlertaNotification;
+use App\Mail\AlertaGastosSemana;
+use App\Models\Despesas;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class EnviarAlertaDespesas extends Command
 {
@@ -13,23 +15,23 @@ class EnviarAlertaDespesas extends Command
      *
      * @var string
      */
-    protected $signature = 'alerta:gastos';
-    protected $description = 'Enviar alertas de gastos aos usuários quando próximos de seu limite';
+    protected $signature = 'alerta:gastos-semanais';
+    protected $description = 'Envia alerta por e-mail se os gastos da semana forem maiores que R$ 1500';
 
     public function handle()
     {
-        // Defina o limite de gastos e o gasto atual aqui, ou obtenha-os de alguma fonte dinâmica.
-        $limiteGastos = 1000; // Exemplo: limite de gastos
-        $usuarios = User::all();
+        $inicioSemana = Carbon::now()->startOfWeek();
+        $fimSemana = Carbon::now()->endOfWeek();
 
-        foreach ($usuarios as $user) {
-            $gastoAtual = $user->gastosTotais(); // Supondo que você tenha um método que calcula os gastos totais do usuário
-            
-            if ($gastoAtual >= $limiteGastos) {
-                $user->notify(new DespesaAlertaNotification($gastoAtual, $limiteGastos));
-            }
+        $total = Despesas::whereBetween('data_pagamento', [$inicioSemana, $fimSemana])->sum('valor');
+
+        if ($total > 1500) {
+            $email = config('mail.alerta_destinatario', 'agostneto6@gmail.com');
+            Mail::to($email)->send(new AlertaGastosSemana($total));
+            $this->info("Alerta enviado. Total gasto: R$ $total");
+        } else {
+            $this->info("Nenhum alerta necessário. Total: R$ $total");
         }
-
-        $this->info('Alertas de gastos enviados com sucesso!');
     }
+
 }
