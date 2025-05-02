@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alerta de Gastos</title>
+    <title>Nova Despesa</title>
 </head>
 <body>
-    <h1>Alerta de Gastos</h1>
-    <p>Olá, {{ $dados->user->name ?? 'Usuário' }}</p>
-
-    <p>Seu gasto atual é de R$ {{ number_format($dados->valor, 2, ',', '.') }}</p>
-    <p>O limite de gastos que você definiu é de R$ {{ number_format($dados->limite_gastos ?? 1000, 2, ',', '.') }}</p>
-    <p>Considere revisar seus gastos para evitar despesas acima do seu limite.</p>
-
-    <a href="{{ url('/despesas') }}">Verificar despesas</a>
-
-    <p>Obrigado por utilizar nosso sistema de controle de custos!</p>
+    <h1>Nova Despesa Registrada</h1>
+    <p>Olá {{ $user->name }},</p>
+    
+    <p>Uma nova despesa foi registrada:</p>
+    <ul>
+        <li>Descrição: {{ $despesa->descricao }}</li>
+        <li>Valor: R$ {{ number_format($despesa->valor, 2, ',', '.') }}</li>
+        <li>Data: {{ \Carbon\Carbon::parse($despesa->data_pagamento)->format('d/m/Y') }}</li>
+    </ul>
+    
+    
+    <p>Atenciosamente,<br>
+    {{ config('app.name') }}</p>
 </body>
 </html>

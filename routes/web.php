@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
 
     //despesas       
     Route::get('/despesas', [DespesasController::class, 'index'])->name('despesas.index');
+    Route::get('/despesas/show/{id}', [DespesasController::class, 'show'])->name('despesas.show');
     Route::get('/despesas/create', [DespesasController::class, 'create'])->name('despesas.create');
     Route::post('/despesas/store', [DespesasController::class, 'store'])->name('despesas.store');
     Route::get('/despesas/edit/{id}', [DespesasController::class, 'edit'])->name('despesas.edit');

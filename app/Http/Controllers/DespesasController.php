@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\MailDespesas;
+use App\Mail\MailNovaDespesa;
+use App\Mail\NovaDespesaMail;
 use App\Mail\SendWelcomeEmail;
 use App\Models\Categorias;
 use App\Models\Despesas;
@@ -64,11 +66,21 @@ class DespesasController extends Controller
         }
     }
 
-
+    public function show(Despesas $despesas, $id)
+    {
+        try {
+            $despesas = Despesas::find($id);
+            return view('despesas.show', compact('despesas'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Erro ao carregar a despesa: ' . $e->getMessage());
+        }
+    }
+    
     public function store(Request $request)
     {
         try {
             DB::beginTransaction();
+
 
             $despesas = new Despesas();
             $despesas->descricao = $request->input('descricao');
@@ -89,7 +101,13 @@ class DespesasController extends Controller
                     ->store('comprovantes/despesas', 'public');
                 $despesas->comprovante_path = $path;
             }
-            Mail::to('agostneto6@gmail.com')->send(new MailDespesas($despesas));
+            $despesas->load('user');
+
+            if (!$despesas->user) {
+                throw new \Exception('Nenhum usuário válido associado a esta despesa');
+            }
+            Mail::to('agostneto6@gmail.com')->send(new MailNovaDespesa($despesas));
+            
             $despesas->save();
             DB::commit();
 

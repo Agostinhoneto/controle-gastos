@@ -15,4 +15,9 @@ class Despesas extends Model
     {
         return $this->belongsTo(Categorias::class, 'categoria_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
