@@ -95,7 +95,6 @@
                 <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                 <div class="media-body">
                   <h3 class="dropdown-item-title">
-                    John Pierce
                     <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                   </h3>
                 </div>
@@ -355,7 +354,7 @@
 
                   <h3 class="card-title">
                     <i class="far fa-calendar-alt"></i>
-                    Calendar
+                    Calendario
                   </h3>
                   <!-- tools card -->
                   <div class="card-tools">

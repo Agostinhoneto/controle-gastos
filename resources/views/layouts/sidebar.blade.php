@@ -264,128 +264,84 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-                <li class="nav-item">
-                  <a href="{{route('receitas.index')}}" class="nav-link active">
-                    <i class="nav-icon fas fa-dollar-sign"></i>
-                    <p>
-                      Receitas
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('despesas.index')}}" class="nav-link custom-active">
-                    <i class="nav-icon fas fa-money-bill-wave"></i>
-                    <p>
-                      Despesas
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('financas.index')}}" class="nav-link custom-active-green">
-                    <i class="fas fa-chart-line"></i>
-                    <p>
-                      Minhas Finanças
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('historico.index')}}" class="nav-link custom-active-white">
-                    <i class="fas fa-chart-line"></i>
-                    <p>
-                      Histórico Financeiro
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('metas.index') }}" class="nav-link custom-active-metas">
-                    <i class="fas fa-bullseye"></i>
-                    <p>
-                      Metas Financeiras
-                      <span class="right badge badge-info"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('lembretes.index')}}" class="nav-link custom-active-lembrete">
-                    <i class="nav-icon fas fa-clock"></i>
-                    <p>
-                      Lembretes
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('users.index')}}" class="nav-link custom-active-orange">
-                    <i class="nav-icon fas fa-user"></i>
-                    Usuários
-                    <span class="right badge badge-danger"></span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="{{route('categorias.index')}}" class="nav-link custom-active-gray">
-                    <i class="nav-icon fas fa-tags"></i>
-                    <p>
-                      Catogorias
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('relatorios.index')}}" class="nav-link custom-active-rel">
-                    <i class="fas fa-chart-pie"></i>
-                    <p>
-                      Relatórios
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('eventos.index')}}" class="nav-link custom-active-calendar">
-                    <i class="nav-icon fas fa-calendar-alt"></i>
-                    <p>
-                      Eventos Financeiro
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="{{ route('calendario.index') }}" class="nav-link custom-active-cal">
-                    <i class="nav-icon fas fa-calendar-alt"></i>
-                    <p>
-                      Calendário Financeiro
-                      <span class="right badge badge-info"></span>
-                    </p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="{{route('charts.index')}}" class="nav-link custom-active-gra">
-                    <i class="nav-icon fas fa-chart-line"></i>
-                    <p>
-                      Gráficos
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('contatos.index')}}" class="nav-link custom-active-blue">
-                    <i class="nav-icon fas fa-address-book"></i>
-                    <p>
-                      Contatos
-                      <span class="right badge badge-danger"></span>
-                    </p>
-                  </a>
-                </li>
-                </li>
-                <li class="nav-item">
-                </li>
+              <li class="nav-item">
+                <a href="{{ route('receitas.index') }}" class="nav-link active">
+                <i class="nav-icon fas fa-dollar-sign"></i>
+                <p>Receitas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('despesas.index') }}" class="nav-link custom-active">
+                <i class="nav-icon fas fa-money-bill-wave"></i>
+                <p>Despesas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('financas.index') }}" class="nav-link custom-active-green">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p>Minhas Finanças</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('historico.index') }}" class="nav-link custom-active-white">
+                <i class="nav-icon fas fa-history"></i>
+                <p>Histórico Financeiro</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('metas.index') }}" class="nav-link custom-active-metas">
+                <i class="nav-icon fas fa-bullseye"></i>
+                <p>Metas Financeiras</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('lembretes.index') }}" class="nav-link custom-active-lembrete">
+                <i class="nav-icon fas fa-clock"></i>
+                <p>Lembretes</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link custom-active-orange">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Usuários</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('categorias.index') }}" class="nav-link custom-active-gray">
+                <i class="nav-icon fas fa-tags"></i>
+                <p>Categorias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('relatorios.index') }}" class="nav-link custom-active-rel">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>Relatórios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('eventos.index') }}" class="nav-link custom-active-calendar">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                <p>Eventos Financeiros</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('calendario.index') }}" class="nav-link custom-active-cal">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                <p>Calendário Financeiro</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('charts.index') }}" class="nav-link custom-active-gra">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p>Gráficos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('contatos.index') }}" class="nav-link custom-active-blue">
+                <i class="nav-icon fas fa-address-book"></i>
+                <p>Contatos</p>
+                </a>
+              </li>
               </ul>
             </nav>
             <!-- /.sidebar-menu -->

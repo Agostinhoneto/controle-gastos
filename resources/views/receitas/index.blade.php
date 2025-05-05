@@ -105,8 +105,8 @@
                                             <th scope="col">Status</th>
                                             <th scope="col">Categoria</th>
                                             <th scope="col">Data de Cadastro</th>
-                                            <th scope="col">Editar</th>
-                                            <th scope="col">Excluir</th>
+                                            <th scope="col">Ver</th>
+                                            <th scope="col">Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -124,16 +124,19 @@
                                             <td>{{ $receita->categoria?->descricao }}</td>
                                             <td>{{ Carbon\Carbon::parse($receita->created_at)->format('d/m/Y') }}</td>
                                             <td>
-                                                <a href="{{ route('receitas.edit', $receita->id) }}" class="btn btn-info btn-sm">
+                                                <button class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                            <td class="d-flex align-items-center gap-2">
+                                                <a href="{{ route('receitas.edit', $receita->id) }}" class="btn btn-sm btn-primary">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('receitas.destroy', $receita->id) }}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
+                                                <form action="{{ route('receitas.destroy', $receita->id) }}" method="post" class="d-inline" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($receita->descricao) }}?')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash-alt"></i>
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </td>
