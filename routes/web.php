@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
 
     //receitas
     Route::get('/receitas', [ReceitasController::class, 'index'])->name('receitas.index');
+    Route::get('/receitas/show/{id}', [ReceitasController::class, 'show'])->name('receitas.show');
     Route::get('/receitas/create', [ReceitasController::class, 'create'])->name('receitas.create');
     Route::post('/receitas/store', [ReceitasController::class, 'store'])->name('receitas.store');
     Route::get('/receitas/edit/{id}', [ReceitasController::class, 'edit'])->name('receitas.edit');

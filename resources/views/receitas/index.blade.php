@@ -124,9 +124,9 @@
                                             <td>{{ $receita->categoria?->descricao }}</td>
                                             <td>{{ Carbon\Carbon::parse($receita->created_at)->format('d/m/Y') }}</td>
                                             <td>
-                                                <button class="btn btn-sm btn-info">
+                                                <a href="{{ route('receitas.show', $receita->id) }}" class="btn btn-sm btn-info">
                                                     <i class="fas fa-eye"></i>
-                                                </button>
+                                                </a>
                                             </td>
                                             <td class="d-flex align-items-center gap-2">
                                                 <a href="{{ route('receitas.edit', $receita->id) }}" class="btn btn-sm btn-primary">

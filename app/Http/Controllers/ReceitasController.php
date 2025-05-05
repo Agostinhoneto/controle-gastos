@@ -58,6 +58,12 @@ class ReceitasController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $receitas = Receitas::findOrFail($id);
+        return view('receitas.show', compact('receitas'));
+    }
+
     public function create()
     {
         try {
