@@ -18,63 +18,41 @@
                         <div class="flex-1 overflow-auto">
                             <div class="container-fluid py-4">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h2 class="mb-0">Detalhes da Receita</h2>
-                                    <a href="{{ route('receitas.index') }}" class="btn btn-outline-secondary">
+                                    <h2 class="mb-0">Detalhes da Despesas</h2>
+                                    <a href="{{ route('despesas.index') }}" class="btn btn-outline-secondary">
                                         <i class="fas fa-arrow-left me-2"></i>Voltar para lista
                                     </a>
                                 </div>
                                 <div class="card card-details mb-4">
                                     <div class="card-header bg-primary text-white">
-                                        <h5 class="card-title mb-0">{{ $receitas->nome }}</h5>
+                                        <h5 class="card-title mb-0">{{ $despesas->descricao }}</h5>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <h6 class="text-muted">Valor</h6>
-                                                    <p class="fs-5">R$ {{ number_format($receitas->valor, 2, ',', '.') }}</p>
+                                                    <p class="fs-5">R$ {{ number_format($despesas->valor, 2, ',', '.') }}</p>
                                                 </div>
-
                                                 <div class="mb-3">
                                                     <h6 class="text-muted">Data</h6>
-                                                    <p class="fs-5">{{ \Carbon\Carbon::parse($receitas->data)->format('d/m/Y') }}</p>
+                                                    <p class="fs-5">{{ \Carbon\Carbon::parse($despesas->data_pagamento)->format('d/m/Y') }}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <h6 class="text-muted">Status</h6>
                                                     <p class="fs-5">
-                                                        <span class="{{ $receitas->status == 'ativo' ? 'ativo' : 'inativo' }}">
-                                                            {{ ucfirst($receitas->status) }}
+                                                        <span class="{{ $despesas->status == 'pago' ? 'ativo' : 'inativo' }}">
+                                                            {{ ucfirst($despesas->status) }}
                                                         </span>
                                                     </p>
                                                 </div>
                                                 <div class="mb-3">
                                                     <h6 class="text-muted">Categoria</h6>
-                                                    <p class="fs-5">{{ $receitas->categoria->nome ?? 'Não categorizado' }}</p>
+                                                    <p class="fs-5">{{$despesas->categoria->nome ?? 'Não categorizado' }}</p>
                                                 </div>
                                             </div>
-
-                                            <div class="col-12 mt-3">
-                                                <div class="border-top pt-3">
-                                                    <h6 class="text-muted">Descrição</h6>
-                                                    <p class="fs-5">{{ $receitas->descricao ?? 'Nenhuma descrição fornecida' }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex justify-content-end gap-2 mt-4">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
-                                                <i class="fas fa-edit me-2"></i>Editar
-                                            </button>
-
-                                            <form action="{{ route('receitas.destroy', $receitas->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta receita?')">
-                                                    <i class="fas fa-trash me-2"></i>Excluir
-                                                </button>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -83,3 +61,6 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>                                               
