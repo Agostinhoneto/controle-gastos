@@ -50,22 +50,19 @@
                                                     </p>
                                                 </div>
                                             </div>
-
                                             <div>
                                                 <div class="mb-4">
                                                     <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Status</h4>
                                                     <p class="mt-1">
-                                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium 
-                                                        {{ $despesas->status == 'pago' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                                            {{ ucfirst($despesas->status) }}
+                                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $despesas->status == 1 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                                                            {{ $despesas->status == 1 ? 'Pago' : 'Não pago' }}
                                                         </span>
                                                     </p>
                                                 </div>
-
                                                 <div class="mb-4">
                                                     <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Categoria</h4>
                                                     <p class="mt-1 text-lg font-semibold text-gray-900">
-                                                        {{ $despesas->categoria->nome ?? 'Não categorizado' }}
+                                                        {{ $despesas->categoria->descricao ?? 'Não categorizado' }}
                                                     </p>
                                                 </div>
                                             </div>
