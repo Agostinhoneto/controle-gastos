@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
   <meta charset="utf-8">
@@ -48,7 +48,6 @@
         </div>
       </section>
     </div>
-
     @include('layouts.footer')
   </div>
 
