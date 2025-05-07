@@ -52,10 +52,21 @@
         height: 300px;
         margin-bottom: 30px;
     }
+
+    .saldo-positivo {
+        color: #28a745;
+        /* Verde */
+        font-weight: bold;
+    }
+
+    .saldo-negativo {
+        color: #dc3545;
+        /* Vermelho */
+        font-weight: bold;
+    }
 </style>
 <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
     @include('layouts.sidebar')
-
     <div class="container-fluid py-4">
         <div class="row mb-4">
             <div class="col-md-12">
@@ -63,14 +74,12 @@
                 <p class="text-muted">Controle completo de suas finanças pessoais</p>
             </div>
         </div>
-
-        <!-- Cards Resumo -->
         <div class="row mb-4">
             <div class="col-md-4">
                 <div class="card summary-card summary-receita h-100">
                     <div class="card-body">
                         <h5 class="card-title">Receitas</h5>
-                        <h2 class="saldo-positivo">R$ 8.450,00</h2>
+                        <h2 class="saldo-positivo">R$ {{ number_format($totalReceitas, 2, ',', '.') }}</h2>
                         <p class="text-muted mb-0">Últimos 30 dias</p>
                     </div>
                 </div>
@@ -80,24 +89,25 @@
                 <div class="card summary-card summary-despesa h-100">
                     <div class="card-body">
                         <h5 class="card-title">Despesas</h5>
-                        <h2 class="saldo-negativo">R$ 5.230,00</h2>
+                        <h2 class="saldo-negativo">
+                            R$ {{ number_format($totalDespesas, 2, ',', '.') }}
+                        </h2>
                         <p class="text-muted mb-0">Últimos 30 dias</p>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4">
                 <div class="card summary-card summary-saldo h-100">
                     <div class="card-body">
                         <h5 class="card-title">Saldo Atual</h5>
-                        <h2 class="saldo-positivo">R$ 3.220,00</h2>
+                        <h2 class="{{ $total >= 0 ? 'saldo-positivo' : 'saldo-negativo' }}">
+                            R$ {{ number_format($total, 2, ',', '.') }}
+                        </h2>
                         <p class="text-muted mb-0">Disponível</p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Filtros -->
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="filter-card">
@@ -143,8 +153,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Gráficos -->
         <div class="row mb-4">
             <div class="col-md-6">
                 <div class="card h-100">
@@ -153,7 +161,6 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
-                            <!-- Espaço para gráfico de barras -->
                             <img src="https://via.placeholder.com/600x300?text=Gráfico+Receitas+vs+Despesas" alt="Gráfico" class="img-fluid">
                         </div>
                     </div>
@@ -167,14 +174,12 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
-                            <!-- Espaço para gráfico de pizza -->
                             <img src="https://via.placeholder.com/600x300?text=Gráfico+Por+Categorias" alt="Gráfico" class="img-fluid">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Tabela de Histórico -->
         <div class="row">
             <div class="col-md-12">
@@ -187,7 +192,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-striped">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Data</th>
@@ -200,92 +205,65 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Exemplo de linha de receita -->
+                                    <!-- Receitas -->
+                                    @forelse($receitas as $receita)
                                     <tr>
-                                        <td>15/05/2023</td>
+                                        <td>{{ date('d/m/Y', strtotime($receita->data_recebimento)) }}</td>
                                         <td><span class="badge receita-badge">Receita</span></td>
-                                        <td>Salário Mensal</td>
-                                        <td>Salário</td>
-                                        <td class="saldo-positivo">R$ 4.500,00</td>
+                                        <td>{{ $receita->descricao }}</td>
+                                        <td>{{ $receita->categoria ?? 'Sem categoria' }}</td>
+                                        <td class="saldo-positivo">R$ {{ number_format($receita->valor, 2, ',', '.') }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-info">
+                                            <button class="btn btn-sm btn-info" title="Visualizar comprovante">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-primary me-2">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            <div class="d-flex">
+                                                <button class="btn btn-sm btn-primary me-2" title="Editar">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" title="Excluir">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
-
-                                    <!-- Exemplo de linha de despesa -->
+                                    @empty
                                     <tr>
-                                        <td>10/05/2023</td>
+                                        <td colspan="7" class="text-center text-muted py-4">Nenhuma receita registrada</td>
+                                    </tr>
+                                    @endforelse
+
+                                    <!-- Despesas -->
+                                    @forelse($despesas as $despesa)
+                                    <tr>
+                                        <td>{{ date('d/m/Y', strtotime($despesa->data_pagamento)) }}</td>
                                         <td><span class="badge despesa-badge">Despesa</span></td>
-                                        <td>Supermercado</td>
-                                        <td>Alimentação</td>
-                                        <td class="saldo-negativo">R$ 850,00</td>
+                                        <td>{{ $despesa->descricao }}</td>
+                                        <td>{{ $despesa->categoria ?? 'Sem categoria' }}</td>
+                                        <td class="saldo-negativo">R$ {{ number_format($despesa->valor, 2, ',', '.') }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-info">
+                                            <button class="btn btn-sm btn-info" title="Visualizar comprovante">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-primary me-2">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            <div class="d-flex">
+                                                <button class="btn btn-sm btn-primary me-2" title="Editar">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" title="Excluir">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
-
-                                    <!-- Mais linhas de exemplo -->
+                                    @empty
                                     <tr>
-                                        <td>05/05/2023</td>
-                                        <td><span class="badge receita-badge">Receita</span></td>
-                                        <td>Freelance</td>
-                                        <td>Trabalho Extra</td>
-                                        <td class="saldo-positivo">R$ 1.200,00</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-info">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-sm btn-primary me-2">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <td colspan="7" class="text-center text-muted py-4">Nenhuma despesa registrada</td>
                                     </tr>
-
-                                    <tr>
-                                        <td>01/05/2023</td>
-                                        <td><span class="badge despesa-badge">Despesa</span></td>
-                                        <td>Aluguel</td>
-                                        <td>Moradia</td>
-                                        <td class="saldo-negativo">R$ 1.800,00</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-info">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-sm btn-primary me-2">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -309,8 +287,5 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+  

@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FinancialGoal;
-use Illuminate\Http\Request;
-
-use App\Models\HistoricoFinanceiro;
-use App\Models\Categorias;  
-use App\Models\User;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
-
+use App\Models\Despesas;
+use App\Models\Receitas;
 
 class HistoricoController extends Controller
 {
     public function index()
     {
-        return view('historico.index');
-    }
+        $despesas = Despesas::all();
+        $receitas = Receitas::all();
+        $totalReceitas = (float)(Receitas::sum('valor') ?? 0);
+        $totalDespesas = (float)(Despesas::sum('valor') ?? 0);
+        $total = ($totalReceitas ?? 0) - ($totalDespesas ?? 0);
 
+        // $total = number_format($total, 2, ',', '.');
+        return view('historico.index', compact('despesas', 'receitas', 'totalDespesas', 'totalReceitas', 'totalDespesas', 'totalReceitas', 'total'));
+    }
 }
