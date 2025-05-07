@@ -67,7 +67,7 @@
 </style>
 <div class="d-flex flex-column flex-md-row flex-fill">
     @include('layouts.sidebar')
-    
+
     <div class="container-fluid py-4">
         <!-- Cabeçalho -->
         <header class="row mb-4">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-4">
                 <div class="card summary-card summary-saldo h-100">
                     <div class="card-body">
@@ -172,9 +172,9 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
-                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Receitas+vs+Despesas" 
-                                 alt="Gráfico de Receitas vs Despesas" 
-                                 class="img-fluid rounded">
+                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Receitas+vs+Despesas"
+                                alt="Gráfico de Receitas vs Despesas"
+                                class="img-fluid rounded">
                         </div>
                     </div>
                 </div>
@@ -187,9 +187,9 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
-                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Por+Categorias" 
-                                 alt="Gráfico de Distribuição por Categoria" 
-                                 class="img-fluid rounded">
+                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Por+Categorias"
+                                alt="Gráfico de Distribuição por Categoria"
+                                class="img-fluid rounded">
                         </div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                             <i class="fas fa-plus me-2"></i>Nova Transação
                         </button>
                     </div>
-                    
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover table-striped">
@@ -316,5 +316,4 @@
     </div>
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

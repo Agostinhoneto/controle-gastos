@@ -57,8 +57,8 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">Descrição</th>
-                                        <th scope="col">Editar</th>
-                                        <th scope="col">Excluir</th>
+                                        <th scope="col">Ver</th>
+                                        <th scope="col">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,16 +66,19 @@
                                     <tr>
                                         <td>{{ $categoria->descricao }}</td>
                                         <td>
-                                            <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-info btn-sm">
-                                                <i class="fas fa-pencil-alt"></i> Editar
+                                            <a href="{{ route('categorias.show', $categoria->id) }}" class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
                                             </a>
                                         </td>
-                                        <td>
+                                        <td class="d-flex align-items-center gap-2">
+                                            <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-pencil-alt"></i> 
+                                            </a>
                                             <form action="{{ route('categorias.destroy', $categoria->id) }}" method="post" onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($categoria->descricao) }}?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="far fa-trash-alt"></i> Excluir
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="far fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                         </td>
