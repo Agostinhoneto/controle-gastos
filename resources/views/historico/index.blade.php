@@ -65,17 +65,21 @@
         font-weight: bold;
     }
 </style>
-<div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
+<div class="d-flex flex-column flex-md-row flex-fill">
     @include('layouts.sidebar')
+    
     <div class="container-fluid py-4">
-        <div class="row mb-4">
+        <!-- Cabeçalho -->
+        <header class="row mb-4">
             <div class="col-md-12">
                 <h1 class="display-5 fw-bold">Histórico Financeiro</h1>
                 <p class="text-muted">Controle completo de suas finanças pessoais</p>
             </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-4">
+        </header>
+
+        <!-- Resumo Financeiro -->
+        <section class="row mb-4">
+            <div class="col-md-4 mb-3 mb-md-0">
                 <div class="card summary-card summary-receita h-100">
                     <div class="card-body">
                         <h5 class="card-title">Receitas</h5>
@@ -85,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3 mb-md-0">
                 <div class="card summary-card summary-despesa h-100">
                     <div class="card-body">
                         <h5 class="card-title">Despesas</h5>
@@ -96,6 +100,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-4">
                 <div class="card summary-card summary-saldo h-100">
                     <div class="card-body">
@@ -107,61 +112,69 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mb-4">
+        </section>
+
+        <!-- Filtros -->
+        <section class="row mb-4">
             <div class="col-md-12">
-                <div class="filter-card">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="form-label">Período</label>
-                            <select class="form-select">
-                                <option>Últimos 7 dias</option>
-                                <option selected>Últimos 30 dias</option>
-                                <option>Este mês</option>
-                                <option>Mês passado</option>
-                                <option>Personalizado</option>
-                            </select>
-                        </div>
+                <div class="card filter-card">
+                    <div class="card-body">
+                        <form class="row g-3">
+                            <div class="col-md-3">
+                                <label for="periodo" class="form-label">Período</label>
+                                <select id="periodo" class="form-select">
+                                    <option>Últimos 7 dias</option>
+                                    <option selected>Últimos 30 dias</option>
+                                    <option>Este mês</option>
+                                    <option>Mês passado</option>
+                                    <option>Personalizado</option>
+                                </select>
+                            </div>
 
-                        <div class="col-md-3">
-                            <label class="form-label">Tipo</label>
-                            <select class="form-select">
-                                <option selected>Todos</option>
-                                <option>Receitas</option>
-                                <option>Despesas</option>
-                            </select>
-                        </div>
+                            <div class="col-md-3">
+                                <label for="tipo" class="form-label">Tipo</label>
+                                <select id="tipo" class="form-select">
+                                    <option selected>Todos</option>
+                                    <option>Receitas</option>
+                                    <option>Despesas</option>
+                                </select>
+                            </div>
 
-                        <div class="col-md-3">
-                            <label class="form-label">Categoria</label>
-                            <select class="form-select">
-                                <option selected>Todas</option>
-                                <option>Salário</option>
-                                <option>Alimentação</option>
-                                <option>Moradia</option>
-                                <option>Transporte</option>
-                                <option>Lazer</option>
-                            </select>
-                        </div>
+                            <div class="col-md-3">
+                                <label for="categoria" class="form-label">Categoria</label>
+                                <select id="categoria" class="form-select">
+                                    <option selected>Todas</option>
+                                    <option>Salário</option>
+                                    <option>Alimentação</option>
+                                    <option>Moradia</option>
+                                    <option>Transporte</option>
+                                    <option>Lazer</option>
+                                </select>
+                            </div>
 
-                        <div class="col-md-3 d-flex align-items-end">
-                            <button class="btn btn-primary w-100">
-                                <i class="fas fa-filter me-2"></i>Filtrar
-                            </button>
-                        </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="fas fa-filter me-2"></i>Filtrar
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-6">
+        </section>
+
+        <!-- Gráficos -->
+        <section class="row mb-4">
+            <div class="col-md-6 mb-3 mb-md-0">
                 <div class="card h-100">
                     <div class="card-header">
-                        <h5 class="card-title">Receitas vs Despesas</h5>
+                        <h5 class="card-title mb-0">Receitas vs Despesas</h5>
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
-                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Receitas+vs+Despesas" alt="Gráfico" class="img-fluid">
+                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Receitas+vs+Despesas" 
+                                 alt="Gráfico de Receitas vs Despesas" 
+                                 class="img-fluid rounded">
                         </div>
                     </div>
                 </div>
@@ -170,18 +183,21 @@
             <div class="col-md-6">
                 <div class="card h-100">
                     <div class="card-header">
-                        <h5 class="card-title">Distribuição por Categoria</h5>
+                        <h5 class="card-title mb-0">Distribuição por Categoria</h5>
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
-                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Por+Categorias" alt="Gráfico" class="img-fluid">
+                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Por+Categorias" 
+                                 alt="Gráfico de Distribuição por Categoria" 
+                                 class="img-fluid rounded">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
         <!-- Tabela de Histórico -->
-        <div class="row">
+        <section class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -190,6 +206,7 @@
                             <i class="fas fa-plus me-2"></i>Nova Transação
                         </button>
                     </div>
+                    
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover table-striped">
@@ -269,23 +286,35 @@
                         </div>
 
                         <!-- Paginação -->
-                        <nav aria-label="Page navigation" class="mt-4">
+                        <nav aria-label="Navegação de páginas" class="mt-4">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
                                 </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
                                 <li class="page-item">
-                                    <a class="page-link" href="#">Próxima</a>
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Próxima">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
