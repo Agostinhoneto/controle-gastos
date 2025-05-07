@@ -14,8 +14,6 @@ class HistoricoController extends Controller
         $totalReceitas = (float)(Receitas::sum('valor') ?? 0);
         $totalDespesas = (float)(Despesas::sum('valor') ?? 0);
         $total = ($totalReceitas ?? 0) - ($totalDespesas ?? 0);
-
-        // $total = number_format($total, 2, ',', '.');
         return view('historico.index', compact('despesas', 'receitas', 'totalDespesas', 'totalReceitas', 'totalDespesas', 'totalReceitas', 'total'));
     }
 }

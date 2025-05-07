@@ -228,7 +228,7 @@
                                         <td>{{ date('d/m/Y', strtotime($receita->data_recebimento)) }}</td>
                                         <td><span class="badge receita-badge">Receita</span></td>
                                         <td>{{ $receita->descricao }}</td>
-                                        <td>{{ $receita->categoria ?? 'Sem categoria' }}</td>
+                                        <td>{{ $receita->categoria->descricao ?? 'Sem categoria' }}</td>
                                         <td class="saldo-positivo">R$ {{ number_format($receita->valor, 2, ',', '.') }}</td>
                                         <td>
                                             <button class="btn btn-sm btn-info" title="Visualizar comprovante">
@@ -258,7 +258,7 @@
                                         <td>{{ date('d/m/Y', strtotime($despesa->data_pagamento)) }}</td>
                                         <td><span class="badge despesa-badge">Despesa</span></td>
                                         <td>{{ $despesa->descricao }}</td>
-                                        <td>{{ $despesa->categoria ?? 'Sem categoria' }}</td>
+                                        <td>{{ $despesa->categoria->descricao ?? 'Sem categoria' }}</td>
                                         <td class="saldo-negativo">R$ {{ number_format($despesa->valor, 2, ',', '.') }}</td>
                                         <td>
                                             <button class="btn btn-sm btn-info" title="Visualizar comprovante">
