@@ -1,17 +1,5 @@
 @include('layouts.topo')
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="referrer" content="always">
-    <title>Admin</title>
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-</head>@extends('layout')
-
-@section('cabecalho', 'Detalhes da Despesa')
-
+@extends('layout')
 @section('conteudo')
 <div class="container mx-auto p-6">
     <div class="card-body">
@@ -29,7 +17,7 @@
                                 </div>
 
                                 <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                                    <div class="bg-blue-600 px-6 py-4 text-white">
+                                    <div class="bg-red-600 px-6 py-4 text-white">
                                         <h3 class="text-xl font-semibold">{{ $despesas->descricao }}</h3>
                                     </div>
 
