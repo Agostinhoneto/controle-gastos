@@ -163,7 +163,10 @@
             </div>
         </section>
 
-        <!-- Gráficos -->
+        <!-- Adicione no cabeçalho -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- Substitua a seção de gráficos por: -->
         <section class="row mb-4">
             <div class="col-md-6 mb-3 mb-md-0">
                 <div class="card h-100">
@@ -171,11 +174,7 @@
                         <h5 class="card-title mb-0">Receitas vs Despesas</h5>
                     </div>
                     <div class="card-body">
-                        <div class="chart-container">
-                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Receitas+vs+Despesas"
-                                alt="Gráfico de Receitas vs Despesas"
-                                class="img-fluid rounded">
-                        </div>
+                        <canvas id="receitasDespesasChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -186,15 +185,70 @@
                         <h5 class="card-title mb-0">Distribuição por Categoria</h5>
                     </div>
                     <div class="card-body">
-                        <div class="chart-container">
-                            <img src="https://via.placeholder.com/600x300?text=Gráfico+Por+Categorias"
-                                alt="Gráfico de Distribuição por Categoria"
-                                class="img-fluid rounded">
-                        </div>
+                        <canvas id="categoriasChart"></canvas>
                     </div>
                 </div>
             </div>
         </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Gráfico Receitas vs Despesas
+                const ctx1 = document.getElementById('receitasDespesasChart').getContext('2d');
+                new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                        datasets: [{
+                                label: 'Receitas',
+                                data: [12000, 19000, 15000, 18000, 14000, 16000],
+                                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Despesas',
+                                data: [8000, 11000, 9000, 10000, 12000, 9500],
+                                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Gráfico de Categorias
+                const ctx2 = document.getElementById('categoriasChart').getContext('2d');
+                new Chart(ctx2, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Alimentação', 'Moradia', 'Transporte', 'Lazer', 'Saúde', 'Outros'],
+                        datasets: [{
+                            data: [35, 25, 15, 10, 10, 5],
+                            backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                '#4BC0C0',
+                                '#9966FF',
+                                '#FF9F40'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+            });
+        </script>
 
         <!-- Tabela de Histórico -->
         <section class="row">
@@ -222,7 +276,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Receitas -->
                                     @forelse($receitas as $receita)
                                     <tr>
                                         <td>{{ date('d/m/Y', strtotime($receita->data_recebimento)) }}</td>
@@ -252,7 +305,6 @@
                                     </tr>
                                     @endforelse
 
-                                    <!-- Despesas -->
                                     @forelse($despesas as $despesa)
                                     <tr>
                                         <td>{{ date('d/m/Y', strtotime($despesa->data_pagamento)) }}</td>
@@ -285,7 +337,6 @@
                             </table>
                         </div>
 
-                        <!-- Paginação -->
                         <nav aria-label="Navegação de páginas" class="mt-4">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item disabled">
